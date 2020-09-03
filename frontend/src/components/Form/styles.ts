@@ -7,9 +7,9 @@ export const Container = styled.div`
   width: 70%;
   padding: 6rem 0;
 
-  .legend-form {
-    font: 700 2.4rem Poppins;
-    margin-bottom: 1.4rem;
+  .fom-title {
+    font: 400 2.6rem Poppins;
+    margin-bottom: 2.6rem;
   }
   .input-above {
     padding: 1.4rem 0rem;

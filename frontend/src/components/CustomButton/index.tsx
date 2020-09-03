@@ -9,6 +9,7 @@ const CustomButtom: React.FC<ButtonInterface> = ({
   colorName,
   onPress,
   children,
+
   ...rest
 }) => {
   return (

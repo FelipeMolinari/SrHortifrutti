@@ -1,0 +1,42 @@
+import styled from 'styled-components';
+
+export const Content = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  .description {
+    margin: 1.6rem 0rem;
+  }
+  .buttons-main {
+    @media (min-width: 1600px) {
+      align-self: center;
+      width: 60%;
+    }
+  }
+  .button {
+    &:first-child {
+      margin: 1.4rem 0rem;
+    }
+  }
+
+  .button-child {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: start;
+    svg {
+      margin-left: 2.4rem;
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+    span {
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      font: 700 1.6rem 'Archivo';
+    }
+  }
+`;
