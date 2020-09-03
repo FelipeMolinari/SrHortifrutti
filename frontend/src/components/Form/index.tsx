@@ -14,13 +14,15 @@ const Form: React.FC<FormProps> = ({ name, description, fields }) => {
         {fields.map((field, index) => {
           const { name, placeholder, type, password } = field;
           return field.password ? (
-            <div key={index}>
-              <InputPassword {...{ name, placeholder, type, password }} />
-            </div>
+            <InputPassword
+              {...{ name, placeholder, type, password }}
+              key={index}
+            />
           ) : (
-            <div key={index}>
-              <InputBlock {...{ name, placeholder, type, password }} />
-            </div>
+            <InputBlock
+              {...{ name, placeholder, type, password }}
+              key={index}
+            />
           );
         })}
       </FieldsContainer>

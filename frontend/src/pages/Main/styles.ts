@@ -5,6 +5,9 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
+  h1 {
+    font-weight: 400;
+  }
   .description {
     margin: 1.6rem 0rem;
   }

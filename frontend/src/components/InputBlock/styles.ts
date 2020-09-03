@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled('div')`
   position: relative;
   height: 5.4rem;
+
   &:focus-within::after {
     width: calc(100%-3.2rem);
     height: 3px;
@@ -26,13 +27,19 @@ export const Container = styled('div')`
 `;
 
 export const Input = styled('input')`
+  background-color: var(--commum-input);
+
   width: 100%;
   height: 100%;
   color: var(--commum-text);
   border: 0;
-  border-bottom: 1px solid var(--commum-border);
+
   outline: 0;
   font: 1.6rem Poppins;
+  border-top: 1px solid var(--commum-border);
+  &:last-child {
+    border-top: 0px;
+  }
   &:focus::placeholder {
     color: transparent;
   }

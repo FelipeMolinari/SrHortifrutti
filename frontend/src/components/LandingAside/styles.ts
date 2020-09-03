@@ -19,9 +19,9 @@ export const Container = styled('div')`
     justify-content: center;
   }
   .logo-title {
-    font-family: 'DM Serif Display';
+    font-family: 'Acme';
     font-weight: 400;
-    font-size: 5.5rem;
+    font-size: 6.4rem;
     color: var(--color-tittle);
   }
   .logo-complement {

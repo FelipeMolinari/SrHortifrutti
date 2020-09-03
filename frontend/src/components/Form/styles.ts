@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 6rem 0;
 
   .fom-title {
-    font: 400 2.6rem Poppins;
+    font-weight: 400;
     margin-bottom: 2.6rem;
   }
   .input-above {
@@ -74,4 +74,5 @@ export const FieldsContainer = styled.div`
   overflow: hidden;
   border: 1px solid var(--border);
   width: 100%;
+  border: 1px solid var(--commum-border);
 `;

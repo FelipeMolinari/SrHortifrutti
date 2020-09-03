@@ -17,7 +17,7 @@ export const Container = styled.div`
       height: 350px;
     }
     .logo-title {
-      font-size: 6rem;
+      font-size: 7rem;
     }
     .logo-complement {
       font-size: 1.8rem;
