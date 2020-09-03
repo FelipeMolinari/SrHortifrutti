@@ -7,6 +7,7 @@ export default createGlobalStyle`
   --color-primary-dark: #7AD895;
   --color-secundary: #FFBE9D;
   --color-secundary-dark: #FFAF86;
+  --color-tittle: #232423;
   --color-primary-text: #32264D;
   --color-secundary-text: #474D47;
   --commum-background: #F0F0F7;
@@ -26,12 +27,12 @@ export default createGlobalStyle`
 html,
 body,
 #root {
-	height: 100vh;
+	width: 100vw;
+  height: 100vh;
+
 }
 #root {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 body,
 input,
@@ -41,15 +42,7 @@ textarea {
 a, button{
 	font: 500 1.6rem Archivo;
 }
-.container {
-	width: 80%;
-	max-width: 900px;
-	align-items:center;
-	justify-content:center;
-  display:flex;
-  background:"#388";
-	
-}
+
 @media (min-width: 700px) {
 	:root {
 		font-size: 62.5%;
