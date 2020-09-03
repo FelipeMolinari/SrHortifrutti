@@ -13,42 +13,26 @@ const fields: FieldProps[] = [
 		name: 'email',
 		type: 'email',
 		placeholder: 'E-mail'
-	},
-
-	{
-		name: 'password',
-		type: 'password',
-		placeholder: 'Senha',
-		password: true
 	}
 ];
 
-const Login: React.FC = () => {
+const RetrievePassword: React.FC = () => {
 	return (
 		<ContainerMain>
 			<LandingAside />
 			<LandingMain>
 				<Container>
-					<Form name="Fazer login" fields={fields} />
-					<div className="input-above">
-						<span>Lembrar-me</span>
-						<Link to="retrieve">Esqueci minha senha</Link>
-					</div>
+					<Form
+						name="Esqueceu a sua senha?"
+						description="Não tem problema, vamos dar um jeito nisso!"
+						fields={fields}
+					/>
+
 					<div className="footer-container">
 						<CustomButton colorName="--color-primary">
 							{/* disabled={!(watch('email') && watch('password'))} */}
-							Entrar
+							Enviar
 						</CustomButton>
-
-						<div>
-							<span>
-								Não tem conta? <Link to="signin">Cadastre-se</Link>
-							</span>
-							<div>
-								<span>É de graça</span>
-								<FaHeart size="1.6rem" />
-							</div>
-						</div>
 					</div>
 				</Container>
 			</LandingMain>
@@ -56,4 +40,4 @@ const Login: React.FC = () => {
 	);
 };
 
-export default Login;
+export default RetrievePassword;

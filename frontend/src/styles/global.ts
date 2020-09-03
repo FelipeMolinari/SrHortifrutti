@@ -3,10 +3,10 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 :root {
   font-size: 60%;
-  --color-primary: #92E3A9;
-  --color-primary-dark: #7AD895;
-  --color-secundary: #FFBE9D;
-  --color-secundary-dark: #FFAF86;
+  --color-primary: #62CC80;
+  --color-primary-dark: #7BBF8E;
+  --color-secundary: #5280E0;
+  --color-secundary-dark: #3B6BCE;
   --color-tittle: #232423;
   --color-primary-text: #32264D;
   --color-secundary-text: #474D47;

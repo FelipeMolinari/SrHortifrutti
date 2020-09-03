@@ -3,15 +3,17 @@ import styled from 'styled-components';
 interface ButtonProps {
   colorName: string;
 }
-export const Container = styled('button')<ButtonProps>`
+export const Container = styled.button<ButtonProps>`
   width: 100%;
-  height: 4.2rem;
+  height: 5.4rem;
+  border-radius: 1.2rem;
   text-decoration: none;
-  border-radius: 0.4rem;
   border: 0px;
-  color: #232423;
+  color: #fff;
   display: flex;
   justify-content: center;
+  font: 600 1.4rem Archivo;
+  letter-spacing: 0.2rem;
   align-items: center;
   cursor: pointer;
   background: ${(props) => `var(${props.colorName})`};

@@ -11,12 +11,7 @@ const InputBlock: React.FC<FieldProps> = ({
 }) => {
   return (
     <Container>
-      <Input
-        className="input-camp"
-        name={name}
-        placeholder={placeholder}
-        type={type}
-      />
+      <Input className="input-camp" name={name} placeholder={placeholder} type={type} />
       {password && children}
     </Container>
   );

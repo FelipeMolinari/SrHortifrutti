@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Signin from './pages/Signin';
+import RetrievePassword from './pages/RetrievePassword';
 
 const Routes: React.FC = () => {
 	return (
@@ -12,6 +13,7 @@ const Routes: React.FC = () => {
 				<Route path="/" exact component={Main} />
 				<Route path="/login" component={Login} />
 				<Route path="/signin" component={Signin} />
+				<Route path="/retrieve" component={RetrievePassword} />
 			</Switch>
 		</BrowserRouter>
 	);
