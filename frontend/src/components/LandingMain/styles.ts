@@ -12,6 +12,5 @@ export const Container = styled.div`
   align-items: flex-start;
   @media (min-width: 800px) {
     align-items: center;
-
   }
 `;

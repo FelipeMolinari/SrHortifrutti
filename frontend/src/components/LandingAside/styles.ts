@@ -1,15 +1,17 @@
 import styled from 'styled-components';
-
+import background from '../../assets/images/background.png';
 export const Container = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: var(--commum-card);
-  padding: 1.2rem 2.4rem 2.4rem 2.4rem;
   min-height: calc(100vh * 0.6);
+  position: relative;
+  .content {
+    z-index: 1;
+    padding: 1.2rem 2.4rem 2.4rem 2.4rem;
 
-  div {
     height: calc(100% - 6rem);
     display: flex;
     flex-direction: column;
@@ -34,4 +36,15 @@ export const Container = styled('div')`
     width: 250px;
     height: 250px;
   }
+`;
+
+export const BackgroundDropDown = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.07;
 `;

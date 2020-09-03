@@ -10,7 +10,7 @@ export default createGlobalStyle`
   --color-tittle: #232423;
   --color-primary-text: #32264D;
   --color-secundary-text: #474D47;
-  --commum-background: #F0F0F7;
+  --commum-background: #f1f1f1;
   --commum-input: #FAFAFC;
   --commum-input-text: #9C98A6;
   --commum-border: #E6E6F0;
