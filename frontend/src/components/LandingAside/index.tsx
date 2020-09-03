@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, BackgroundDropDown } from './styles';
+import BackgroundDropDown from '../BackgroundDropDown/styles';
+import { Container } from './styles';
 import LandingImage from '../../assets/images/landing-image.png';
 function LangingAside() {
   return (
@@ -10,11 +11,7 @@ function LangingAside() {
         <span className="logo-complement">
           Seu hortifrutti nunca esteve tão perto de você!
         </span>
-        <img
-          className="landing-image"
-          src={LandingImage}
-          alt="Imagem vendedor"
-        />
+        <img className="landing-image" src={LandingImage} alt="Imagem vendedor" />
       </div>
     </Container>
   );

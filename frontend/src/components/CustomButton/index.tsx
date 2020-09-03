@@ -2,20 +2,20 @@ import React, { ButtonHTMLAttributes } from 'react';
 import { Container } from './styles';
 
 interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
-	colorName: string;
-	onPress?: void;
+  colorName: string;
+  onPress?: void;
 }
 const CustomButtom: React.FC<ButtonInterface> = ({
-	colorName,
-	onPress,
-	children,
+  colorName,
+  onPress,
+  children,
 
-	...rest
+  ...rest
 }) => {
-	return (
-		<Container {...rest} colorName={colorName}>
-			{children}
-		</Container>
-	);
+  return (
+    <Container {...rest} colorName={colorName}>
+      {children}
+    </Container>
+  );
 };
 export default CustomButtom;

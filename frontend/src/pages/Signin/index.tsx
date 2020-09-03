@@ -1,4 +1,7 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+
 import LandingAside from '../../components/LandingAside';
 import LandingMain from '../../components/LandingMain';
 import ContainerMain from '../../components/ContainerMain';
@@ -7,7 +10,6 @@ import Form from '../../components/Form';
 
 import { Container } from './styles';
 import { FieldProps } from '../../typescriptInterface';
-import { useForm } from 'react-hook-form';
 
 const fields: FieldProps[] = [
   {
@@ -43,7 +45,11 @@ const fields: FieldProps[] = [
 
 const Signin: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
+  const history = useHistory();
 
+  function handleCLickEvent() {
+    history.push('/signsucc');
+  }
   return (
     <ContainerMain>
       <LandingAside />
@@ -67,6 +73,7 @@ const Signin: React.FC = () => {
                 watch('password')
               )
             }
+            onClick={handleCLickEvent}
           >
             <span>Concluir cadastro</span>
           </CustomButtom>
