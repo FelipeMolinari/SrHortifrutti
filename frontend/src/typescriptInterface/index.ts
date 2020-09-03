@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react';
-
-export interface FieldProps extends InputHTMLAttributes<HTMLElement> {
+import { FormProviderProps } from 'react-hook-form';
+export interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   type: string;
   placeholder: string;
@@ -10,4 +10,5 @@ export interface FormProps {
   name: string;
   description?: string;
   fields: FieldProps[];
+  register?: FormProviderProps['register'];
 }

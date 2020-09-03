@@ -25,5 +25,8 @@ export const Container = styled.button<ButtonProps>`
   &:disabled {
     background: var(--commum-disabled);
     color: var(--commum-text);
+    &:hover {
+      transform: scale(1);
+    }
   }
 `;

@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import InputBlock from '../InputBlock';
 import { FieldProps } from '../../typescriptInterface';
 
-const InputPassword: React.FC<FieldProps> = ({
-  name,
-  placeholder,
-  type,
-  password
-}) => {
+const InputPassword = forwardRef<HTMLInputElement, FieldProps>((props, ref) => {
   const [isVisible, setIsVisible] = useState(false);
 
   function toggleVisibility() {
     setIsVisible(!isVisible);
   }
+  const { name, placeholder, type, password } = props;
   return (
     <InputBlock
       {...{ name, placeholder, password }}
       type={isVisible ? 'text' : 'password'}
+      ref={ref}
     >
       {isVisible ? (
         <AiOutlineEyeInvisible size={18} onClick={() => toggleVisibility()} />
@@ -26,5 +23,5 @@ const InputPassword: React.FC<FieldProps> = ({
       )}
     </InputBlock>
   );
-};
+});
 export default InputPassword;
