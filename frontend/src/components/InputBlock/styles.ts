@@ -36,10 +36,7 @@ export const Input = styled('input')`
 
   outline: 0;
   font: 1.6rem Poppins;
-  border-top: 1px solid var(--commum-border);
-  &:last-child {
-    border-top: 0px;
-  }
+
   &:focus::placeholder {
     color: transparent;
   }
