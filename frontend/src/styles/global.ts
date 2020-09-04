@@ -17,8 +17,8 @@ export default createGlobalStyle`
   --commum-text: #707070;
   --commum-disabled: #DCDCE5;
   --commum-card: #FFF;
-  --commum-nav: #232423;
-  --commum-nav-selected: #161616;
+  --commum-nav: #1E1E2D;
+  --commum-nav-selected: #1B1B28;
 
 }
 * {

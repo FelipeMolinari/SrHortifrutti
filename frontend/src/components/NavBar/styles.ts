@@ -9,9 +9,6 @@ export const Container = styled.nav`
   width: 100vw;
   height: 8.6rem;
 
-  .details-store {
-    display: none;
-  }
   .nav-bar {
     list-style: none;
     display: flex;
@@ -20,14 +17,15 @@ export const Container = styled.nav`
     align-items: center;
 
     justify-content: space-around;
+    .header-navbar {
+      display: none;
+    }
     li {
       flex: 1;
       height: 100%;
       display: flex;
       align-items: center;
-
       justify-content: center;
-      filter: grayscale(100%) opacity(0.7);
       transition: var(--transition-speed);
 
       &:hover {
@@ -45,7 +43,8 @@ export const Container = styled.nav`
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        color: var(--commum-background);
+        color: var(--commum-text);
+
         .icon-container {
           .link-icon {
             transition: var(--transition-speed);
@@ -55,6 +54,7 @@ export const Container = styled.nav`
         }
         .link-text {
           font: 200 1.4rem Poppins;
+          color: var(--commum-border);
         }
       }
     }
@@ -64,36 +64,73 @@ export const Container = styled.nav`
     height: 100vh;
     flex-direction: column;
     transition: var(--transition-speed) width;
-
-    .details-store {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: calc(var(--hovered-aside-width) * 0.7);
-      img {
-        width: calc(var(--normal-aside-width) * 0.9);
-        transition: 0.2s width;
-      }
+    ul {
+      pointer-events: auto;
     }
 
+    .header-navbar {
+      display: flex;
+      background-color: var(--commum-nav-selected);
+      width: 100%;
+      align-items: center;
+      flex-direction: row-reverse;
+      margin-bottom: 2.4rem;
+      .icon-container {
+        width: var(--normal-aside-width);
+        .link-icon {
+          width: var(--normal-aside-width);
+          height: var(--normal-aside-width);
+          padding: 2.4rem;
+          transition: var(--transition-speed);
+        }
+      }
+      .title {
+        /* display: none; */
+        font-family: 'Acme';
+        font-weight: 400;
+        font-size: 2.4rem;
+        color: var(--commum-background);
+      }
+      svg {
+        transform: rotate(180deg);
+        path {
+          fill: var(--commum-text);
+        }
+      }
+      a {
+        flex-direction: row-reverse;
+      }
+    }
     .nav-bar {
       flex-direction: column;
       justify-content: none;
 
       li {
-        height: 7rem;
+        height: 6rem;
         width: 100%;
         display: flex;
         flex: none;
+
         &:last-child {
           margin-top: auto;
           margin-bottom: 1.6rem;
         }
+
         &:hover {
           background-color: var(--commum-nav-selected);
           filter: grayscale(0%) opacity(1);
           .link-icon {
             color: var(--color-primary);
+          }
+          .link-text {
+            font: 200 1.6rem Poppins;
+            color: var(--commum-background);
+          }
+          .title {
+            font-family: 'Acme';
+            font-weight: 400;
+            font-size: 2.4rem;
+            color: var(--commum-background);
           }
         }
         a {
@@ -106,7 +143,7 @@ export const Container = styled.nav`
             .link-icon {
               width: var(--normal-aside-width);
               height: var(--normal-aside-width);
-              padding: 1.9rem;
+              padding: 2.4rem;
               transition: var(--transition-speed);
             }
           }
@@ -115,9 +152,7 @@ export const Container = styled.nav`
           }
           .link-text {
             display: none;
-            margin-left: 1rem;
-            font: 200 1.6rem Poppins;
-            letter-spacing: 0.2rem;
+            font: 400 1.4rem Archivo;
           }
         }
       }
@@ -127,9 +162,17 @@ export const Container = styled.nav`
       .nav-bar .link-text {
         display: block;
       }
-      .logo {
-        width: calc(var(--hovered-aside-width) * 0.5);
+
+      .header-navbar {
+        svg {
+          transform: rotate(180deg);
+          transform: rotate var(--transition-speed);
+          path {
+            fill: var(--color-primary);
+          }
+        }
       }
     }
   }
+  pointer-events: none;
 `;

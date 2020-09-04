@@ -2,25 +2,33 @@ import React from 'react';
 
 import { useRouteMatch, Link } from 'react-router-dom';
 
-import { FaHome, FaUserEdit } from 'react-icons/fa';
-import { GiFruitBowl } from 'react-icons/gi';
-import { MdSettings } from 'react-icons/md';
+import {
+  AiOutlineHome,
+  AiOutlineShoppingCart,
+  AiOutlineEdit,
+  AiOutlineSetting
+} from 'react-icons/ai';
+
 import { Container } from './styles';
-import logo from '../../assets/images/logo.png';
+
+import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
 const NavBar: React.FC = () => {
   let { path, url } = useRouteMatch();
 
   return (
     <Container>
-      <div className="details-store">
-        <img src={logo} alt="logo" className="logo" />
+      <div className="header-navbar">
+        <div className="icon-container">
+          <Arrow className="link-icon" />
+        </div>
+        <span className="link-text title">SeuHortifruti</span>
       </div>
       <ul className="nav-bar">
         <li>
           <Link to={`${path}`} className="link-item">
             <div className="icon-container">
-              <FaHome className="link-icon" />
+              <AiOutlineHome className="link-icon" />
             </div>
 
             <span className="link-text">Home</span>
@@ -29,7 +37,7 @@ const NavBar: React.FC = () => {
         <li>
           <Link to={`${path}/products`} className="link-item">
             <div className="icon-container">
-              <GiFruitBowl className="link-icon" />
+              <AiOutlineShoppingCart className="link-icon" />
             </div>
             <span className="link-text">Products</span>
           </Link>
@@ -37,7 +45,7 @@ const NavBar: React.FC = () => {
         <li>
           <Link to={`${path}`} className="link-item">
             <div className="icon-container">
-              <FaUserEdit className="link-icon" />
+              <AiOutlineEdit className="link-icon" />
             </div>
             <span className="link-text">Editar</span>
           </Link>
@@ -45,7 +53,7 @@ const NavBar: React.FC = () => {
         <li>
           <Link to={`${path}/products`} className="link-item">
             <div className="icon-container">
-              <MdSettings className="link-icon" />
+              <AiOutlineSetting className="link-icon" />
             </div>
 
             <span className="link-text">Configurações</span>
