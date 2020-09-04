@@ -12,3 +12,15 @@ export interface FormProps {
   fields: FieldProps[];
   register?: FormProviderProps['register'];
 }
+
+export interface ProductCardProps {
+  name: string;
+  price: string;
+  image_url: string;
+  color: string;
+}
+
+export interface CardInfoProps {
+  name: string;
+  value: string;
+}

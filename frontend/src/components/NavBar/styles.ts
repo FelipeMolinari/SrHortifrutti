@@ -8,7 +8,10 @@ export const Container = styled.nav`
   bottom: 0;
   width: 100vw;
   height: 8.6rem;
-
+  z-index: 10;
+  .header-navbar {
+    display: none;
+  }
   .nav-bar {
     list-style: none;
     display: flex;
@@ -17,10 +20,10 @@ export const Container = styled.nav`
     align-items: center;
 
     justify-content: space-around;
-    .header-navbar {
-      display: none;
-    }
+
     li {
+      pointer-events: auto;
+
       flex: 1;
       height: 100%;
       display: flex;
@@ -28,13 +31,6 @@ export const Container = styled.nav`
       justify-content: center;
       transition: var(--transition-speed);
 
-      &:hover {
-        background-color: var(--commum-nav-selected);
-        filter: grayscale(0%) opacity(1);
-        .link-icon {
-          color: var(--color-primary);
-        }
-      }
       a {
         flex: 1;
         height: 100%;
@@ -44,7 +40,13 @@ export const Container = styled.nav`
         justify-content: center;
         text-decoration: none;
         color: var(--commum-text);
-
+        &:hover {
+          background-color: var(--commum-nav-selected);
+          filter: grayscale(0%) opacity(1);
+          .link-icon {
+            color: var(--color-primary);
+          }
+        }
         .icon-container {
           .link-icon {
             transition: var(--transition-speed);
@@ -59,7 +61,9 @@ export const Container = styled.nav`
       }
     }
   }
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 900px) {
+    position: relative;
+
     width: var(--normal-aside-width);
     height: 100vh;
     flex-direction: column;

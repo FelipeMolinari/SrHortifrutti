@@ -13,8 +13,6 @@ export const Container = styled.div`
 export const Main = styled.div`
   display: flex;
   flex: 1;
-  padding: 2.4rem 1.6rem;
-  @media only screen and (min-width: 600px) {
-    padding: 2.4rem 2.4rem 2.4rem calc(var(--normal-aside-width) * 1.6);
-  }
+  padding: 6rem 6rem;
+  background-color: var(--commum-background);
 `;
