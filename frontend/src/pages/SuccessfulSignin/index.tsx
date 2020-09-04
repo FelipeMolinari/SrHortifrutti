@@ -1,11 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import feito from '../../assets/images/feito.png';
-
 import { Container, CenteredContent } from './styles';
 import CustomButtom from '../../components/CustomButton';
 import BackgroundDropDown from '../../components/BackgroundDropDown/styles';
 
 const SuccessfulSignin: React.FC = () => {
+  const history = useHistory();
+  function handleOnCLick() {
+    history.push('login');
+  }
   return (
     <Container>
       <BackgroundDropDown />
@@ -16,7 +20,9 @@ const SuccessfulSignin: React.FC = () => {
           Agora você também tem o SeuHortifruti, faça o logIn com os dados fornecidos e
           cadastre todos os seus produtos!
         </p>
-        <CustomButtom colorName="--color-primary">Fazer login</CustomButtom>
+        <CustomButtom colorName="--color-primary" onClick={handleOnCLick}>
+          Fazer login
+        </CustomButtom>
       </CenteredContent>
     </Container>
   );

@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { useHistory } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -27,7 +29,10 @@ const fields: FieldProps[] = [
 
 const Login: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
-
+  const history = useHistory();
+  function handleOnclick() {
+    history.push('dashboard');
+  }
   return (
     <ContainerMain>
       <LandingAside />
@@ -42,6 +47,7 @@ const Login: React.FC = () => {
             <CustomButton
               colorName="--color-primary"
               disabled={!(watch('email') && watch('password'))}
+              onClick={handleOnclick}
             >
               Entrar
             </CustomButton>
