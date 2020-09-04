@@ -4,7 +4,8 @@ import { useRouteMatch, Link } from 'react-router-dom';
 
 import { FaHome, FaUserEdit } from 'react-icons/fa';
 import { GiFruitBowl } from 'react-icons/gi';
-import { Container, HortifrutiDetails, Nav } from './styles';
+import { MdSettings } from 'react-icons/md';
+import { Container } from './styles';
 import logo from '../../assets/images/logo.png';
 
 const NavBar: React.FC = () => {
@@ -12,10 +13,10 @@ const NavBar: React.FC = () => {
 
   return (
     <Container>
-      <HortifrutiDetails className="details-store">
+      <div className="details-store">
         <img src={logo} alt="logo" className="logo" />
-      </HortifrutiDetails>
-      <Nav>
+      </div>
+      <ul className="nav-bar">
         <li>
           <Link to={`${path}`} className="link-item">
             <div className="icon-container">
@@ -30,7 +31,6 @@ const NavBar: React.FC = () => {
             <div className="icon-container">
               <GiFruitBowl className="link-icon" />
             </div>
-
             <span className="link-text">Products</span>
           </Link>
         </li>
@@ -45,13 +45,13 @@ const NavBar: React.FC = () => {
         <li>
           <Link to={`${path}/products`} className="link-item">
             <div className="icon-container">
-              <GiFruitBowl className="link-icon" />
+              <MdSettings className="link-icon" />
             </div>
 
-            <span className="link-text">Products</span>
+            <span className="link-text">Configurações</span>
           </Link>
         </li>
-      </Nav>
+      </ul>
     </Container>
   );
 };
