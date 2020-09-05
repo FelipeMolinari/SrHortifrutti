@@ -10,10 +10,10 @@ export const Header = styled.div`
   justify-content: space-between;
   flex-direction: column;
   h1 {
-    font-size: 4.6rem;
+    font-size: 3.6rem;
   }
   p {
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     max-width: 68rem;
   }
   div {
@@ -26,16 +26,16 @@ export const ProductGrid = styled.div`
   align-self: center;
   display: grid;
   flex: 1;
-  grid-template-columns: repeat(auto-fill, 20rem);
-  grid-gap: 4rem;
+  grid-template-columns: repeat(auto-fill, 17rem);
+  grid-gap: 1.6rem;
   align-items: center;
   justify-content: center;
 `;
 
 export const Scrollable = styled.div`
-  margin: 6rem 0rem;
+  margin: 6rem 0rem 0rem 0rem;
+  padding: 2rem 2rem;
   width: 100%;
-  padding: 1rem 6rem;
   flex: 1;
   overflow: hidden;
   overflow-y: scroll;

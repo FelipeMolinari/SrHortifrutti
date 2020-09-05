@@ -32,7 +32,8 @@ export const Container = styled.nav`
       transition: var(--transition-speed);
 
       a {
-        flex: 1;
+        width: 100%;
+
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -89,7 +90,6 @@ export const Container = styled.nav`
         }
       }
       .title {
-        /* display: none; */
         font-family: 'Acme';
         font-weight: 400;
         font-size: 2.4rem;
@@ -123,24 +123,22 @@ export const Container = styled.nav`
         &:hover {
           background-color: var(--commum-nav-selected);
           filter: grayscale(0%) opacity(1);
-          .link-icon {
-            color: var(--color-primary);
-          }
-          .link-text {
-            font: 200 1.6rem Poppins;
-            color: var(--commum-background);
-          }
-          .title {
-            font-family: 'Acme';
-            font-weight: 400;
-            font-size: 2.4rem;
-            color: var(--commum-background);
+          a {
+            .icon-container {
+              .link-icon {
+                color: var(--color-primary);
+              }
+            }
+            .link-text {
+              font: 400 1.6rem Poppins;
+              color: var(--commum-background);
+            }
           }
         }
         a {
           justify-content: flex-start;
           flex-direction: row;
-
+          color: var(--commum-disabled);
           .icon-container {
             width: var(--normal-aside-width);
             display: inline-block;
@@ -149,6 +147,7 @@ export const Container = styled.nav`
               height: var(--normal-aside-width);
               padding: 2.4rem;
               transition: var(--transition-speed);
+              color: var(--commum-input-text);
             }
           }
           .link-icon {
@@ -156,7 +155,6 @@ export const Container = styled.nav`
           }
           .link-text {
             display: none;
-            font: 400 1.4rem Archivo;
           }
         }
       }
@@ -165,6 +163,9 @@ export const Container = styled.nav`
       width: var(--hovered-aside-width);
       .nav-bar .link-text {
         display: block;
+        width: 100%;
+        font: 200 1.4rem Poppins;
+        color: var(--commum-disabled);
       }
 
       .header-navbar {

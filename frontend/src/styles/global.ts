@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 :root {
-  font-size: 60%;
+  font-size: 55%;
+
   --color-primary: #62CC80;
   --color-primary-dark: #7BBF8E;
   --color-secundary: #5280E0;

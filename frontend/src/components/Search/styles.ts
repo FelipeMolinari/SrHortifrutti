@@ -6,8 +6,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   border-radius: 12px;
-  height: 6rem;
-  width: 34rem;
+  height: 4rem;
+  width: 28rem;
   padding: 6px 7px 6px 6px;
   background: var(--commum-input);
   margin: 0;

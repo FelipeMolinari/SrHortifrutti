@@ -12,9 +12,11 @@ export const Content = styled.div`
     margin: 1.6rem 0rem;
   }
   .buttons-main {
-    @media (min-width: 1600px) {
-      align-self: center;
-      width: 60%;
+    flex-direction: column;
+    padding: 0rem 4rem;
+    a {
+      width: 100%;
+      height: 100%;
     }
   }
   .button {

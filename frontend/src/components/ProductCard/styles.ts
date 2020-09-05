@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  width: 20rem;
-  height: 25rem;
+  --width-card: 17rem;
+  --height-card: 22rem;
+
+  width: var(--width-card);
+  height: var(--height-card);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +24,9 @@ export const Container = styled.div`
     background-color: var(--commum-card);
     padding: 2.4rem 1.8rem;
     border-radius: 2rem;
+    .product-avatar {
+      width: 70%;
+    }
     .admin-itens {
       display: none;
       cursor: pointer;
@@ -50,6 +56,9 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 100%;
+      }
+      .name {
+        font-size: 1.4rem;
       }
     }
     .price {

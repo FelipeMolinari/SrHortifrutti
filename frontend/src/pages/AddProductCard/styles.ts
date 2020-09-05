@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  width: 20rem;
-  height: 25rem;
+  --width-card: 17rem;
+  --height-card: 22rem;
+  width: var(--width-card);
+  height: var(--height-card);
   display: flex;
   flex-direction: column;
   align-items: center;
