@@ -20,7 +20,11 @@ export const Container = styled.nav`
     align-items: center;
 
     justify-content: space-around;
-
+    .active {
+      .link-icon {
+        fill: var(--color-primary);
+      }
+    }
     li {
       pointer-events: auto;
 

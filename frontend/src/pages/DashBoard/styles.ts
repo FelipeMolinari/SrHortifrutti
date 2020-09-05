@@ -10,9 +10,13 @@ export const Container = styled.div`
   --hovered-aside-width: 24rem;
 `;
 
-export const Main = styled.div`
+export const Content = styled.div`
   display: flex;
   flex: 1;
-  padding: 6rem 6rem;
   background-color: var(--commum-background);
+  flex-direction: column;
+`;
+export const Main = styled.div`
+  padding: 1.4rem 6rem;
+  flex: 1;
 `;

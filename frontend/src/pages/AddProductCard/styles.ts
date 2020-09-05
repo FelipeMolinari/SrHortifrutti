@@ -29,7 +29,7 @@ export const Container = styled.div`
     }
     &:hover {
       transform: translate(-0.5rem, -0.5rem);
-      color: var(--color-primary);
+      color: var(--color-secundary);
     }
     .footer-card {
       display: flex;
@@ -47,7 +47,7 @@ export const Container = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: var(--color-primary);
+    background-color: var(--color-secundary);
     z-index: 0;
     top: 0;
   }

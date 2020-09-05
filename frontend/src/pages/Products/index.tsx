@@ -85,7 +85,6 @@ const Products: React.FC = () => {
             produto e edite!
           </p>
         </div>
-        <Search />
       </Header>
       <Scrollable>
         <ProductGrid>

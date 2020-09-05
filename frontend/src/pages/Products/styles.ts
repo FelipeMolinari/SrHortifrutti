@@ -11,10 +11,12 @@ export const Header = styled.div`
   flex-direction: column;
   h1 {
     font-size: 3.6rem;
+    color: var(--color-primary-text);
   }
   p {
     font-size: 1.6rem;
     max-width: 68rem;
+    color: var(--color-secundary-text);
   }
   div {
     &:first-child {
@@ -33,8 +35,7 @@ export const ProductGrid = styled.div`
 `;
 
 export const Scrollable = styled.div`
-  margin: 6rem 0rem 0rem 0rem;
-  padding: 2rem 2rem;
+  padding: 2rem 0rem;
   width: 100%;
   flex: 1;
   overflow: hidden;

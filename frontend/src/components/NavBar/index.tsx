@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useRouteMatch, Link } from 'react-router-dom';
+import { useRouteMatch, NavLink } from 'react-router-dom';
 
 import {
-  AiOutlineHome,
+  AiOutlineDashboard,
   AiOutlineShoppingCart,
   AiOutlineEdit,
   AiOutlineSetting
@@ -15,6 +15,7 @@ import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
 const NavBar: React.FC = () => {
   let { path, url } = useRouteMatch();
+  console.log(path, url);
 
   return (
     <Container>
@@ -26,38 +27,38 @@ const NavBar: React.FC = () => {
       </div>
       <ul className="nav-bar">
         <li>
-          <Link to={`${path}`} className="link-item">
+          <NavLink to={`${url}/home`} className="link-item" activeClassName="active">
             <div className="icon-container">
-              <AiOutlineHome className="link-icon" />
+              <AiOutlineDashboard className="link-icon" />
             </div>
 
-            <span className="link-text">Home</span>
-          </Link>
+            <span className="link-text">Dashboard</span>
+          </NavLink>
         </li>
         <li>
-          <Link to={`${path}/products`} className="link-item">
+          <NavLink to={`${url}/products`} className="link-item" activeClassName="active">
             <div className="icon-container">
               <AiOutlineShoppingCart className="link-icon" />
             </div>
             <span className="link-text">Products</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={`${path}`} className="link-item">
+          <NavLink to={`${url}/edit`} className="link-item" activeClassName="active">
             <div className="icon-container">
               <AiOutlineEdit className="link-icon" />
             </div>
             <span className="link-text">Editar</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to={`${path}/products`} className="link-item">
+          <NavLink to={`${url}/config`} className="link-item" activeClassName="active">
             <div className="icon-container">
               <AiOutlineSetting className="link-icon" />
             </div>
 
             <span className="link-text">Configurações</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </Container>
