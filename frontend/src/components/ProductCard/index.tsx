@@ -3,12 +3,23 @@ import { AiFillEdit, AiTwotoneDelete } from 'react-icons/ai';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, price, image_url, color }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  name,
+  price,
+  image_url,
+  color,
+  setConfirmBoth
+}) => {
   return (
     <Container>
       <div className="circle" style={{ backgroundColor: color }}></div>
       <div className="content">
-        <AiTwotoneDelete className="admin-itens delete-buttom" />
+        <AiTwotoneDelete
+          className="admin-itens delete-buttom"
+          onClick={() => {
+            setConfirmBoth && setConfirmBoth(true);
+          }}
+        />
 
         <img src={image_url} alt="" className="product-avatar" />
         <div className="footer-card">
