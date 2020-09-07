@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { Container, Input } from './styles';
-import { FieldProps } from '../../typescriptInterface';
+import { NormalInputProps } from '../../typescriptInterface';
 
-const InputBlock = forwardRef<HTMLInputElement, FieldProps>((props, ref) => {
+const InputBlock = forwardRef<HTMLInputElement, NormalInputProps>((props, ref) => {
   const { name, placeholder, type, password, children } = props;
   return (
     <Container>

@@ -6,17 +6,10 @@ import { useForm } from 'react-hook-form';
 import LandingAside from '../../components/LandingAside';
 import LandingMain from '../../components/LandingMain';
 import ContainerMain from '../../components/ContainerMain';
-import { FieldProps } from '../../typescriptInterface';
 import { Container } from './styles';
 import CustomButton from '../../components/CustomButton';
 import Form from '../../components/Form';
-const fields: FieldProps[] = [
-  {
-    name: 'email',
-    type: 'email',
-    placeholder: 'E-mail'
-  }
-];
+import InputBlock from '../../components/InputBlock';
 
 const RetrievePassword: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
@@ -29,9 +22,16 @@ const RetrievePassword: React.FC = () => {
           <Form
             name="Esqueceu a sua senha?"
             description="Não tem problema, vamos dar um jeito nisso!"
-            fields={fields}
-            register={register}
-          />
+          >
+            <InputBlock
+              {...{
+                name: 'email',
+                type: 'email',
+                placeholder: 'E-mail'
+              }}
+              ref={register}
+            />
+          </Form>
 
           <div className="footer-container">
             <CustomButton colorName="--color-primary" disabled={!watch('email')}>

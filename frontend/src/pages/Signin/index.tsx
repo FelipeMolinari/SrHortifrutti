@@ -9,39 +9,7 @@ import CustomButtom from '../../components/CustomButton';
 import Form from '../../components/Form';
 
 import { Container } from './styles';
-import { FieldProps } from '../../typescriptInterface';
-
-const fields: FieldProps[] = [
-  {
-    name: 'name',
-    type: 'text',
-    placeholder: 'Nome do Hortifrutti'
-  },
-  {
-    name: 'cellphone',
-    type: 'tel',
-    placeholder: 'Telefone (Whatsapp)',
-    pattern: '[0-9]{2}-[0-9]{4}-[0-9]{4}'
-  },
-  {
-    name: 'cep',
-    type: 'text',
-    placeholder: 'CEP',
-    pattern: '[0-9]{3}-[0-9]{2}-[0-9]'
-  },
-  {
-    name: 'email',
-    type: 'email',
-    placeholder: 'E-mail'
-  },
-
-  {
-    name: 'password',
-    type: 'password',
-    placeholder: 'Senha',
-    password: true
-  }
-];
+import InputBlock from '../../components/InputBlock';
 
 const Signin: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
@@ -55,12 +23,73 @@ const Signin: React.FC = () => {
       <LandingAside />
       <LandingMain>
         <Container>
-          <Form
-            name="Cadastro"
-            description="Preencha os dados abaixo para prosseguir!"
-            fields={fields}
-            register={register}
-          />
+          <Form name="Cadastro" description="Preencha os dados abaixo para prosseguir!">
+            <ul>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'name',
+                    type: 'text',
+                    placeholder: 'Nome do Hortifrutti'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'cellphone',
+                    type: 'tel',
+                    placeholder: 'Telefone (Whatsapp)',
+                    pattern: '[0-9]{2}-[0-9]{4}-[0-9]{4}'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'cep',
+                    type: 'text',
+                    placeholder: 'CEP',
+                    pattern: '[0-9]{3}-[0-9]{2}-[0-9]'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'name',
+                    type: 'text',
+                    placeholder: 'Nome do Hortifrutti'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'email',
+                    type: 'email',
+                    placeholder: 'E-mail'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputBlock
+                  {...{
+                    name: 'password',
+                    type: 'password',
+                    placeholder: 'Senha',
+                    password: true
+                  }}
+                  ref={register}
+                />
+              </li>
+            </ul>
+          </Form>
           <CustomButtom
             colorName="--color-primary"
             style={{ marginTop: 36, marginBottom: 56 }}

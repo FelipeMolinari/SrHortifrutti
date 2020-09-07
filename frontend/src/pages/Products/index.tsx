@@ -1,16 +1,16 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState } from 'react';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { Container, Header, ProductGrid, Scrollable } from './styles';
-import Search from '../../components/Search';
+import { Header, ProductGrid, Scrollable } from './styles';
 import ProductCard from '../../components/ProductCard';
-
+import { Link, useRouteMatch } from 'react-router-dom';
 import maca from '../../assets/products/maca.png';
 import banana from '../../assets/products/banana.png';
 import laranja from '../../assets/products/laranja.png';
 
 import { ProductCardProps } from '../../typescriptInterface/index';
 import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
-import AddProductCard from '../AddProductCard';
+import AddProductCard from '../../components/AddProductCard';
+import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
 
 const productsMock = [
   {
@@ -70,13 +70,14 @@ const productsMock = [
 ] as ProductCardProps[];
 
 const Products: React.FC = () => {
+  const { url } = useRouteMatch();
   const [confirmBoth, setConfirmBoth] = useState(false);
   const [successDialog, setSuccessDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
   return (
-    <Container>
+    <ContainerDashboardPages>
       <Header>
         <div>
           <h1>Seus produtos.</h1>
@@ -88,7 +89,9 @@ const Products: React.FC = () => {
       </Header>
       <Scrollable>
         <ProductGrid>
-          <AddProductCard />
+          <Link to={`${url}/add`}>
+            <AddProductCard />
+          </Link>
           {productsMock.map((product) => {
             const { color, image_url, name, price } = product;
             return (
@@ -148,7 +151,7 @@ const Products: React.FC = () => {
           {dialogDescription}
         </SweetAlert>
       )}
-    </Container>
+    </ContainerDashboardPages>
   );
 };
 

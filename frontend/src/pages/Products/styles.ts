@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,6 +27,10 @@ export const ProductGrid = styled.div`
   grid-gap: 1.6rem;
   align-items: center;
   justify-content: center;
+  a {
+    text-decoration: none;
+    color: unset;
+  }
 `;
 
 export const Scrollable = styled.div`
