@@ -9,6 +9,7 @@ import Home from '../Home';
 import NavBar from '../../components/NavBar';
 import Header from '../../components/Header';
 import AddProduct from '../AddProduct';
+import EditProduct from '../EditProduct';
 
 const DashBoard: React.FC = () => {
   let { path, url } = useRouteMatch();
@@ -23,6 +24,7 @@ const DashBoard: React.FC = () => {
             <Route exact path={`${path}/home`} component={Home}></Route>
             <Route exact path={`${path}/products`} component={Products}></Route>
             <Route exact path={`${path}/products/add`} component={AddProduct}></Route>
+            <Route exact path={`${path}/products/edit`} component={EditProduct}></Route>
           </Switch>
         </Main>
       </Content>

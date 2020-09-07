@@ -29,6 +29,7 @@ export interface ProductCardProps {
   price: string;
   image_url: string;
   color: string;
+  darkColor: string;
   setConfirmBoth?: Function;
   className?: string;
 }

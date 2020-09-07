@@ -18,8 +18,8 @@ const AddProduct: React.FC = () => {
       <Header>
         <AiOutlineArrowLeft />
         <div>
-          <h1>Novo produto</h1>
-          <p>Crie um produto novinho!</p>
+          <h1>Editar Produto</h1>
+          <p>Faça as modificações no seu produto!</p>
         </div>
       </Header>
       <ContainerMain className="main-add">

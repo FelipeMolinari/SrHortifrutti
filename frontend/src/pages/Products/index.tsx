@@ -14,55 +14,69 @@ import ContainerDashboardPages from '../../styles/components/ContainerDashboardP
 
 const productsMock = [
   {
-    color: '#FFAAAA',
-    image_url: maca,
+    color: '#FFE3E5',
+    darkColor: '#EEB6BB',
+    image_url:
+      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
     name: 'Maça fresquinha',
     price: '2,99'
   },
   {
     color: '#FDFFAA',
+    darkColor: '#EEB6BB',
     image_url: banana,
     name: 'Banana',
     price: '2,99'
   },
   {
     color: '#FFE7AA',
+    darkColor: '#EEB6BB',
     image_url: laranja,
     name: 'Laranja',
     price: '2,99'
   },
   {
-    color: '#FFAAAA',
-    image_url: maca,
+    color: '#FFE3E5',
+    darkColor: '#EEB6BB',
+    image_url:
+      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
     name: 'Maça fresquinha',
     price: '2,99'
   },
   {
     color: '#FDFFAA',
+    darkColor: '#EEB6BB',
     image_url: banana,
     name: 'Banana',
     price: '2,99'
   },
   {
     color: '#FFE7AA',
+    darkColor: '#EEB6BB',
+
     image_url: laranja,
     name: 'Laranja',
     price: '2,99'
   },
   {
-    color: '#FFAAAA',
-    image_url: maca,
+    color: '#FFE3E5',
+    darkColor: '#EEB6BB',
+
+    image_url:
+      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
     name: 'Maça fresquinha',
     price: '2,99'
   },
   {
     color: '#FDFFAA',
+    darkColor: '#EEB6BB',
     image_url: banana,
     name: 'Banana',
     price: '2,99'
   },
   {
     color: '#FFE7AA',
+    darkColor: '#EEB6BB',
     image_url: laranja,
     name: 'Laranja',
     price: '2,99'
@@ -93,11 +107,13 @@ const Products: React.FC = () => {
             <AddProductCard />
           </Link>
           {productsMock.map((product) => {
-            const { color, image_url, name, price } = product;
+            const { color, image_url, name, price, darkColor } = product;
             return (
-              <ProductCard
-                {...{ color, image_url, name, price, setConfirmBoth }}
-              ></ProductCard>
+              <Link to={`${url}/edit`}>
+                <ProductCard
+                  {...{ color, darkColor, image_url, name, price, setConfirmBoth }}
+                ></ProductCard>
+              </Link>
             );
           })}
         </ProductGrid>
