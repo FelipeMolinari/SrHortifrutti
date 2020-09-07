@@ -6,10 +6,9 @@ export interface OptionsSelectProps extends OptionHTMLAttributes<HTMLOptionEleme
   selected: boolean;
 }
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  type: string;
+  id: string;
   name: string;
-  form: string;
-  options: OptionsSelectProps[];
+  options?: OptionsSelectProps[];
 }
 
 export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -17,10 +16,11 @@ export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> 
   type: string;
   placeholder: string;
   password?: boolean;
+  mask?: string;
 }
 
 export interface FormProps {
-  name: string;
+  name?: string;
   description?: string;
 }
 
@@ -30,6 +30,7 @@ export interface ProductCardProps {
   image_url: string;
   color: string;
   setConfirmBoth?: Function;
+  className?: string;
 }
 
 export interface CardInfoProps {

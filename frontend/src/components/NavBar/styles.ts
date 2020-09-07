@@ -66,7 +66,7 @@ export const Container = styled.nav`
       }
     }
   }
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 800px) {
     position: relative;
 
     width: var(--normal-aside-width);

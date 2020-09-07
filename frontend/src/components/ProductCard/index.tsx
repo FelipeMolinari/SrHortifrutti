@@ -8,12 +8,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   image_url,
   color,
-  setConfirmBoth
+  setConfirmBoth,
+  className
 }) => {
   return (
     <Container>
       <div className="circle" style={{ backgroundColor: color }}></div>
-      <div className="content">
+      <div className={`content ${className}`}>
         <AiTwotoneDelete
           className="admin-itens delete-buttom"
           onClick={() => {

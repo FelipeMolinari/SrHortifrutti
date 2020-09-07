@@ -32,22 +32,21 @@ const Login: React.FC = () => {
                   {...{
                     name: 'email',
                     type: 'email',
-                    placeholder: 'E-mail',
+                    placeholder: 'E-mail'
+                  }}
+                  ref={register}
+                />
+              </li>
+              <li>
+                <InputPassword
+                  {...{
+                    name: 'password',
+                    type: 'password',
+                    placeholder: 'Senha',
                     password: true
                   }}
                   ref={register}
                 />
-                <li>
-                  <InputPassword
-                    {...{
-                      name: 'password',
-                      type: 'password',
-                      placeholder: 'Senha',
-                      password: true
-                    }}
-                    ref={register}
-                  />
-                </li>
               </li>
             </ul>
           </Form>

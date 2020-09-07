@@ -34,6 +34,11 @@ export const ProductGrid = styled.div`
 `;
 
 export const Scrollable = styled.div`
+  margin-bottom: 12rem;
+  @media only screen and (min-width: 800px) {
+    margin-bottom: 0rem;
+  }
+  height: 100%;
   padding: 2rem 0rem;
   width: 100%;
   flex: 1;

@@ -25,3 +25,29 @@ export const Header = styled.div`
     }
   }
 `;
+
+export const ContainerMain = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    .right {
+      margin-left: 4rem;
+    }
+  }
+  .left {
+    width: 100%;
+    flex: 1;
+  }
+  div > button {
+    margin-top: 3rem;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 4rem;
+  }
+`;

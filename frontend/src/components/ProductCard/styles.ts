@@ -12,7 +12,9 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 2rem;
   background-color: var(--commum-card);
-
+  .no-pointer-event {
+    pointer-events: none;
+  }
   .content {
     flex: 1;
     width: 100%;

@@ -10,6 +10,7 @@ import Form from '../../components/Form';
 
 import { Container } from './styles';
 import InputBlock from '../../components/InputBlock';
+import InputPassword from '../../components/InputPassword';
 
 const Signin: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
@@ -41,7 +42,7 @@ const Signin: React.FC = () => {
                     name: 'cellphone',
                     type: 'tel',
                     placeholder: 'Telefone (Whatsapp)',
-                    pattern: '[0-9]{2}-[0-9]{4}-[0-9]{4}'
+                    mask: '(99) 99999-9999'
                   }}
                   ref={register}
                 />
@@ -52,21 +53,12 @@ const Signin: React.FC = () => {
                     name: 'cep',
                     type: 'text',
                     placeholder: 'CEP',
-                    pattern: '[0-9]{3}-[0-9]{2}-[0-9]'
+                    mask: '99.999.999'
                   }}
                   ref={register}
                 />
               </li>
-              <li>
-                <InputBlock
-                  {...{
-                    name: 'name',
-                    type: 'text',
-                    placeholder: 'Nome do Hortifrutti'
-                  }}
-                  ref={register}
-                />
-              </li>
+
               <li>
                 <InputBlock
                   {...{
@@ -78,7 +70,7 @@ const Signin: React.FC = () => {
                 />
               </li>
               <li>
-                <InputBlock
+                <InputPassword
                   {...{
                     name: 'password',
                     type: 'password',
