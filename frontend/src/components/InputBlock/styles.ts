@@ -36,7 +36,9 @@ export const Input = styled('input')`
 
   outline: 0;
   font: 1.6rem Poppins;
-
+  &:disabled {
+    background-color: var(--commum-disabled);
+  }
   &:focus::placeholder {
     color: transparent;
   }

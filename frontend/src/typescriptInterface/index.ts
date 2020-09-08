@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, SelectHTMLAttributes, OptionHTMLAttributes } from 'react';
+import { FormProviderProps } from 'react-hook-form';
 
 export interface OptionsSelectProps extends OptionHTMLAttributes<HTMLOptionElement> {
   disabled: boolean;
@@ -17,6 +18,13 @@ export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> 
   placeholder: string;
   password?: boolean;
   mask?: string;
+}
+export interface FormAccount {
+  register?: FormProviderProps['register'];
+  name: string;
+  cellphone: string;
+  email: string;
+  password: string;
 }
 
 export interface FormProps {

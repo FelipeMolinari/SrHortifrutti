@@ -15,7 +15,6 @@ import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
 const NavBar: React.FC = () => {
   let { path, url } = useRouteMatch();
-  console.log(path, url);
 
   return (
     <Container>

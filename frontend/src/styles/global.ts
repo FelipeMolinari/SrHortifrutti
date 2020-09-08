@@ -17,7 +17,8 @@ export default createGlobalStyle`
   --commum-input-text: #9C98A6;
   --commum-border: #E6E6F0;
   --commum-text: #707070;
-  --commum-disabled: #DCDCE5;
+  --commum-disabled: #DCE5;
+  --commum-disabled-text: #9999;
   --commum-card: #FFF;
   --commum-nav: #1E1E2D;
   --commum-nav-selected: #1B1B28;
