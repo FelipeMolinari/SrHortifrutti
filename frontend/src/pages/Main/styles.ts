@@ -14,9 +14,14 @@ export const Content = styled.div`
   .buttons-main {
     flex-direction: column;
     padding: 0rem 4rem;
+
     a {
       width: 100%;
-      height: 100%;
+      button {
+        span {
+          font: 400 1.6rem Archivo;
+        }
+      }
     }
   }
   .button {
@@ -38,7 +43,6 @@ export const Content = styled.div`
     }
     span {
       position: absolute;
-
       left: 0;
       right: 0;
       font: 700 1.6rem 'Archivo';

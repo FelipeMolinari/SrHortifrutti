@@ -7,6 +7,7 @@ import Signin from './pages/Signin';
 import RetrievePassword from './pages/RetrievePassword';
 import SuccessfulSignin from './pages/SuccessfulSignin';
 import DashBoard from './pages/DashBoard';
+import Store from './pages/Store';
 
 const Routes: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Routes: React.FC = () => {
         <Route path="/retrieve" component={RetrievePassword} />
         <Route path="/signsucc" component={SuccessfulSignin} />
         <Route path="/dashboard" component={DashBoard} />
+        <Route path="/store" component={Store} />
       </Switch>
     </BrowserRouter>
   );

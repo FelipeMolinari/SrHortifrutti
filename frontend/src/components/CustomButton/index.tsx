@@ -1,10 +1,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { Container } from './styles';
+import { ButtonInterface } from '../../typescriptInterface';
 
-interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
-  colorName: string;
-  onPress?: void;
-}
 const CustomButtom: React.FC<ButtonInterface> = ({
   colorName,
   onPress,

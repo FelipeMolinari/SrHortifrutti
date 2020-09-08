@@ -2,7 +2,9 @@ import {
   InputHTMLAttributes,
   SelectHTMLAttributes,
   OptionHTMLAttributes,
-  FormHTMLAttributes
+  FormHTMLAttributes,
+  ButtonHTMLAttributes,
+  CSSProperties
 } from 'react';
 import {
   FormProviderProps,
@@ -67,4 +69,10 @@ export type FieldError = {
 
 export interface ListErrorsProps {
   errorArray: FieldError[];
+}
+
+export interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
+  colorName: string;
+  onPress?: void;
+  containerStyle?: CSSProperties;
 }

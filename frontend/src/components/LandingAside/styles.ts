@@ -19,7 +19,7 @@ export const Container = styled('div')`
     justify-content: center;
   }
   .logo-title {
-    font-family: 'Acme';
+    font-family: 'DM serif display';
     font-weight: 400;
     font-size: 6.4rem;
     color: var(--color-tittle);
