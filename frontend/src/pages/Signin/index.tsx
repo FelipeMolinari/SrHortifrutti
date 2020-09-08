@@ -27,10 +27,6 @@ const Signin: React.FC = () => {
     }
   }
 
-  function handleCLickEvent() {
-    history.push('/signsucc');
-  }
-
   const onSubmit = handleSubmit((data) => history.push('/signsucc'));
 
   return (

@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 4.2rem 3.2rem 3.2rem 4.2rem;
+  background-color: var(--commum-background);
 `;
 
 export const Content = styled.div`
@@ -20,4 +21,5 @@ export const Content = styled.div`
 export const Main = styled.div`
   width: 100%;
   height: 100%;
+  padding-top: 1.6rem;
 `;
