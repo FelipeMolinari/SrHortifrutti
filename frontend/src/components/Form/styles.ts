@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
 `;
 
-export const FieldsContainer = styled.ul`
+export const FieldsContainer = styled.form`
   border-radius: 1.6rem;
   overflow: hidden;
   border: 1px solid var(--border);

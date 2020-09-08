@@ -1,5 +1,16 @@
-import { InputHTMLAttributes, SelectHTMLAttributes, OptionHTMLAttributes } from 'react';
-import { FormProviderProps } from 'react-hook-form';
+import {
+  InputHTMLAttributes,
+  SelectHTMLAttributes,
+  OptionHTMLAttributes,
+  FormHTMLAttributes
+} from 'react';
+import {
+  FormProviderProps,
+  FieldErrors,
+  MultipleFieldErrors,
+  Message,
+  Ref
+} from 'react-hook-form';
 
 export interface OptionsSelectProps extends OptionHTMLAttributes<HTMLOptionElement> {
   disabled: boolean;
@@ -27,7 +38,7 @@ export interface FormAccount {
   password: string;
 }
 
-export interface FormProps {
+export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   name?: string;
   description?: string;
 }
@@ -45,4 +56,15 @@ export interface ProductCardProps {
 export interface CardInfoProps {
   name: string;
   value: string;
+}
+
+export type FieldError = {
+  type: string;
+  ref?: Ref;
+  types?: MultipleFieldErrors;
+  message?: Message;
+};
+
+export interface ListErrorsProps {
+  errorArray: FieldError[];
 }

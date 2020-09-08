@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 
 import LandingAside from '../../components/LandingAside';
 import LandingMain from '../../components/LandingMain';
@@ -13,19 +13,19 @@ import CustomButton from '../../components/CustomButton';
 import Form from '../../components/Form';
 import InputBlock from '../../components/InputBlock';
 import InputPassword from '../../components/InputPassword';
+import ErrorsList from '../../components/ErrorsList';
 
 const Login: React.FC = () => {
   const { errors, register, handleSubmit, watch } = useForm();
   const history = useHistory();
-  function handleOnclick() {
-    history.push('dashboard');
-  }
+
+  const onSubmit = handleSubmit((data) => history.push('/dashboard'));
   return (
     <ContainerMain>
       <LandingAside />
       <LandingMain>
         <Container>
-          <Form name="Fazer login">
+          <Form name="Fazer login" onSubmit={onSubmit} id="login">
             <ul>
               <li>
                 <InputBlock
@@ -34,7 +34,9 @@ const Login: React.FC = () => {
                     type: 'email',
                     placeholder: 'E-mail'
                   }}
-                  ref={register}
+                  ref={register({
+                    required: true
+                  })}
                 />
               </li>
               <li>
@@ -45,20 +47,37 @@ const Login: React.FC = () => {
                     placeholder: 'Senha',
                     password: true
                   }}
-                  ref={register}
+                  ref={register({
+                    required: true,
+                    minLength: {
+                      value: 6,
+                      message: 'Sua senha deve possuir ao menos 6 caracteres!' // <p>error message</p>
+                    }
+                  })}
                 />
               </li>
             </ul>
           </Form>
+
           <div className="input-above">
             <span>Lembrar-me</span>
             <Link to="retrieve">Esqueci minha senha</Link>
           </div>
+
+          {errors && (
+            <ErrorsList
+              errorArray={Object.keys(errors).map(function (errorNamedIndex) {
+                let error = errors[errorNamedIndex];
+                return error;
+              })}
+            ></ErrorsList>
+          )}
           <div className="footer-container">
             <CustomButton
+              form="login"
+              type="submit"
               colorName="--color-primary"
               disabled={!(watch('email') && watch('password'))}
-              onClick={handleOnclick}
             >
               Entrar
             </CustomButton>
