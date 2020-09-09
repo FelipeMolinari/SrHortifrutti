@@ -4,15 +4,10 @@ import {
   OptionHTMLAttributes,
   FormHTMLAttributes,
   ButtonHTMLAttributes,
+  HTMLAttributes,
   CSSProperties
 } from 'react';
-import {
-  FormProviderProps,
-  FieldErrors,
-  MultipleFieldErrors,
-  Message,
-  Ref
-} from 'react-hook-form';
+import { FormProviderProps, MultipleFieldErrors, Message, Ref } from 'react-hook-form';
 
 export interface OptionsSelectProps extends OptionHTMLAttributes<HTMLOptionElement> {
   disabled: boolean;
@@ -49,7 +44,6 @@ export interface ProductCardProps {
   name: string;
   price: string;
   image_url: string;
-  color: string;
   darkColor: string;
   setConfirmBoth?: Function;
   className?: string;
@@ -75,4 +69,7 @@ export interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement>
   colorName: string;
   onPress?: void;
   containerStyle?: CSSProperties;
+}
+export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
+  placeholder: string;
 }

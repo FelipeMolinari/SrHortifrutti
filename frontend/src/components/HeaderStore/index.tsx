@@ -6,7 +6,7 @@ const HeaderStore: React.FC = () => {
   return (
     <Container>
       <div className="logo">
-        <h1 className="logo-title">Seu Hortifruti</h1>
+        <h1 className="logo-title">SeuHortifruti</h1>
         <span className="logo-description">Seu hortifruti pertinho de você</span>
       </div>
       <div className="shopping-cart">

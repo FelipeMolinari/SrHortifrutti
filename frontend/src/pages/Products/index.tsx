@@ -11,74 +11,53 @@ import { ProductCardProps } from '../../typescriptInterface/index';
 import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
 import AddProductCard from '../../components/AddProductCard';
 import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
-
 const productsMock = [
   {
-    color: '#FFE3E5',
-    darkColor: '#EEB6BB',
+    darkColor: '#FFE3E5',
     image_url:
-      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
+      'https://lh3.googleusercontent.com/proxy/oyvEHSjwNwDADp0MoDw4Fsb3enKYOY2P_ihi2Jbay56wrQPUMYTRDcupRLJmZdwE0ZeiLH2rbAC7oDdMemuMl6U0jqU3RYHqUTf9rCwJqKqZZus46zjDQevClFEEfsSqNnSgTDlNPEerK7DHEQ',
     name: 'Maça fresquinha',
     price: '2,99'
   },
   {
-    color: '#FDFFAA',
-    darkColor: '#EEB6BB',
-    image_url: banana,
+    darkColor: '#FFF6C8',
+    image_url:
+      'https://lh3.googleusercontent.com/proxy/gyw6AgXtjtzzmAe3OqjclnBi0E47ocj0YfIWDQh5LrKhkDrXDn7V2CtX96mM-yd1hTVBg-VmeS4hFRMVA3wb5UU2tdCIKX4sCju4UK_KpKAn2Ed-00uyEZ7I',
     name: 'Banana',
     price: '2,99'
   },
   {
-    color: '#FFE7AA',
-    darkColor: '#EEB6BB',
-    image_url: laranja,
+    darkColor: '#FFE08E',
+    image_url:
+      'https://imagensemoldes.com.br/wp-content/uploads/2018/07/Imagem-de-Frutas-Laranja-12-PNG-1200x1045.png',
     name: 'Laranja',
     price: '2,99'
   },
   {
-    color: '#FFE3E5',
-    darkColor: '#EEB6BB',
-    image_url:
-      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
-    name: 'Maça fresquinha',
+    darkColor: '#FFC8C8',
+    image_url: 'https://polpasefrutas.com.br/arquivos/imagens/produtos/mesa/morango.png',
+    name: 'Morango',
     price: '2,99'
   },
   {
-    color: '#FDFFAA',
-    darkColor: '#EEB6BB',
-    image_url: banana,
-    name: 'Banana',
+    darkColor: '#FFC8EC',
+    image_url: 'https://www.tial.com.br/wp-content/uploads/2018/10/uva.png',
+    name: 'Uva',
     price: '2,99'
   },
   {
-    color: '#FFE7AA',
-    darkColor: '#EEB6BB',
+    darkColor: '#E3FFC8',
 
-    image_url: laranja,
-    name: 'Laranja',
+    image_url: 'https://fortali.com.br/wp-content/uploads/2020/04/14201-1.png',
+    name: 'Uva',
     price: '2,99'
   },
   {
-    color: '#FFE3E5',
-    darkColor: '#EEB6BB',
+    darkColor: '#FFDCC8',
 
     image_url:
-      'https://lh3.googleusercontent.com/proxy/_IxWWewkgzUvull57bh7kmt91OShqxEc7ic9uUC9M3iaxbY1EIRMzWH4Xw1TBHUqUqrsum9p58opq16YXdf1q5ptDwJchNR0c9nHOMr6Ngy_wn-9oLYHWbnWclle33mdoCgQ5ReCxxjI91zJHg',
-    name: 'Maça fresquinha',
-    price: '2,99'
-  },
-  {
-    color: '#FDFFAA',
-    darkColor: '#EEB6BB',
-    image_url: banana,
-    name: 'Banana',
-    price: '2,99'
-  },
-  {
-    color: '#FFE7AA',
-    darkColor: '#EEB6BB',
-    image_url: laranja,
-    name: 'Laranja',
+      'https://aldeiadev.com.br/interfruit/wp-content/uploads/2019/06/mamao-golden.png',
+    name: 'Mamão',
     price: '2,99'
   }
 ] as ProductCardProps[];
@@ -107,11 +86,11 @@ const Products: React.FC = () => {
             <AddProductCard />
           </Link>
           {productsMock.map((product) => {
-            const { color, image_url, name, price, darkColor } = product;
+            const { image_url, name, price, darkColor } = product;
             return (
               <Link to={`${url}/edit`}>
                 <ProductCard
-                  {...{ color, darkColor, image_url, name, price, setConfirmBoth }}
+                  {...{ darkColor, image_url, name, price, setConfirmBoth }}
                 ></ProductCard>
               </Link>
             );

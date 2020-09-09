@@ -4,6 +4,7 @@ export const Container = styled.div`
   flex: 1;
   display: flex;
   width: 100vw;
+  height: 100vh;
   @media (min-width: 800px) {
     height: 100vh;
     flex: 1;

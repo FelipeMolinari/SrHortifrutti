@@ -50,5 +50,6 @@ export const ContainerMain = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin-top: 4rem;
+    width: 20rem;
   }
 `;

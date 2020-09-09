@@ -5,20 +5,35 @@ export const Container = styled.aside`
   align-items: center;
   width: 100%;
   justify-content: center;
-  button {
-    margin: 0.8rem 1.6rem;
-  }
+  a {
+    width: 100%;
 
+    text-decoration: none;
+    button {
+      background-color: var(--commum-input-text);
+      margin: 1rem;
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+  .actived {
+    button {
+      background-color: var(--color-primary);
+    }
+  }
   @media (min-width: 800px) {
     height: 100%;
-    width: 20rem;
+    width: 25rem;
     justify-content: flex-start;
     margin-right: 1.6rem;
     flex-direction: column;
     button {
+      margin: 0;
       margin-top: 1.6rem;
-      &:first-child {
-        margin-top: 2.4rem;
+      &:hover {
+        transform: none;
+        opacity: 0.9;
       }
     }
   }

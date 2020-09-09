@@ -20,7 +20,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 900px) {
+  @media (min-width: 500px) {
     .top-content {
       flex-direction: row;
       justify-content: space-between;
@@ -44,10 +44,10 @@ export const GridContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  @media (min-width: 700px) {
+  @media (min-width: 300px) {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fill, 32rem);
+    grid-template-columns: repeat(auto-fill, 17rem);
     > div {
       margin: 0;
     }

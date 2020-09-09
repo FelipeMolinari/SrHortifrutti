@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 :root {
-  font-size: 55%;
+  font-size: 50%;
 
   --color-primary: #62CC80;
   --color-primary-dark: #7BBF8E;
@@ -19,6 +19,7 @@ export default createGlobalStyle`
   --commum-text: #707070;
   --commum-disabled: #DCE5;
   --commum-disabled-text: #9999;
+  --commum-disabled-text-dark: #9999;
   --commum-card: #FFF;
   --commum-nav: #1E1E2D;
   --commum-nav-selected: #1B1B28;

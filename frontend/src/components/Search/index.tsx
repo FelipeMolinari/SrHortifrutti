@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Container, SearchIcon } from './styles';
-
-const Search: React.FC = () => {
+import { SearchProps } from '../../typescriptInterface';
+const Search: React.FC<SearchProps> = ({ placeholder, ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <SearchIcon />
-      <input type="text" placeholder="Search" />
+      <input type="text" placeholder={placeholder} />
     </Container>
   );
 };

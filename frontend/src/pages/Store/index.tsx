@@ -6,6 +6,7 @@ import HeaderStore from '../../components/HeaderStore';
 import AsideStore from '../../components/AsideStore';
 import HeaderBottom from '../../components/HeaderBottom';
 import PartnerStores from '../PartnerStores';
+import BestProducts from '../BestProducts';
 
 const Store: React.FC = () => {
   const { path, url } = useRouteMatch();
@@ -14,11 +15,11 @@ const Store: React.FC = () => {
       <HeaderStore></HeaderStore>
       <HeaderBottom />
       <Content>
-        <AsideStore></AsideStore>
+        <AsideStore />
         <Main>
           <Switch>
             <Route exact path={`${path}`} component={PartnerStores}></Route>
-            {/* <Route  path={`${path}/destaques`} component={Products}></Route> */}
+            <Route path={`${path}/destaques`} component={BestProducts}></Route>
           </Switch>
         </Main>
       </Content>

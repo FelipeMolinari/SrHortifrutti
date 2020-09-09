@@ -19,7 +19,7 @@ export const Container = styled.div`
     font-weight: 400;
     height: 100%;
     flex: 1;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 `;
 export const SearchIcon = styled(IoIosSearch)`

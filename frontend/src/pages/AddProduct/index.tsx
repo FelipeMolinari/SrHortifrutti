@@ -65,7 +65,6 @@ const AddProduct: React.FC = () => {
           <ProductCard
             name={watch('name')}
             darkColor="#f1f1f1"
-            color="#fff"
             price={watch('value')}
             image_url={selectedImage(parseInt(watch('product')))}
             className="no-pointer-event"
