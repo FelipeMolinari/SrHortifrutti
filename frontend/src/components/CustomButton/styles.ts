@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-  colorName: string;
+	colorName: string;
 }
-export const Container = styled.button<ButtonProps>`
+export const Container =
+	styled.button <
+	ButtonProps >
+	`
   width: 100%;
   height: 4.2rem;
   border-radius: 1.2rem;
@@ -12,6 +15,8 @@ export const Container = styled.button<ButtonProps>`
   color: #fff;
   display: flex;
   justify-content: center;
+  outline: none;
+
   font: 600 1.4rem Archivo;
   letter-spacing: 0.2rem;
   align-items: center;

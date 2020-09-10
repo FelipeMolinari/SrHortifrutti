@@ -1,13 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import producstMock from '../util/productMock';
 import { ProductProps, ProductsProviderProps, CartProps } from '../typescriptInterface';
-
+import { getLocalStorageProducts, setLocalStorageProducts } from '../storage/productLocalStorage';
 export const ProductsContext = createContext({} as ProductsProviderProps);
 
 const ProductsContextProvider: React.FC = ({ children }) => {
 	const [ avaiablesProducts ] = useState<ProductProps[]>(producstMock);
 	const [ cart, setCart ] = useState<CartProps[]>([]);
 
+	useEffect(() => {
+		setCart(getLocalStorageProducts());
+	}, []);
+	useEffect(
+		() => {
+			setLocalStorageProducts(cart);
+		},
+		[ cart ]
+	);
 	function addToCart(id: number) {
 		const check = cart.every((item) => {
 			return item.product.id !== id;
@@ -19,7 +28,7 @@ const ProductsContextProvider: React.FC = ({ children }) => {
 
 			setCart([ ...cart, { product: data[0], quantity: 1 } ]);
 		} else {
-			alert('the product has been added to cart.');
+			alert('Esse produto já está no carrinho');
 		}
 	}
 	function removeFromCart(id: number) {
