@@ -25,7 +25,7 @@ export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> 
 	type: string;
 	placeholder: string;
 	password?: boolean;
-	mask?: string;
+	mask?: string | (string | RegExp)[];
 }
 export interface FormAccount {
 	register?: FormProviderProps['register'];
@@ -54,7 +54,8 @@ export interface CartProps {
 export interface ProductCardProps {
 	product: ProductProps;
 	setConfirmBoth?: Function;
-	className?: string;
+	adminPage?: boolean;
+	routeOnPress?: string;
 }
 
 export interface ProductsProviderProps {

@@ -19,9 +19,7 @@ export const Container = styled.div`
 		}
 	}
 	transition: 0.5s border-radius;
-	img {
-		flex: 1;
-	}
+
 	.no-pointer-event {
 		pointer-events: none;
 	}
@@ -40,6 +38,20 @@ export const Container = styled.div`
 		border-radius: 1rem;
 		overflow: hidden;
 		cursor: pointer;
+
+		.admin-itens {
+			cursor: pointer;
+		}
+		> a {
+			display: flex;
+			width: 100%;
+			z-index: 1;
+			position: absolute;
+			height: 100%;
+		}
+		img {
+			flex: 1;
+		}
 		.avatar-container {
 			flex: 1;
 			display: flex;
@@ -50,16 +62,6 @@ export const Container = styled.div`
 				width: 100%;
 			}
 		}
-		.admin-itens {
-			cursor: pointer;
-		}
-		.delete-buttom {
-			color: var(--color-delete);
-			position: absolute;
-			top: 2.4rem;
-			right: 1rem;
-		}
-
 		.header-card {
 			display: flex;
 			flex-direction: column;
@@ -102,7 +104,7 @@ export const Container = styled.div`
 			align-items: center;
 			justify-content: center;
 			transition: 0.2s transform;
-
+			z-index: 2;
 			svg {
 				width: 2rem;
 				height: 2rem;
@@ -113,7 +115,7 @@ export const Container = styled.div`
 				margin-bottom: 0.3rem;
 				margin-right: 0.3rem;
 				svg {
-					color: var(--color-primary-text) !important;
+					color: var(--color-delete) !important;
 				}
 			}
 		}

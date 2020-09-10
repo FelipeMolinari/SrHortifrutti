@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiTwotoneDelete } from 'react-icons/ai';
 
 import { ProductsContext } from '../../contexts/ProductContext';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
 import adjust from '../../util/shadeColor';
+import { Link } from 'react-router-dom';
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, setConfirmBoth, className }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, setConfirmBoth, adminPage, routeOnPress }) => {
 	const { addToCart } = useContext(ProductsContext);
 	const { name, price, image_url, darkColor, id } = product;
 	function handleAddToCart(id: number) {
@@ -14,13 +15,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setConfirmBoth, clas
 	}
 	return (
 		<Container>
-			<div className={`content ${className}`} style={{ backgroundColor: darkColor }}>
-				{/* <AiTwotoneDelete
-          className="admin-itens delete-buttom"
-          onClick={() => {
-            setConfirmBoth && setConfirmBoth(true);
-          }}
-      /> */}
+			<div className={`content`} style={{ backgroundColor: darkColor }}>
+				{routeOnPress && <Link to={`${routeOnPress}`} />}
 				<div className="header-card">
 					<span className="name">{name}</span>
 					<div>
@@ -31,13 +27,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, setConfirmBoth, clas
 				<div className="avatar-container">
 					<img src={image_url} alt="" className="product-avatar" />
 				</div>
-				<button
-					className="footer-card"
-					style={{ backgroundColor: adjust(darkColor, -8) }}
-					onClick={() => handleAddToCart(id)}
-				>
-					<AiOutlinePlus color={adjust(darkColor, -50)} className="revertscale" />
-				</button>
+				{!adminPage ? (
+					<button
+						className="footer-card"
+						style={{ backgroundColor: adjust(darkColor, -8) }}
+						onClick={() => handleAddToCart(id)}
+					>
+						<AiOutlinePlus color={adjust(darkColor, -50)} className="revertscale" />
+					</button>
+				) : (
+					<button
+						className="footer-card"
+						style={{ backgroundColor: adjust(darkColor, -8) }}
+						onClick={() => {
+							setConfirmBoth && setConfirmBoth(true);
+						}}
+					>
+						<AiTwotoneDelete color={adjust(darkColor, -50)} className="revertscale delete-buttom" />
+					</button>
+				)}
 			</div>
 		</Container>
 	);

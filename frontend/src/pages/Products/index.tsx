@@ -27,19 +27,22 @@ const Products: React.FC = () => {
 				</div>
 			</Header>
 			<Scrollable>
-				{/* <ProductGrid>
+				<ProductGrid>
 					<Link to={`${url}/add`}>
 						<AddProductCard />
 					</Link>
 					{productsMock.map((product) => {
-						const { image_url, name, price, darkColor } = product;
+						const { image_url, name, price, darkColor, id } = product;
 						return (
-							<Link to={`${url}/edit`}>
-								<ProductCard product={{ darkColor, image_url, name, price }} />
-							</Link>
+							<ProductCard
+								adminPage
+								setConfirmBoth={setConfirmBoth}
+								product={{ darkColor, image_url, name, price, id }}
+								routeOnPress={`${url}/edit/${id}`}
+							/>
 						);
 					})}
-				</ProductGrid> */}
+				</ProductGrid>
 			</Scrollable>
 			{confirmBoth && (
 				<SweetAlert

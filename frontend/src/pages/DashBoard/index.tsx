@@ -12,24 +12,24 @@ import AddProduct from '../AddProduct';
 import EditProduct from '../EditProduct';
 
 const DashBoard: React.FC = () => {
-  let { path, url } = useRouteMatch();
+	let { path, url } = useRouteMatch();
 
-  return (
-    <Container>
-      <NavBar />
-      <Content>
-        <Header />
-        <Main>
-          <Switch>
-            <Route exact path={`${path}/home`} component={Home}></Route>
-            <Route exact path={`${path}/products`} component={Products}></Route>
-            <Route exact path={`${path}/products/add`} component={AddProduct}></Route>
-            <Route exact path={`${path}/products/edit`} component={EditProduct}></Route>
-          </Switch>
-        </Main>
-      </Content>
-    </Container>
-  );
+	return (
+		<Container>
+			<NavBar />
+			<Content>
+				<Header />
+				<Main>
+					<Switch>
+						<Route exact path={`${path}/home`} component={Home} />
+						<Route exact path={`${path}/products`} component={Products} />
+						<Route exact path={`${path}/products/add`} component={AddProduct} />
+						<Route exact path={`${path}/products/edit/:id`} component={EditProduct} />
+					</Switch>
+				</Main>
+			</Content>
+		</Container>
+	);
 };
 
 export default DashBoard;
