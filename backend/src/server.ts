@@ -1,9 +1,9 @@
 import express from 'express'
 import UserController from '@controllers/UserController'
-const app = express();
+const app = express()
 
-app.get('/', (_,res)=>{
+app.get('/', (_, res) => {
   console.log(UserController)
-  return res.json({message: 'Hello world'})
+  return res.json({ message: 'Hello world' })
 })
-app.listen(3333);
+app.listen(3333)
