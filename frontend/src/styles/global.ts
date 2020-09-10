@@ -18,7 +18,7 @@ export default createGlobalStyle`
   --commum-border: #E6E6F0;
   --commum-text: #707070;
   --commum-disabled: #DCE5;
-  --commum-disabled-text: #9999;
+  --commum-disabled-text: #E2E2E2;
   --commum-disabled-text-dark: #9999;
   --commum-card: #FFF;
   --commum-nav: #1E1E2D;
@@ -49,9 +49,10 @@ a, button{
 	font: 500 1.6rem Archivo;
 }
 
+
 @media (min-width: 900px) {
 	:root {
-		font-size: 62.5%;
+		font-size: 55%;
 	}
 }
 `;

@@ -10,19 +10,19 @@ import DashBoard from './pages/DashBoard';
 import Store from './pages/Store';
 
 const Routes: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/login" component={Login} />
-        <Route path="/signin" component={Signin} />
-        <Route path="/retrieve" component={RetrievePassword} />
-        <Route path="/signsucc" component={SuccessfulSignin} />
-        <Route path="/dashboard" component={DashBoard} />
-        <Route path="/store" component={Store} />
-      </Switch>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<Switch>
+				<Route path="/" exact component={Main} />
+				<Route path="/login" component={Login} />
+				<Route path="/signin" component={Signin} />
+				<Route path="/retrieve" component={RetrievePassword} />
+				<Route path="/signsucc" component={SuccessfulSignin} />
+				<Route path="/dashboard" component={DashBoard} />
+				<Route path="/store" component={Store} />
+			</Switch>
+		</BrowserRouter>
+	);
 };
 
 export default Routes;

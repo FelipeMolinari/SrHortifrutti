@@ -11,68 +11,71 @@ import SelectInput from '../../components/SelectInput';
 import ProductCard from '../../components/ProductCard';
 import selectedImage from '../../util/selectedImage';
 const AddProduct: React.FC = () => {
-  const { errors, register, handleSubmit, watch } = useForm();
-  function handleOnclick() {}
-  return (
-    <ContainerDashboardPages>
-      <Header>
-        <AiOutlineArrowLeft />
-        <div>
-          <h1>Novo produto</h1>
-          <p>Crie um produto novinho!</p>
-        </div>
-      </Header>
-      <ContainerMain className="main-add">
-        <div className="left">
-          <Form>
-            <ul>
-              <li>
-                <InputBlock
-                  {...{
-                    name: 'name',
-                    type: 'text',
-                    placeholder: 'Nome'
-                  }}
-                  ref={register}
-                />
-              </li>
+	const { errors, register, handleSubmit, watch } = useForm();
+	function handleOnclick() {}
 
-              <li>
-                <InputBlock
-                  {...{
-                    name: 'value',
-                    type: 'text',
-                    mask: '99,99',
-                    placeholder: 'Valor'
-                  }}
-                  ref={register}
-                />
-              </li>
-              <li>
-                <SelectInput id="products" name="product" ref={register} />
-              </li>
-            </ul>
-          </Form>
-          <CustomButton
-            colorName="--color-primary"
-            disabled={!(watch('name') && watch('value') && watch('product') !== '0')}
-            onClick={handleOnclick}
-          >
-            Criar
-          </CustomButton>
-        </div>
-        <div className="right">
-          <ProductCard
-            name={watch('name')}
-            darkColor="#f1f1f1"
-            price={watch('value')}
-            image_url={selectedImage(parseInt(watch('product')))}
-            className="no-pointer-event"
-          />
-        </div>
-      </ContainerMain>
-    </ContainerDashboardPages>
-  );
+	return (
+		<ContainerDashboardPages>
+			<Header>
+				<AiOutlineArrowLeft />
+				<div>
+					<h1>Novo produto</h1>
+					<p>Crie um produto novinho!</p>
+				</div>
+			</Header>
+			<ContainerMain className="main-add">
+				<div className="left">
+					<Form>
+						<ul>
+							<li>
+								<InputBlock
+									{...{
+										name: 'name',
+										type: 'text',
+										placeholder: 'Nome'
+									}}
+									ref={register}
+								/>
+							</li>
+
+							<li>
+								<InputBlock
+									{...{
+										name: 'value',
+										type: 'text',
+										mask: '99,99',
+										placeholder: 'Valor'
+									}}
+									ref={register}
+								/>
+							</li>
+							<li>
+								<SelectInput id="products" name="product" ref={register} />
+							</li>
+						</ul>
+					</Form>
+					<CustomButton
+						colorName="--color-primary"
+						disabled={!(watch('name') && watch('value') && watch('product') !== '0')}
+						onClick={handleOnclick}
+					>
+						Criar
+					</CustomButton>
+				</div>
+				<div className="right">
+					{/* <ProductCard
+						className="no-pointer-event"
+						product={{
+							name: watch('name'),
+							darkColor: '#f1f1f1',
+							price: watch('value'),
+							image_url: selectedImage(parseInt(watch('product')))
+						}}
+					/> */}
+				</div>
+			</ContainerMain>
+		</ContainerDashboardPages>
+	);
 };
 
 export default AddProduct;
