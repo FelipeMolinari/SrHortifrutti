@@ -1,14 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react';
-import producstMock from '../util/productMock';
 import { ProductProps, ProductsProviderProps, CartProps } from '../typescriptInterface';
 import { getLocalStorageProducts, setLocalStorageProducts } from '../storage/productLocalStorage';
+import MainApi from '../services/api/MainApi';
 export const ProductsContext = createContext({} as ProductsProviderProps);
 
 const ProductsContextProvider: React.FC = ({ children }) => {
-	const [ avaiablesProducts ] = useState<ProductProps[]>(producstMock);
+	const [ avaiablesProducts, setAvaiablesProducts ] = useState<ProductProps[]>([]);
 	const [ cart, setCart ] = useState<CartProps[]>([]);
 
 	useEffect(() => {
+		const publicApi = new MainApi();
+
+		publicApi.getProducts().then((data)=>{
+			setAvaiablesProducts(data.data); 
+		}).catch(error=>{
+			console.error(error)
+		});
 		setCart(getLocalStorageProducts());
 	}, []);
 	useEffect(

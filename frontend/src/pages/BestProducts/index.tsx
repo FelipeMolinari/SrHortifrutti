@@ -1,11 +1,11 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import {ProductsContext} from '../../contexts/ProductContext'
 import { Container, GridContainer } from './styles';
 import Search from '../../components/Search';
 import ProductCard from '../../components/ProductCard';
-import productsMock from '../../util/productMock';
 
 const BestProducts: React.FC = () => {
+	const {avaiablesProducts} = useContext(ProductsContext)
 	return (
 		<Container>
 			<div className="top-content">
@@ -16,7 +16,7 @@ const BestProducts: React.FC = () => {
 				<Search className="search-input" placeholder="Procurar por endereço" />
 			</div>
 			<GridContainer>
-				{productsMock.map((product) => {
+				{avaiablesProducts.map((product) => {
 					const { image_url, name, price, darkColor, id } = product;
 					return <ProductCard product={{ darkColor, image_url, name, price, id }} />;
 				})}

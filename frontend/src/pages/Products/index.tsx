@@ -7,10 +7,10 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
 import AddProductCard from '../../components/AddProductCard';
 import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
-import productsMock from '../../util/productMock';
 import MainApi from '../../services/api/MainApi';
+import { ProductProps } from '../../typescriptInterface';
+
 const Products: React.FC = () => {
-  const publicApi = new MainApi();
 
   const { url } = useRouteMatch();
   const [confirmBoth, setConfirmBoth] = useState(false);
@@ -18,28 +18,33 @@ const Products: React.FC = () => {
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
+  const [products, setProducts]= useState<ProductProps[]>();
+  const [loading, setLoading] = useState<boolean>();
+  const [reject, setReject] = useState<boolean>(false);
+  const [rejectMessage, setRejectMessage] = useState("");
 
   useEffect(() => {
-    console.log(publicApi.getProducts());
-  }, [publicApi]);
+    setLoading(true);
 
-  return (
-    <ContainerDashboardPages>
-      <Header>
-        <div>
-          <h1>Seus produtos.</h1>
-          <p>
-            Todos seus produtos estão listados abaixo. Para editar algum clique no card do
-            produto e edite!
-          </p>
-        </div>
-      </Header>
-      <Scrollable>
-        <ProductGrid>
-          <Link to={`${url}/add`}>
-            <AddProductCard />
-          </Link>
-          {productsMock.map((product) => {
+    const publicApi = new MainApi();
+
+      publicApi.getProducts().then((data)=>{
+        setProducts(data.data); 
+        setLoading(false)    
+      }).catch(error=>{
+        setLoading(false);
+        setReject(true);
+        setRejectMessage(`Não foi possível acessar o servidor, errormsg: ${error}`);
+      });
+    
+  }, []);
+  function renderProducts(){
+    return (products && 
+      <ProductGrid>
+      <Link to={`${url}/add`}>
+        <AddProductCard />
+      </Link>
+{  products.map((product) => {
             const { image_url, name, price, darkColor, id } = product;
             return (
               <ProductCard
@@ -51,7 +56,25 @@ const Products: React.FC = () => {
               />
             );
           })}
-        </ProductGrid>
+    </ProductGrid>
+        
+)
+  }
+  return (  
+    <ContainerDashboardPages>
+      <Header>
+        <div>
+          <h1>Seus produtos.</h1>
+          <p>
+            Todos seus produtos estão listados abaixo. Para editar algum clique no card do
+            produto e edite!
+          </p>
+        </div>
+      </Header>
+      <Scrollable>
+      {loading? <h1>Carregando dados</h1>: renderProducts() }
+          {reject && <h1>{rejectMessage}</h1>}
+
       </Scrollable>
       {confirmBoth && (
         <SweetAlert

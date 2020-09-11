@@ -4,7 +4,7 @@ const productsMock = [
 		id: 0,
 		darkColor: '#FFE3E5',
 		image_url:
-			'https://lh3.googleusercontent.com/proxy/zNbBb-ahTQPzxyWMAVdNwm4qHB1GLtH3ifo-FdzZvECF-MXfbu1O4Q2toe_UUNv6BSK7K71cAIyIviAOUleYvn3FAGTkiCFR9AgaXG-YTyehsQ7R-hbF0nDaWLUJGCXx8i6W8tx91moRngiHjw',
+    'https://www.montaencanta.com.br/wp-content/uploads/2015/07/jablko.png',
 		name: 'Maça fresquinha',
 		price: '2.99'
 	},
