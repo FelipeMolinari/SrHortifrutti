@@ -64,7 +64,7 @@ const Signin: React.FC = () => {
                   ref={register({
                     required: true,
                     pattern: {
-                      value: /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/g,
+                      value: /(\(?\d{2}\)?\s)?(\d{4,5}-\d{4})/g,
                       message: 'Formato do celular inválido'
                     }
                   })}

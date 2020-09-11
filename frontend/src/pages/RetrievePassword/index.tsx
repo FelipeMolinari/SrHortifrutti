@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaHeart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 
 import LandingAside from '../../components/LandingAside';
@@ -12,7 +11,7 @@ import Form from '../../components/Form';
 import InputBlock from '../../components/InputBlock';
 
 const RetrievePassword: React.FC = () => {
-  const { errors, register, handleSubmit, watch } = useForm();
+  const { register, watch } = useForm();
 
   return (
     <ContainerMain>

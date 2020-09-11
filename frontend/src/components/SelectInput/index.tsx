@@ -3,7 +3,6 @@ import { Container, Select } from './styles';
 import { SelectProps } from '../../typescriptInterface';
 const SelectInput = forwardRef<HTMLSelectElement, SelectProps>(
   ({ name, id, options }, ref) => {
-    const lol = options;
     return (
       <Container>
         <Select ref={ref} {...{ name, id }}>

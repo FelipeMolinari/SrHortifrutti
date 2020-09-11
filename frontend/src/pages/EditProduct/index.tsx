@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
 import { useParams, useHistory } from 'react-router-dom';
@@ -14,6 +14,9 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { confirmStyle, successStyle, dangerStyle } from '../../styles/alertBrn';
 import ErrorsList from '../../components/ErrorsList';
 
+interface ParamTypes {
+  id: string
+}
 const AddProduct: React.FC = () => {
 	const history = useHistory();
 	const { errors, register, handleSubmit, watch } = useForm();
@@ -23,18 +26,16 @@ const AddProduct: React.FC = () => {
 	const [ dialogTitle, setDialogTitle ] = useState('');
 	const [ dialogDescription, setDialogDescription ] = useState('');
 
-	const { id } = useParams();
+	const {id} = useParams<ParamTypes>();
 	const initialProduct = productMock.filter((item) => item.id === parseInt(id))[0];
-	const [ product, setProduct ] = useState<ProductProps>(initialProduct);
-	useEffect(
-		() => {
-			const name = watch('name');
-			const value = watch('value');
-			setProduct({ ...product, ['name']: name, ['price']: value });
-		},
-		[ watch('name'), watch('value') ]
-	);
 
+	const [ product, setProduct ] = useState<ProductProps>(initialProduct);
+
+	function handleOnInputChange(event: ChangeEvent<HTMLInputElement>, input:string){
+		console.log(input, event.target.value)
+		setProduct({ ...product, [`${input}`]: event.target.value });
+
+	}
 	const onSubmit = handleSubmit((data) => setConfirmBoth(true));
 
 	return (
@@ -52,6 +53,7 @@ const AddProduct: React.FC = () => {
 						<ul>
 							<li>
 								<InputBlock
+								onChange={(e)=>handleOnInputChange(e,'name')}
 									defaultValue={initialProduct.name}
 									{...{
 										name: 'name',
@@ -68,18 +70,19 @@ const AddProduct: React.FC = () => {
 							</li>
 
 							<li>
-								<InputBlock
+								<InputBlock								
+								onChange={(e)=>handleOnInputChange(e, 'price')}
+
 									defaultValue={initialProduct.price}
 									{...{
 										name: 'value',
 										type: 'text',
-										mask: '99.99',
 										placeholder: 'Valor'
 									}}
 									ref={register({
 										pattern: {
 											value: /[0-9]{2}.[0-9]{2}/,
-											message: 'Preço do produto está em um formato incorreto!'
+											message: 'Preço do produto está em um formato incorreto! (99.99)'
 										}
 									})}
 								/>
@@ -94,7 +97,7 @@ const AddProduct: React.FC = () => {
 					/>
 					<CustomButton
 						colorName="--color-primary"
-						disabled={!(watch('name') && watch('value') && watch('product') !== '0')}
+						disabled={!(watch('name') && watch('value'))}
 						form="edit-product-form"
 						type="submit"
 					>

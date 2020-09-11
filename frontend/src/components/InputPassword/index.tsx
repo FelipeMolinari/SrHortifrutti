@@ -9,7 +9,7 @@ const InputPassword = forwardRef<HTMLInputElement, NormalInputProps>((props, ref
   function toggleVisibility() {
     setIsVisible(!isVisible);
   }
-  const { name, placeholder, type, password } = props;
+  const { name, placeholder, password } = props;
   return (
     <InputBlock
       {...{ name, placeholder, password }}

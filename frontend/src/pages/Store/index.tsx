@@ -11,7 +11,7 @@ import ProductsContextProvider from '../../contexts/ProductContext';
 import Cart from '../Cart';
 
 const Store: React.FC = () => {
-	const { path, url } = useRouteMatch();
+	const { path } = useRouteMatch();
 	return (
 		<ProductsContextProvider>
 			<Container>

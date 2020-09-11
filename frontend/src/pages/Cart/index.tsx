@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import EmptyCart from '../../assets/images/empty-cart.svg';
 import { ProductsContext } from '../../contexts/ProductContext';
 import { Container, CartContainer, ProductsCartList, ContactBox } from './styles';
 import ProductListItem from '../../components/ProductListItem';
-import { CartProps } from '../../typescriptInterface';
 
 const Cart: React.FC = () => {
 	const { cart } = useContext(ProductsContext);

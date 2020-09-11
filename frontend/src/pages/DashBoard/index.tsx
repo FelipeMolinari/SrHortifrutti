@@ -12,7 +12,7 @@ import AddProduct from '../AddProduct';
 import EditProduct from '../EditProduct';
 
 const DashBoard: React.FC = () => {
-	let { path, url } = useRouteMatch();
+	let { path } = useRouteMatch();
 
 	return (
 		<Container>

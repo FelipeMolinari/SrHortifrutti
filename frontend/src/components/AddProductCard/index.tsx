@@ -2,7 +2,7 @@ import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Container } from './styles';
 
-const AddProductCard: React.FC = ({}) => {
+const AddProductCard: React.FC = () => {
   return (
     <Container>
       <div className="circle"></div>

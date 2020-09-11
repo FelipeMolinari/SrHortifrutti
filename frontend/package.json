@@ -16,6 +16,7 @@
     "@types/react-text-mask": "^5.4.6",
     "@types/yup": "^0.29.6",
     "axios": "^0.20.0",
+    "cors": "^2.8.5",
     "react": "^16.13.1",
     "react-bootstrap-sweetalert": "^5.2.0",
     "react-dom": "^16.13.1",

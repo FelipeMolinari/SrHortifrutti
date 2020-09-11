@@ -1,9 +1,9 @@
 import express from 'express'
-import UserController from '@controllers/UserController'
+import cors from 'cors'
+import data from './dataExample'
 const app = express()
-
-app.get('/', (_, res) => {
-  console.log(UserController)
-  return res.json({ message: 'Hello world' })
+app.use(cors)
+app.get('/products', (_, res) => {
+  return res.send(data)
 })
-app.listen(3333)
+app.listen(3333, ()=>console.log("server started at port:3333"))

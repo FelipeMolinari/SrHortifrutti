@@ -8,10 +8,9 @@ import Form from '../../components/Form';
 import InputBlock from '../../components/InputBlock';
 import CustomButton from '../../components/CustomButton';
 import SelectInput from '../../components/SelectInput';
-import ProductCard from '../../components/ProductCard';
-import selectedImage from '../../util/selectedImage';
+
 const AddProduct: React.FC = () => {
-	const { errors, register, handleSubmit, watch } = useForm();
+	const {  register, watch } = useForm();
 	function handleOnclick() {}
 
 	return (

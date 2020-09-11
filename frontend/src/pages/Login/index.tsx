@@ -1,9 +1,9 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import LandingAside from '../../components/LandingAside';
 import LandingMain from '../../components/LandingMain';
