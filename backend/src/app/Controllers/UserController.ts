@@ -2,6 +2,7 @@ import User from  '../models/User';
 import {Request, Response} from 'express'
 
 class UserController {
+
 	async store(req: Request, res: Response) {
     try {
       const user = new User(req.body)

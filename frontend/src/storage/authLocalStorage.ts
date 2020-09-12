@@ -1,5 +1,3 @@
-import { CartProps } from '../typescriptInterface';
-
 const AUTH_USER = 'auth_user';
 const TOKEN_USER = 'token_user';
 export function setLocalStorageUser(user: object | null) {

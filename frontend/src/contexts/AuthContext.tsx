@@ -3,7 +3,6 @@ import MainApi from '../services/api/MainApi';
 import {
   getLocalStorageUser,
   setLocalStorageUser,
-  getLocalStorageToken,
   setLocalStorageToken
 } from '../storage/authLocalStorage';
 
@@ -28,6 +27,7 @@ const AuthContextProvider: React.FC = ({ children }) => {
     try {
       const response = await MainApi.loginUser(email, password);
       if (response) {
+        console.log(response);
         setUser(response.user);
         setLocalStorageUser(response.user);
         setLocalStorageToken(response.token);

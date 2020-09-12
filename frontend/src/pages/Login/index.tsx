@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -14,17 +13,13 @@ import InputBlock from '../../components/InputBlock';
 import InputPassword from '../../components/InputPassword';
 import ErrorsList from '../../components/ErrorsList';
 
-import MainApi from '../../services/api/MainApi';
-
 const Login: React.FC = () => {
   const { login } = useAuth();
   const { errors, register, handleSubmit, watch } = useForm();
-  const history = useHistory();
 
   const onSubmit = handleSubmit(async (data) => {
     const { password, email } = data;
     login(email, password);
-    // history.push('/dashboard');
   });
   return (
     <Container>

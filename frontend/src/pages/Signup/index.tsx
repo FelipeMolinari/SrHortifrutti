@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 
 import CustomButtom from '../../components/CustomButton';
 import Form from '../../components/Form';
@@ -13,7 +12,6 @@ import ErrorsList from '../../components/ErrorsList';
 import InputPassword from '../../components/InputPassword';
 const Signup: React.FC = () => {
   const { errors, register, handleSubmit, watch, setValue } = useForm();
-  const history = useHistory();
   async function handleOnBlue(event: React.FocusEvent<HTMLInputElement>) {
     const data = await validCEP(event.currentTarget.value);
     if (data.error) {

@@ -7,6 +7,7 @@ class SectionController{
       email: req.body.email,
       password: req.body.password
     })
+    console.log(signinUser, "user")
     if(signinUser){
       res.send({
         token: getToken({_id:signinUser.id, email: signinUser.email}),
