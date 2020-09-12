@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyles from './styles/global';
-import Routes from './routes';
+import Routes from './Routes/index';
 import AuthContextProvider from './contexts/AuthContext';
 
 function App() {

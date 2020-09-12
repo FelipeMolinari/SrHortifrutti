@@ -2,9 +2,6 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import LandingAside from '../../components/LandingAside';
-import LandingMain from '../../components/LandingMain';
-import ContainerMain from '../../components/ContainerMain';
 import { Container } from './styles';
 import CustomButton from '../../components/CustomButton';
 import Form from '../../components/Form';
@@ -14,32 +11,27 @@ const RetrievePassword: React.FC = () => {
   const { register, watch } = useForm();
 
   return (
-    <ContainerMain>
-      <LandingAside />
-      <LandingMain>
-        <Container>
-          <Form
-            name="Esqueceu a sua senha?"
-            description="Não tem problema, vamos dar um jeito nisso!"
-          >
-            <InputBlock
-              {...{
-                name: 'email',
-                type: 'email',
-                placeholder: 'E-mail'
-              }}
-              ref={register}
-            />
-          </Form>
+    <Container>
+      <Form
+        name="Esqueceu a sua senha?"
+        description="Não tem problema, vamos dar um jeito nisso!"
+      >
+        <InputBlock
+          {...{
+            name: 'email',
+            type: 'email',
+            placeholder: 'E-mail'
+          }}
+          ref={register}
+        />
+      </Form>
 
-          <div className="footer-container">
-            <CustomButton colorName="--color-primary" disabled={!watch('email')}>
-              Enviar
-            </CustomButton>
-          </div>
-        </Container>
-      </LandingMain>
-    </ContainerMain>
+      <div className="footer-container">
+        <CustomButton colorName="--color-primary" disabled={!watch('email')}>
+          Enviar
+        </CustomButton>
+      </div>
+    </Container>
   );
 };
 
