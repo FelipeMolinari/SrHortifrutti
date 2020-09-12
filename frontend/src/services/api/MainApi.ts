@@ -1,5 +1,5 @@
 import HttpClient from './http-client';
-import { ProductProps } from '../../typescriptInterface';
+import { ProductProps, SectionResponse } from '../../typescriptInterface';
 
 class MainApi extends HttpClient {
   public constructor() {
@@ -7,7 +7,11 @@ class MainApi extends HttpClient {
   }
 
   getProducts = () => this.instance.get<ProductProps[]>('/products');
-  
+  loginUser = (email: string, password: string) =>
+    this.instance.post<SectionResponse>('/section', {
+      email,
+      password
+    });
 }
 
-export default MainApi;
+export default new MainApi();

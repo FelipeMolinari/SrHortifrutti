@@ -14,7 +14,7 @@ import InputBlock from '../../components/InputBlock';
 import validCEP from '../../services/cepvalidation';
 import ErrorsList from '../../components/ErrorsList';
 import InputPassword from '../../components/InputPassword';
-const Signin: React.FC = () => {
+const Signup: React.FC = () => {
   const { errors, register, handleSubmit, watch, setValue } = useForm();
   const history = useHistory();
   async function handleOnBlue(event: React.FocusEvent<HTMLInputElement>) {
@@ -27,7 +27,10 @@ const Signin: React.FC = () => {
     }
   }
 
-  const onSubmit = handleSubmit((data) => history.push('/signsucc'));
+  const onSubmit = handleSubmit((data) => {
+    const { email, password } = data;
+    console.log(email, password);
+  });
 
   return (
     <ContainerMain>
@@ -37,7 +40,7 @@ const Signin: React.FC = () => {
           <Form
             name="Cadastro"
             description="Preencha os dados abaixo para prosseguir!"
-            id="form-signin"
+            id="form-Signup"
             onSubmit={onSubmit}
           >
             <ul>
@@ -167,7 +170,7 @@ const Signin: React.FC = () => {
 
           <CustomButtom
             type="submit"
-            form="form-signin"
+            form="form-signup"
             colorName="--color-primary"
             style={{ marginTop: 36, marginBottom: 56 }}
             disabled={
@@ -191,4 +194,4 @@ const Signin: React.FC = () => {
   );
 };
 
-export default Signin;
+export default Signup;

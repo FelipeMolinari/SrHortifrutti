@@ -1,4 +1,5 @@
 import express from 'express';
+import SectionController from './app/Controllers/SectionController';
 import UserController from './app/Controllers/UserController';
 import data from './dataExample'
 
@@ -9,6 +10,7 @@ routes.get('/products', (_,res)=>{
 });
 
 routes.post('/user', UserController.store)
+routes.post('/section', SectionController.store)
 
 
 export default routes;

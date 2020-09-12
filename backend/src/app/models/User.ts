@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema} from "mongoose";
+import { Document, Model, Schema, model} from "mongoose";
 import hashPassword from "src/util/hashPassword";
 
 const UserSchema = new Schema({
@@ -38,8 +38,7 @@ const UserSchema = new Schema({
 })
 
 
-interface IUserSchema {
-  _id:string;
+interface IUser {
   name: string;
   cellphone: string;
   email: string;
@@ -49,16 +48,24 @@ interface IUserSchema {
   neighborhood: string,
   number:number;
 }
+interface IUserDocument extends IUser, Document {};
 
-interface UserModel extends Omit<IUserSchema,"_id">, Document {}
+interface IUserModel extends Model<IUserDocument> {}
 
-UserSchema.pre<UserModel>("save", function(next) {
+UserSchema.pre<IUserDocument>("save", function(next) {
   if (this.isModified("password")) {
     this.password = hashPassword(this.password)
   }
   next()
 });
+UserSchema.statics.findByAdress = async function findByAge(
+  this: IUserModel,
+  adress: string
 
-const User: Model<UserModel> = mongoose.model('User', UserSchema)
+): Promise<IUserDocument[]> {
+  
+  return this.find({$or: [{cep: adress},{neighborhood: adress}, {street: adress}]});
+}
+const User =  model<IUserDocument>('User', UserSchema)
 
 export default User;

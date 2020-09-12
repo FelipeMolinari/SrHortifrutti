@@ -6,9 +6,9 @@ import { ListErrorsProps } from '../../typescriptInterface';
 const ErrorsList: React.FC<ListErrorsProps> = ({ errorArray }) => {
   return (
     <Container>
-      {errorArray.map((error) => {
+      {errorArray.map((error, index) => {
         return (
-          <li>
+          <li key={index}>
             <span className="error-message">{error.message}</span>
           </li>
         );

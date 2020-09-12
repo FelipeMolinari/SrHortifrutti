@@ -11,40 +11,39 @@ import MainApi from '../../services/api/MainApi';
 import { ProductProps } from '../../typescriptInterface';
 
 const Products: React.FC = () => {
-
   const { url } = useRouteMatch();
   const [confirmBoth, setConfirmBoth] = useState(false);
   const [successDialog, setSuccessDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
-  const [products, setProducts]= useState<ProductProps[]>();
+  const [products, setProducts] = useState<ProductProps[]>();
   const [loading, setLoading] = useState<boolean>();
   const [reject, setReject] = useState<boolean>(false);
-  const [rejectMessage, setRejectMessage] = useState("");
+  const [rejectMessage, setRejectMessage] = useState('');
 
   useEffect(() => {
     setLoading(true);
 
-    const publicApi = new MainApi();
-
-      publicApi.getProducts().then((data)=>{
-        setProducts(data.data); 
-        setLoading(false)    
-      }).catch(error=>{
+    MainApi.getProducts()
+      .then((data) => {
+        setProducts(data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
         setLoading(false);
         setReject(true);
         setRejectMessage(`Não foi possível acessar o servidor, errormsg: ${error}`);
       });
-    
   }, []);
-  function renderProducts(){
-    return (products && 
-      <ProductGrid>
-      <Link to={`${url}/add`}>
-        <AddProductCard />
-      </Link>
-{  products.map((product) => {
+  function renderProducts() {
+    return (
+      products && (
+        <ProductGrid>
+          <Link to={`${url}/add`}>
+            <AddProductCard />
+          </Link>
+          {products.map((product) => {
             const { image_url, name, price, darkColor, id } = product;
             return (
               <ProductCard
@@ -56,11 +55,11 @@ const Products: React.FC = () => {
               />
             );
           })}
-    </ProductGrid>
-        
-)
+        </ProductGrid>
+      )
+    );
   }
-  return (  
+  return (
     <ContainerDashboardPages>
       <Header>
         <div>
@@ -72,9 +71,8 @@ const Products: React.FC = () => {
         </div>
       </Header>
       <Scrollable>
-      {loading? <h1>Carregando dados</h1>: renderProducts() }
-          {reject && <h1>{rejectMessage}</h1>}
-
+        {loading ? <h1>Carregando dados</h1> : renderProducts()}
+        {reject && <h1>{rejectMessage}</h1>}
       </Scrollable>
       {confirmBoth && (
         <SweetAlert

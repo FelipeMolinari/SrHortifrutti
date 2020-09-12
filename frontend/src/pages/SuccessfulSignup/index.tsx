@@ -5,7 +5,7 @@ import { Container, CenteredContent } from './styles';
 import CustomButtom from '../../components/CustomButton';
 import BackgroundDropDown from '../../components/BackgroundDropDown/styles';
 
-const SuccessfulSignin: React.FC = () => {
+const SuccessfulSignup: React.FC = () => {
   const history = useHistory();
   function handleOnCLick() {
     history.push('login');
@@ -28,4 +28,4 @@ const SuccessfulSignin: React.FC = () => {
   );
 };
 
-export default SuccessfulSignin;
+export default SuccessfulSignup;
