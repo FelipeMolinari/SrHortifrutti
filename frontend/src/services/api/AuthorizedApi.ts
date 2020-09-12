@@ -13,8 +13,9 @@ class MainApiProtected extends HttpClient {
   };
 
   private _handleRequest = (config: AxiosRequestConfig) => {
+    console.log(config);
     config.headers['Authorization'] = `Bearer ${getLocalStorageToken}`;
-
+    console.log(config);
     return config;
   };
 }

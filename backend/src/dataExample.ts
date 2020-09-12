@@ -1,4 +1,4 @@
-import {ProductProps} from './dbtypes'
+import {ProductProps} from './definitions'
 const productsMock = [
 	{
 		id: 0,
