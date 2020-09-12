@@ -1,4 +1,5 @@
-import React, { ElementType, ReactNode } from 'react';
+import React, { ElementType } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
 
 import AuthLayout from '../_layouts/auth';
@@ -15,7 +16,7 @@ const RouteWrapper: React.FC<CustomRoute> = ({
   path,
   ...rest
 }) => {
-  const signed = false;
+  const { signed } = useAuth();
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
   }

@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 import { Container } from './styles';
 import CustomButton from '../../components/CustomButton';
@@ -17,7 +17,7 @@ import ErrorsList from '../../components/ErrorsList';
 import MainApi from '../../services/api/MainApi';
 
 const Login: React.FC = () => {
-  const { signed, login } = useContext(AuthContext);
+  const { login } = useAuth();
   const { errors, register, handleSubmit, watch } = useForm();
   const history = useHistory();
 

@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import feito from '../../assets/images/feito.png';
 import { Container, CenteredContent } from './styles';
 import CustomButtom from '../../components/CustomButton';
-import BackgroundDropDown from '../../components/BackgroundDropDown/styles';
 
 const SuccessfulSignup: React.FC = () => {
   const history = useHistory();
@@ -12,7 +11,6 @@ const SuccessfulSignup: React.FC = () => {
   }
   return (
     <Container>
-      <BackgroundDropDown />
       <CenteredContent>
         <img src={feito} alt="Cadastro concluído"></img>
         <h1>Cadastro concluído</h1>
