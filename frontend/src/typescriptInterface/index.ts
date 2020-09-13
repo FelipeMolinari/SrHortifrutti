@@ -39,13 +39,17 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   name?: string;
   description?: string;
 }
+export interface ProductType {
+  name: string;
+  color: string;
+  url_image: string;
+}
 export interface ProductProps {
-  id: number;
+  _id: string;
   name: string;
   price: string;
-  image_url: string;
-  darkColor: string;
-  owner_name?: string;
+  type: ProductType;
+  owner?: string;
 }
 export interface CartProps {
   product: ProductProps;
@@ -61,9 +65,9 @@ export interface ProductCardProps {
 export interface ProductsProviderProps {
   avaiablesProducts: ProductProps[];
   cart: CartProps[];
-  addToCart: (id: number) => void;
-  removeFromCart: (id: number) => void;
-  changeQuantity: (id: number, newQunatity: number) => void;
+  addToCart: (id: string) => void;
+  removeFromCart: (id: string) => void;
+  changeQuantity: (id: string, newQunatity: number) => void;
   loading: boolean;
   rejected: boolean;
 }
@@ -95,8 +99,17 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface SectionResponse {
   token: string;
-  user: {
-    name: string;
-    email: string;
-  };
+  data: UserInterface;
+}
+
+export interface UserInterface {
+  name: string;
+  email: string;
+}
+
+export interface AuthContextProps {
+  signed: boolean;
+  user: UserInterface | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
 }

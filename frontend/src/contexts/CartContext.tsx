@@ -17,30 +17,32 @@ const ProductsContextProvider: React.FC = ({ children }) => {
   const [cart, setCart] = useState<CartProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [rejected, setRejected] = useState(false);
+
   useEffect(() => {
-    MainApi.getProducts()
-      .then((data) => {
-        console.log(data);
-        setAvaiablesProducts(data.data);
+    async function fetchProducts() {
+      try {
+        const response: ProductProps[] = await MainApi.getProducts();
+        setAvaiablesProducts(response);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setRejected(true);
         console.error(error);
-      });
+      }
+    }
+    fetchProducts();
     setCart(getLocalStorageProducts());
   }, []);
 
   useEffect(() => {
     setLocalStorageProducts(cart);
   }, [cart]);
-  function addToCart(id: number) {
+  function addToCart(id: string) {
     const check = cart.every((item) => {
-      return item.product.id !== id;
+      return item.product._id !== id;
     });
     if (check) {
       let data = avaiablesProducts.filter((product) => {
-        return product.id === id;
+        return product._id === id;
       });
 
       setCart([...cart, { product: data[0], quantity: 1 }]);
@@ -48,11 +50,11 @@ const ProductsContextProvider: React.FC = ({ children }) => {
       alert('Esse produto já está no carrinho');
     }
   }
-  function removeFromCart(id: number) {
+  function removeFromCart(id: string) {
     if (window.confirm('Tem certeza que deseja deletar esse produto?')) {
       cart.splice(
         cart.findIndex((item) => {
-          const verifier = item.product.id === id ? true : false;
+          const verifier = item.product._id === id ? true : false;
 
           return verifier;
         }),
@@ -61,14 +63,13 @@ const ProductsContextProvider: React.FC = ({ children }) => {
       setCart([...cart]);
     }
   }
-  function changeQuantity(id: number, newQuantity: number) {
+  function changeQuantity(id: string, newQuantity: number) {
     const data = cart.map((item) => {
-      if (item.product.id === id) {
+      if (item.product._id === id) {
         item.quantity = newQuantity;
       }
       return item;
     });
-    console.log(data);
     setCart(data);
   }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EmptyCart from '../../assets/images/empty-cart.svg';
-import { useProducts } from '../../contexts/ProductContext';
+import { useProducts } from '../../contexts/CartContext';
 import { Container, CartContainer, ProductsCartList, ContactBox } from './styles';
 import ProductListItem from '../../components/ProductListItem';
 
@@ -31,18 +31,11 @@ const Cart: React.FC = () => {
       <CartContainer>
         <ProductsCartList>
           {cart.map((item) => {
-            const {
-              darkColor,
-              id,
-              image_url,
-              name,
-              price,
-              owner_name = 'Do seu zé'
-            } = item.product;
+            const { _id, name, price, owner = 'Do seu zé', type } = item.product;
             return (
               <ProductListItem
-                key={item.product.id}
-                product={{ darkColor, id, image_url, name, price, owner_name }}
+                key={_id}
+                product={{ _id, type, name, price, owner }}
                 quantity={item.quantity}
               />
             );

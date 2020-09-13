@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlinePlus, AiTwotoneDelete } from 'react-icons/ai';
 
-import { useProducts } from '../../contexts/ProductContext';
+import { useProducts } from '../../contexts/CartContext';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
 import adjust from '../../util/shadeColor';
@@ -14,13 +14,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
   routeOnPress
 }) => {
   const { addToCart } = useProducts();
-  const { name, price, image_url, darkColor, id } = product;
-  function handleAddToCart(id: number) {
+  const { name, price, type, _id } = product;
+  const { url_image, color } = type;
+  console.log(type);
+  function handleAddToCart(id: string) {
     addToCart(id);
   }
   return (
     <Container>
-      <div className={`content`} style={{ backgroundColor: darkColor }}>
+      <div className={`content`} style={{ backgroundColor: color }}>
         {routeOnPress && <Link to={`${routeOnPress}`} />}
         <div className="header-card">
           <span className="name">{name}</span>
@@ -30,26 +32,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
         <div className="avatar-container">
-          <img src={image_url} alt="" className="product-avatar" />
+          <img src={url_image} alt="" className="product-avatar" />
         </div>
         {!adminPage ? (
           <button
             className="footer-card"
-            style={{ backgroundColor: adjust(darkColor, -8) }}
-            onClick={() => handleAddToCart(id)}
+            style={{ backgroundColor: adjust(color, -8) }}
+            onClick={() => handleAddToCart(_id)}
           >
-            <AiOutlinePlus color={adjust(darkColor, -50)} className="revertscale" />
+            <AiOutlinePlus color={adjust(color, -50)} className="revertscale" />
           </button>
         ) : (
           <button
             className="footer-card"
-            style={{ backgroundColor: adjust(darkColor, -8) }}
+            style={{ backgroundColor: adjust(color, -8) }}
             onClick={() => {
               setConfirmBoth && setConfirmBoth(true);
             }}
           >
             <AiTwotoneDelete
-              color={adjust(darkColor, -50)}
+              color={adjust(color, -50)}
               className="revertscale delete-buttom"
             />
           </button>

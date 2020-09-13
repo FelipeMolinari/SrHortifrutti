@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 declare module 'axios' {
-  interface AxiosResponse<T = any> extends Promise<T> {}
+  export interface AxiosResponse<T = any> extends Promise<T> {}
 }
 
 abstract class HttpClient {
@@ -20,7 +20,7 @@ abstract class HttpClient {
   };
 
   private _handleResponse = (reponse: AxiosResponse) => {
-    return reponse;
+    return reponse.data;
   };
 
   protected _handleError = (error: any) => {

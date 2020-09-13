@@ -5,13 +5,7 @@ import {
   setLocalStorageUser,
   setLocalStorageToken
 } from '../storage/authLocalStorage';
-
-interface AuthContextProps {
-  signed: boolean;
-  user: object | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-}
+import { AuthContextProps, SectionResponse, UserInterface } from '../typescriptInterface';
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
@@ -21,15 +15,14 @@ export function useAuth() {
 }
 
 const AuthContextProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(getLocalStorageUser());
+  const [user, setUser] = useState<UserInterface | null>(getLocalStorageUser());
 
   async function login(email: string, password: string) {
     try {
-      const response = await MainApi.loginUser(email, password);
+      const response: SectionResponse = await MainApi.loginUser(email, password);
       if (response) {
-        console.log(response);
-        setUser(response.user);
-        setLocalStorageUser(response.user);
+        setUser(response.data);
+        setLocalStorageUser(response.data);
         setLocalStorageToken(response.token);
       }
     } catch (error) {

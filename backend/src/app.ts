@@ -1,11 +1,10 @@
 require('dotenv').config()
-require("./database");
+import './database'
 
 import express,{Express} from 'express'
 import routes from './routes'
 import cors from 'cors'
 import corsConfig from './config/cors'
-import './database'
 import bodyParser from 'body-parser';
 
 class App {

@@ -9,7 +9,6 @@ import EditProduct from '../EditProduct';
 
 const DashBoard: React.FC = () => {
   let { path } = useRouteMatch();
-  console.log(path);
   return (
     <Switch>
       <Route exact path={`${path}`} component={Home} />

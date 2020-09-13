@@ -24,7 +24,6 @@ const Signup: React.FC = () => {
 
   const onSubmit = handleSubmit((data) => {
     const { email, password } = data;
-    console.log(email, password);
   });
 
   return (

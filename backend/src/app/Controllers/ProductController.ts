@@ -21,8 +21,18 @@ class ProductController{
       
       return res.send(newProduct)
     } catch ( error ){
-      return res.send({msg: error.message})
+      return res.send({msg: error})
     } 
+  }
+
+  async index(req: IGetUserAuthInfoRequest, res: Response){
+    try {
+      const products = await Product.find({owner_id: req.user});
+      return res.send(products)
+
+    } catch (error) {
+      return res.send({msg: 'Something get wrong trying fetching products!'})
+    }
   }
 
   }

@@ -14,7 +14,7 @@ import { Container } from './styles';
 import { ReactComponent as Arrow } from '../../assets/icons/arrow.svg';
 
 const NavBar: React.FC = () => {
-  let {  url } = useRouteMatch();
+  let { url } = useRouteMatch();
 
   return (
     <Container>
@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
       </div>
       <ul className="nav-bar">
         <li>
-          <NavLink to={`${url}/home`} className="link-item" activeClassName="active">
+          <NavLink exact to={`${url}`} className="link-item" activeClassName="active">
             <div className="icon-container">
               <AiOutlineDashboard className="link-icon" />
             </div>

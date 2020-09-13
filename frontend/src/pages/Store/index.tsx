@@ -7,7 +7,7 @@ import AsideStore from '../../components/AsideStore';
 import HeaderBottom from '../../components/HeaderBottom';
 import PartnerStores from '../PartnerStores';
 import BestProducts from '../BestProducts';
-import ProductsContextProvider from '../../contexts/ProductContext';
+import ProductsContextProvider from '../../contexts/CartContext';
 import Cart from '../Cart';
 
 const Store: React.FC = () => {

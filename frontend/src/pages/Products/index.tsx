@@ -7,7 +7,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
 import AddProductCard from '../../components/AddProductCard';
 import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
-import MainApi from '../../services/api/MainApi';
+import AuthorizedApi from '../../services/api/AuthorizedApi';
 import { ProductProps } from '../../typescriptInterface';
 
 const Products: React.FC = () => {
@@ -18,45 +18,47 @@ const Products: React.FC = () => {
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
   const [products, setProducts] = useState<ProductProps[]>();
-  const [loading, setLoading] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [reject, setReject] = useState<boolean>(false);
   const [rejectMessage, setRejectMessage] = useState('');
 
   useEffect(() => {
-    setLoading(true);
-
-    MainApi.getProducts()
-      .then((data) => {
-        setProducts(data.data);
+    async function fetchProducts() {
+      try {
+        const response: ProductProps[] = await AuthorizedApi.getProducts();
+        console.log(response);
+        setProducts(response);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         setLoading(false);
         setReject(true);
-        setRejectMessage(`Não foi possível acessar o servidor, errormsg: ${error}`);
-      });
+        setRejectMessage(`Não foi possível acessar o servidor, error msg: ${error}`);
+      }
+    }
+    fetchProducts();
   }, []);
+
   function renderProducts() {
     return (
-      products && (
-        <ProductGrid>
-          <Link to={`${url}/add`}>
-            <AddProductCard />
-          </Link>
-          {products.map((product) => {
-            const { image_url, name, price, darkColor, id } = product;
+      <ProductGrid>
+        <Link to={`${url}/add`}>
+          <AddProductCard />
+        </Link>
+        {products &&
+          products.map((product) => {
+            const { name, price, type, _id } = product;
+
             return (
               <ProductCard
-                key={product.id}
+                key={_id}
                 adminPage
                 setConfirmBoth={setConfirmBoth}
-                product={{ darkColor, image_url, name, price, id }}
-                routeOnPress={`${url}/edit/${id}`}
+                product={{ type, name, price, _id }}
+                routeOnPress={`${url}/edit/${_id}`}
               />
             );
           })}
-        </ProductGrid>
-      )
+      </ProductGrid>
     );
   }
   return (
