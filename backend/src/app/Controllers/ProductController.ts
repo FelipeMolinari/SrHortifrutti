@@ -36,6 +36,25 @@ class ProductController{
     }
   }
 
+  async delete(req: IGetUserAuthInfoRequest, res: Response){
+
+    try {
+      const schema = Yup.string().required();
+      const {id} = req.params;
+      if (!(await schema.isValid(id))) {
+        return res.status(400).json({ error: "Validations fails" });
+      }
+      console.log(req.user)
+
+    await Product.deleteOne({_id: id, owner_id: req.user})
+
+      return res.status(204).send({})
+    } catch ( error ){
+      console.log(error)
+      return res.status(404).send({msg: error})
+    } 
+  }
+
   }
 
   

@@ -46,7 +46,22 @@ const ProductsContextProvider: React.FC = ({ children }) => {
       console.log(error);
     }
   }
-  function removeProduct(id: string) {}
+  async function removeProduct(id: string) {
+    try {
+      await AuthorizedApi.deleteProduct(id);
+      const rest = products;
+      rest.splice(
+        products.findIndex((product) => product._id === id),
+        1
+      );
+
+      setProducts(rest);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
   function updateProduct(id: string, productModified: ProductProps) {}
 
   const value = {

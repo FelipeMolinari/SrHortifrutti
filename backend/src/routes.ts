@@ -15,6 +15,7 @@ routes.post('/section', SectionController.store)
 // Secutes routes
 routes.use(isAuth)
 routes.post('/secure/product/add', ProductController.store)
+routes.delete('/secure/product/delete/:id', ProductController.delete)
 routes.get('/secure/avaiables', ProductTypesController.index)
 
 routes.get('/secure/products', ProductController.index)

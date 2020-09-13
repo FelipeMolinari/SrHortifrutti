@@ -25,5 +25,7 @@ class MainApiProtected extends HttpClient {
       type: product.type
     });
   getTypes = () => this.instance.get<ProductType[]>('/secure/avaiables');
+
+  deleteProduct = (id: string) => this.instance.delete(`/secure/product/delete/${id}`);
 }
 export default new MainApiProtected();

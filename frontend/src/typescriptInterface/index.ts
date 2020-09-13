@@ -60,9 +60,14 @@ export interface CartProps {
   product: ProductProps;
   quantity: number;
 }
+export interface ConfirmationProps {
+  status: boolean;
+  productId: string | null;
+}
+
 export interface ProductCardProps {
   product: ProductProps;
-  setConfirmBoth?: Function;
+  setConfirmBoth?: (confirm: ConfirmationProps) => void;
   adminPage?: boolean;
   routeOnPress?: string;
 }

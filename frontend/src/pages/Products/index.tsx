@@ -8,12 +8,15 @@ import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
 import AddProductCard from '../../components/AddProductCard';
 import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
 import { useProduct } from '../../contexts/ProductsContext';
+import { ConfirmationProps } from '../../typescriptInterface';
 
 const Products: React.FC = () => {
-  const { loading, products, rejected, rejectedMessage } = useProduct();
-  console.log(products, 'products');
+  const { loading, products, rejected, rejectedMessage, removeProduct } = useProduct();
   const { url } = useRouteMatch();
-  const [confirmBoth, setConfirmBoth] = useState(false);
+  const [confirmBoth, setConfirmBoth] = useState<ConfirmationProps>({
+    status: false,
+    productId: null
+  });
   const [successDialog, setSuccessDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
@@ -57,7 +60,7 @@ const Products: React.FC = () => {
         {loading ? <h1>Carregando dados</h1> : renderProducts()}
         {rejected && <h1>{rejectedMessage}</h1>}
       </Scrollable>
-      {confirmBoth && (
+      {confirmBoth.status && (
         <SweetAlert
           title="Tem certeza?"
           warning
@@ -67,13 +70,16 @@ const Products: React.FC = () => {
           cancelBtnText="Cancelar"
           cancelBtnStyle={successStyle}
           onConfirm={() => {
-            setConfirmBoth(false);
+            const _id = confirmBoth.productId;
+            if (_id) removeProduct(_id);
+            console.log(_id);
+            setConfirmBoth({ status: false, productId: null });
             setSuccessDialog(true);
             setDialogTitle('Deletado');
             setDialogDescription('Seu produto foi deletado!');
           }}
           onCancel={() => {
-            setConfirmBoth(false);
+            setConfirmBoth({ status: false, productId: null });
             setErrorDialog(true);
             setDialogTitle('Cancelado');
             setDialogDescription('Seu produto está seguro!');

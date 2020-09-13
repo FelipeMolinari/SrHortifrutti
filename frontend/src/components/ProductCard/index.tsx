@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlinePlus, AiTwotoneDelete } from 'react-icons/ai';
-
+import { useProduct } from '../../contexts/ProductsContext';
 import { useCart } from '../../contexts/CartContext';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
@@ -14,11 +14,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   routeOnPress
 }) => {
   const { addToCart } = useCart();
+
   const { name, price, type, _id } = product;
   const { url_image, color } = type;
-  function handleAddToCart(id: string) {
-    addToCart(id);
+  function handleAddToCart() {
+    addToCart(_id);
   }
+
   return (
     <Container>
       <div className={`content`} style={{ backgroundColor: color }}>
@@ -37,7 +39,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <button
             className="footer-card"
             style={{ backgroundColor: adjust(color, -8) }}
-            onClick={() => handleAddToCart(_id)}
+            onClick={() => handleAddToCart()}
           >
             <AiOutlinePlus color={adjust(color, -50)} className="revertscale" />
           </button>
@@ -46,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             className="footer-card"
             style={{ backgroundColor: adjust(color, -8) }}
             onClick={() => {
-              setConfirmBoth && setConfirmBoth(true);
+              setConfirmBoth && setConfirmBoth({ status: true, productId: _id });
             }}
           >
             <AiTwotoneDelete
