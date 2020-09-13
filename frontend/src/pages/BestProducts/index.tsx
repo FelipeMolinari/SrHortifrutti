@@ -1,11 +1,11 @@
 import React from 'react';
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 import { Container, GridContainer } from './styles';
 import Search from '../../components/Search';
 import ProductCard from '../../components/ProductCard';
 
 const BestProducts: React.FC = () => {
-  const { avaiablesProducts, loading, rejected } = useProducts();
+  const { avaiablesProducts, loading, rejected } = useCart();
   return (
     <Container>
       <div className="top-content">

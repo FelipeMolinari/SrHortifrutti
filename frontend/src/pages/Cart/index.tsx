@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import EmptyCart from '../../assets/images/empty-cart.svg';
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 import { Container, CartContainer, ProductsCartList, ContactBox } from './styles';
 import ProductListItem from '../../components/ProductListItem';
 
 const Cart: React.FC = () => {
-  const { cart } = useProducts();
+  const { cart } = useCart();
 
   const [totalValue, setTotalValue] = useState('');
   useEffect(() => {

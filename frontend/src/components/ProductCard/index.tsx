@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlinePlus, AiTwotoneDelete } from 'react-icons/ai';
 
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
 import adjust from '../../util/shadeColor';
@@ -13,10 +13,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   adminPage,
   routeOnPress
 }) => {
-  const { addToCart } = useProducts();
+  const { addToCart } = useCart();
   const { name, price, type, _id } = product;
   const { url_image, color } = type;
-  console.log(type);
   function handleAddToCart(id: string) {
     addToCart(id);
   }

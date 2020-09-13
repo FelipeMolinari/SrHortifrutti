@@ -12,12 +12,12 @@ import { ProductProps } from '../../typescriptInterface';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { confirmStyle, successStyle, dangerStyle } from '../../styles/alertBrn';
 import ErrorsList from '../../components/ErrorsList';
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 interface ParamTypes {
   id: string;
 }
 const AddProduct: React.FC = () => {
-  const { avaiablesProducts } = useProducts();
+  const { avaiablesProducts } = useCart();
   const history = useHistory();
   const { errors, register, handleSubmit, watch } = useForm();
   const [confirmBoth, setConfirmBoth] = useState(false);

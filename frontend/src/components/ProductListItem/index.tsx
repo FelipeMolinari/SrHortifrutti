@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 import { Container } from './styles';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CartProps } from '../../typescriptInterface';
@@ -11,7 +11,7 @@ const ProductListItem: React.FC<CartProps> = ({ product, quantity }) => {
     (parseFloat(price) * quantity).toFixed(2)
   );
 
-  const { changeQuantity, removeFromCart } = useProducts();
+  const { changeQuantity, removeFromCart } = useCart();
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value: number = parseFloat(event.target.value);

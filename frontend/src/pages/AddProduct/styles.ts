@@ -40,6 +40,10 @@ export const ContainerMain = styled.div`
   .left {
     width: 100%;
     flex: 1;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   div > button {
     margin-top: 3rem;
@@ -49,5 +53,7 @@ export const ContainerMain = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin-top: 4rem;
+    width: 18rem;
+    pointer-events: none;
   }
 `;

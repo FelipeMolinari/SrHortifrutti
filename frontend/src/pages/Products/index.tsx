@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { Header, ProductGrid, Scrollable } from './styles';
 import ProductCard from '../../components/ProductCard';
@@ -7,36 +7,17 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { dangerStyle, successStyle, confirmStyle } from '../../styles/alertBrn';
 import AddProductCard from '../../components/AddProductCard';
 import ContainerDashboardPages from '../../styles/components/ContainerDashboardPages';
-import AuthorizedApi from '../../services/api/AuthorizedApi';
-import { ProductProps } from '../../typescriptInterface';
+import { useProduct } from '../../contexts/ProductsContext';
 
 const Products: React.FC = () => {
+  const { loading, products, rejected, rejectedMessage } = useProduct();
+  console.log(products, 'products');
   const { url } = useRouteMatch();
   const [confirmBoth, setConfirmBoth] = useState(false);
   const [successDialog, setSuccessDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
-  const [products, setProducts] = useState<ProductProps[]>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [reject, setReject] = useState<boolean>(false);
-  const [rejectMessage, setRejectMessage] = useState('');
-
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response: ProductProps[] = await AuthorizedApi.getProducts();
-        console.log(response);
-        setProducts(response);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setReject(true);
-        setRejectMessage(`Não foi possível acessar o servidor, error msg: ${error}`);
-      }
-    }
-    fetchProducts();
-  }, []);
 
   function renderProducts() {
     return (
@@ -74,7 +55,7 @@ const Products: React.FC = () => {
       </Header>
       <Scrollable>
         {loading ? <h1>Carregando dados</h1> : renderProducts()}
-        {reject && <h1>{rejectMessage}</h1>}
+        {rejected && <h1>{rejectedMessage}</h1>}
       </Scrollable>
       {confirmBoth && (
         <SweetAlert

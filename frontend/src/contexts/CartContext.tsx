@@ -1,18 +1,18 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { ProductProps, ProductsProviderProps, CartProps } from '../typescriptInterface';
+import { ProductProps, CartProviderProps, CartProps } from '../typescriptInterface';
 import {
   getLocalStorageProducts,
   setLocalStorageProducts
 } from '../storage/productLocalStorage';
 import MainApi from '../services/api/MainApi';
 
-const ProductsContext = createContext({} as ProductsProviderProps);
+const CartContext = createContext({} as CartProviderProps);
 
-export function useProducts() {
-  const context = useContext(ProductsContext);
+export function useCart() {
+  const context = useContext(CartContext);
   return context;
 }
-const ProductsContextProvider: React.FC = ({ children }) => {
+const CartContextProvider: React.FC = ({ children }) => {
   const [avaiablesProducts, setAvaiablesProducts] = useState<ProductProps[]>([]);
   const [cart, setCart] = useState<CartProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -82,7 +82,7 @@ const ProductsContextProvider: React.FC = ({ children }) => {
     loading,
     rejected
   };
-  return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
-export default ProductsContextProvider;
+export default CartContextProvider;

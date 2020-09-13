@@ -12,14 +12,15 @@ class ProductController{
       type: Yup.string().required()
     });
 
+
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: "Validations fails" });
     }
     try {
       const product = new Product({...req.body, owner_id: req.user})
       const newProduct = await product.save();
-      
-      return res.send(newProduct)
+      const populated = await newProduct.populate('type').execPopulate()
+      return res.send(populated)
     } catch ( error ){
       return res.send({msg: error})
     } 

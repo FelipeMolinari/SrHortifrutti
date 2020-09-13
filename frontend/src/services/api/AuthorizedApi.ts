@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from 'axios';
 import HttpClient from './http-client';
 import { getLocalStorageToken } from '../../storage/authLocalStorage';
-import { ProductProps } from '../../typescriptInterface';
+import { ProductProps, ProductPropsStore, ProductType } from '../../typescriptInterface';
 class MainApiProtected extends HttpClient {
   public constructor() {
     super('http://localhost:3333');
@@ -18,5 +18,12 @@ class MainApiProtected extends HttpClient {
     return config;
   };
   getProducts = () => this.instance.get<ProductProps[]>('/secure/products');
+  storeProduct = (product: ProductPropsStore) =>
+    this.instance.post<ProductProps>('/secure/product/add', {
+      name: product.name,
+      price: product.price,
+      type: product.type
+    });
+  getTypes = () => this.instance.get<ProductType[]>('/secure/avaiables');
 }
 export default new MainApiProtected();

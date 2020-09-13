@@ -9,15 +9,14 @@ import {
 } from 'react';
 import { FormProviderProps, MultipleFieldErrors, Message, Ref } from 'react-hook-form';
 
-export interface OptionsSelectProps extends OptionHTMLAttributes<HTMLOptionElement> {
-  disabled: boolean;
-  label: string;
-  selected: boolean;
-}
+export interface OptionsSelectProps
+  extends Omit<OptionHTMLAttributes<HTMLOptionElement>, 'color'>,
+    ProductType {}
+
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   id: string;
   name: string;
-  options?: OptionsSelectProps[];
+  options: OptionsSelectProps[];
 }
 
 export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -40,6 +39,7 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   description?: string;
 }
 export interface ProductType {
+  _id: string;
   name: string;
   color: string;
   url_image: string;
@@ -50,6 +50,11 @@ export interface ProductProps {
   price: string;
   type: ProductType;
   owner?: string;
+}
+export interface ProductPropsStore {
+  name: string;
+  price: string;
+  type: ProductType;
 }
 export interface CartProps {
   product: ProductProps;
@@ -62,7 +67,7 @@ export interface ProductCardProps {
   routeOnPress?: string;
 }
 
-export interface ProductsProviderProps {
+export interface CartProviderProps {
   avaiablesProducts: ProductProps[];
   cart: CartProps[];
   addToCart: (id: string) => void;
@@ -70,6 +75,16 @@ export interface ProductsProviderProps {
   changeQuantity: (id: string, newQunatity: number) => void;
   loading: boolean;
   rejected: boolean;
+}
+export interface ProductsProviderProps {
+  products: ProductProps[];
+  addProduct: (product: ProductPropsStore) => void;
+  removeProduct: (id: string) => void;
+  updateProduct: (id: string, productModified: ProductProps) => void;
+  loading: boolean;
+  rejected: boolean;
+  rejectedMessage: string;
+  productsTypes: ProductType[];
 }
 
 export interface CardInfoProps {

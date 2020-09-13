@@ -1,10 +1,10 @@
 import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Container } from './styles';
-import { useProducts } from '../../contexts/CartContext';
+import { useCart } from '../../contexts/CartContext';
 import { NavLink } from 'react-router-dom';
 const HeaderStore: React.FC = () => {
-  const { cart } = useProducts();
+  const { cart } = useCart();
   return (
     <Container>
       <div className="logo">

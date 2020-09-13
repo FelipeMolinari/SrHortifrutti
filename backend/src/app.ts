@@ -19,6 +19,8 @@ class App {
 
   middlewares() {
     this.server.use(cors(corsConfig));
+    this.server.use(express.static('public'));
+
     this.server.use(express.json());
     this.server.use(bodyParser.urlencoded({ extended: false }));
   }
