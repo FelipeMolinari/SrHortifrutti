@@ -35,7 +35,7 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
-})
+}, {  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }})
 
 
 interface IUser {
@@ -58,7 +58,7 @@ UserSchema.pre<IUserDocument>("save", function(next) {
   }
   next()
 });
-UserSchema.statics.findByAdress = async function findByAge(
+UserSchema.statics.findByAdress = async function findByAdress(
   this: IUserModel,
   adress: string
 

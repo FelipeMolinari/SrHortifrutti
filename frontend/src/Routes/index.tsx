@@ -20,7 +20,7 @@ const Routes: React.FC = () => {
         <CustomRoute path="/retrieve" exact component={RetrievePassword} />
         <CustomRoute path="/dashboard" isPrivate component={DashBoard} />
         <Route path="/signsucc" exact component={SuccessfulSignup} />
-        <Route path="/store" exact component={Store} />
+        <Route path="/store" component={Store} />
         <Route path="/" component={() => <h1>401</h1>} />
       </Switch>
     </BrowserRouter>

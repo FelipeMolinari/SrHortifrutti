@@ -1,4 +1,6 @@
-import express, {Response} from 'express';
+import express from 'express';
+import ProductController from './app/Controllers/ProductController';
+import ProductTypesController from './app/Controllers/ProductTypesController';
 import SectionController from './app/Controllers/SectionController';
 import UserController from './app/Controllers/UserController';
 import data from './dataExample'
@@ -14,7 +16,8 @@ routes.post('/section', SectionController.store)
 
 // Secutes routes
 routes.use(isAuth)
-routes.get('/secure', (_, res:Response)=>{
-   res.send({msg: "Secure route"})
-})
+routes.post('/secure/product/add', ProductController.store)
+
+routes.get('/secure/avaiables', ProductTypesController.index)
+
 export default routes;

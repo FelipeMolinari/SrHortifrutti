@@ -1,26 +1,36 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { ProductProps, ProductsProviderProps, CartProps } from '../typescriptInterface';
 import {
   getLocalStorageProducts,
   setLocalStorageProducts
 } from '../storage/productLocalStorage';
 import MainApi from '../services/api/MainApi';
-export const ProductsContext = createContext({} as ProductsProviderProps);
 
+const ProductsContext = createContext({} as ProductsProviderProps);
+
+export function useProducts() {
+  const context = useContext(ProductsContext);
+  return context;
+}
 const ProductsContextProvider: React.FC = ({ children }) => {
   const [avaiablesProducts, setAvaiablesProducts] = useState<ProductProps[]>([]);
   const [cart, setCart] = useState<CartProps[]>([]);
-
+  const [loading, setLoading] = useState(true);
+  const [rejected, setRejected] = useState(false);
   useEffect(() => {
     MainApi.getProducts()
       .then((data) => {
+        console.log(data);
         setAvaiablesProducts(data.data);
+        setLoading(false);
       })
       .catch((error) => {
+        setRejected(true);
         console.error(error);
       });
     setCart(getLocalStorageProducts());
   }, []);
+
   useEffect(() => {
     setLocalStorageProducts(cart);
   }, [cart]);
@@ -62,7 +72,15 @@ const ProductsContextProvider: React.FC = ({ children }) => {
     setCart(data);
   }
 
-  const value = { avaiablesProducts, cart, addToCart, removeFromCart, changeQuantity };
+  const value = {
+    avaiablesProducts,
+    cart,
+    addToCart,
+    removeFromCart,
+    changeQuantity,
+    loading,
+    rejected
+  };
   return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
 };
 

@@ -11,25 +11,25 @@ import ProductsContextProvider from '../../contexts/ProductContext';
 import Cart from '../Cart';
 
 const Store: React.FC = () => {
-	const { path } = useRouteMatch();
-	return (
-		<ProductsContextProvider>
-			<Container>
-				<HeaderStore />
-				<HeaderBottom />
-				<Content>
-					<AsideStore />
-					<Main>
-						<Switch>
-							<Route exact path={`${path}`} component={PartnerStores} />
-							<Route path={`${path}/destaques`} component={BestProducts} />
-							<Route path={`${path}/cart`} component={Cart} />
-						</Switch>
-					</Main>
-				</Content>
-			</Container>
-		</ProductsContextProvider>
-	);
+  const { path } = useRouteMatch();
+  return (
+    <ProductsContextProvider>
+      <Container>
+        <HeaderStore />
+        <HeaderBottom />
+        <Content>
+          <AsideStore />
+          <Main>
+            <Switch>
+              <Route exact path={`${path}`} component={PartnerStores} />
+              <Route exact path={`${path}/destaques`} component={BestProducts} />
+              <Route exact path={`${path}/cart`} component={Cart} />
+            </Switch>
+          </Main>
+        </Content>
+      </Container>
+    </ProductsContextProvider>
+  );
 };
 
 export default Store;

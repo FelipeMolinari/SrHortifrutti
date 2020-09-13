@@ -20,7 +20,7 @@ abstract class HttpClient {
   };
 
   private _handleResponse = (reponse: AxiosResponse) => {
-    return reponse.data;
+    return reponse;
   };
 
   protected _handleError = (error: any) => {

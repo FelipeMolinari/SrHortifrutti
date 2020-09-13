@@ -64,6 +64,8 @@ export interface ProductsProviderProps {
   addToCart: (id: number) => void;
   removeFromCart: (id: number) => void;
   changeQuantity: (id: number, newQunatity: number) => void;
+  loading: boolean;
+  rejected: boolean;
 }
 
 export interface CardInfoProps {
