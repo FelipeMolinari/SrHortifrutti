@@ -1,7 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import HttpClient from './http-client';
 import { getLocalStorageToken } from '../../storage/authLocalStorage';
-import { ProductProps, ProductPropsStore, ProductType } from '../../typescriptInterface';
+import {
+  EditProductsProps,
+  ProductProps,
+  ProductPropsStore,
+  ProductType
+} from '../../typescriptInterface';
 class MainApiProtected extends HttpClient {
   public constructor() {
     super('http://localhost:3333');
@@ -15,6 +20,7 @@ class MainApiProtected extends HttpClient {
 
   private _handleRequest = (config: AxiosRequestConfig) => {
     config.headers['Authorization'] = `Bearer ${getLocalStorageToken()}`;
+
     return config;
   };
   getProducts = () => this.instance.get<ProductProps[]>('/secure/products');
@@ -27,5 +33,8 @@ class MainApiProtected extends HttpClient {
   getTypes = () => this.instance.get<ProductType[]>('/secure/avaiables');
 
   deleteProduct = (id: string) => this.instance.delete(`/secure/product/delete/${id}`);
+
+  updateProduct = (id: string, modifiedProduct: EditProductsProps) =>
+    this.instance.put<ProductProps>(`/secure/product/update/${id}`, { modifiedProduct });
 }
 export default new MainApiProtected();

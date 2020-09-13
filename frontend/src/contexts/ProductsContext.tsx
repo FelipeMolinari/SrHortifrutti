@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import {
+  EditProductsProps,
   ProductProps,
   ProductPropsStore,
   ProductsProviderProps,
@@ -42,8 +43,10 @@ const ProductsContextProvider: React.FC = ({ children }) => {
     try {
       const newProduct: ProductProps = await AuthorizedApi.storeProduct(product);
       setProducts([...products, newProduct]);
+      return true;
     } catch (error) {
       console.log(error);
+      return false;
     }
   }
   async function removeProduct(id: string) {
@@ -62,7 +65,24 @@ const ProductsContextProvider: React.FC = ({ children }) => {
       return false;
     }
   }
-  function updateProduct(id: string, productModified: ProductProps) {}
+  async function updateProduct(id: string, modifiedProduct: EditProductsProps) {
+    try {
+      const updatedProduct = await AuthorizedApi.updateProduct(id, modifiedProduct);
+      console.log(updatedProduct);
+      const newProdutsSet = products.map((product) => {
+        if (product._id === id) {
+          product = updatedProduct;
+        }
+        return product;
+      });
+
+      setProducts(newProdutsSet);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
   const value = {
     addProduct,

@@ -55,6 +55,32 @@ class ProductController{
     } 
   }
 
+  async update(req: IGetUserAuthInfoRequest, res: Response){
+    try {
+      const {id} = req.params 
+      console.log(id, "esse é o id")
+      const schema = Yup.object().shape({
+        name: Yup.string(),
+        price: Yup.string(),
+      });
+      if (!(await schema.isValid(req.body))) {
+        console.log("Validations fails")
+        return res.status(400).json({ error: "Validations fails" });
+      }
+      console.log("BODY", req.body)
+    const updatedProduct = await Product.findByIdAndUpdate(id,req.body.modifiedProduct, {
+      new: true,useFindAndModify: false
+    } )
+    
+    const populated = await updatedProduct.populate('type').execPopulate()
+    console.log(populated)
+      return res.send(populated)
+    } catch ( error ){
+      console.log(error)
+      return res.status(404).send({msg: error})
+    } 
+  }
+
   }
 
   

@@ -51,6 +51,10 @@ export interface ProductProps {
   type: ProductType;
   owner?: string;
 }
+export interface EditProductsProps {
+  name: string;
+  price: string;
+}
 export interface ProductPropsStore {
   name: string;
   price: string;
@@ -85,7 +89,7 @@ export interface ProductsProviderProps {
   products: ProductProps[];
   addProduct: (product: ProductPropsStore) => void;
   removeProduct: (id: string) => void;
-  updateProduct: (id: string, productModified: ProductProps) => void;
+  updateProduct: (id: string, productModified: EditProductsProps) => void;
   loading: boolean;
   rejected: boolean;
   rejectedMessage: string;

@@ -17,8 +17,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   const { name, price, type, _id } = product;
   const { url_image, color } = type;
-  function handleAddToCart() {
-    addToCart(_id);
+  async function handleAddToCart() {
+    try {
+      addToCart(_id);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

@@ -8,33 +8,44 @@ import Form from '../../components/Form';
 import InputBlock from '../../components/InputBlock';
 import CustomButton from '../../components/CustomButton';
 import ProductCard from '../../components/ProductCard';
-import { ProductProps } from '../../typescriptInterface';
+import { EditProductsProps, ProductProps } from '../../typescriptInterface';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { confirmStyle, successStyle, dangerStyle } from '../../styles/alertBrn';
 import ErrorsList from '../../components/ErrorsList';
 import { useCart } from '../../contexts/CartContext';
+import { useProduct } from '../../contexts/ProductsContext';
 interface ParamTypes {
   id: string;
 }
+
 const AddProduct: React.FC = () => {
-  const { avaiablesProducts } = useCart();
+  const { products } = useProduct();
+  const { updateProduct } = useProduct();
   const history = useHistory();
   const { errors, register, handleSubmit, watch } = useForm();
-  const [confirmBoth, setConfirmBoth] = useState(false);
   const [successDialog, setSuccessDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
 
   const { id } = useParams<ParamTypes>();
-  const initialProduct = avaiablesProducts.filter((item) => item._id === id)[0];
+  const initialProduct = products.filter((item) => item._id === id)[0];
 
   const [product, setProduct] = useState<ProductProps>(initialProduct);
 
   function handleOnInputChange(event: ChangeEvent<HTMLInputElement>, input: string) {
     setProduct({ ...product, [`${input}`]: event.target.value });
   }
-  const onSubmit = handleSubmit((data) => setConfirmBoth(true));
+  const onSubmit = handleSubmit(async (data) => {
+    const modifiedProduct: EditProductsProps = {
+      name: data.name,
+      price: data.price
+    };
+    updateProduct(id, modifiedProduct);
+    setSuccessDialog(true);
+    setDialogTitle('Sucesso');
+    setDialogDescription('Produto editado com sucesso');
+  });
 
   return (
     <ContainerDashboardPages>
@@ -52,7 +63,7 @@ const AddProduct: React.FC = () => {
               <li>
                 <InputBlock
                   onChange={(e) => handleOnInputChange(e, 'name')}
-                  defaultValue={initialProduct.name}
+                  defaultValue={product.name}
                   {...{
                     name: 'name',
                     type: 'text',
@@ -70,7 +81,7 @@ const AddProduct: React.FC = () => {
               <li>
                 <InputBlock
                   onChange={(e) => handleOnInputChange(e, 'price')}
-                  defaultValue={initialProduct.price}
+                  defaultValue={product.price}
                   {...{
                     name: 'value',
                     type: 'text',
@@ -105,32 +116,6 @@ const AddProduct: React.FC = () => {
           <ProductCard product={product} />
         </div>
       </ContainerMain>
-      {confirmBoth && (
-        <SweetAlert
-          title="Tem certeza?"
-          warning
-          showCancel
-          confirmBtnStyle={dangerStyle}
-          confirmBtnText="Sim"
-          cancelBtnText="Cancelar"
-          cancelBtnStyle={successStyle}
-          onConfirm={() => {
-            setConfirmBoth(false);
-            setSuccessDialog(true);
-            setDialogTitle('Produto Editado');
-            setDialogDescription('Seu produto foi alterado com sucesso!');
-          }}
-          onCancel={() => {
-            setConfirmBoth(false);
-            setErrorDialog(true);
-            setDialogTitle('Cancelado');
-            setDialogDescription('Seu produto não foi alterado');
-          }}
-        >
-          Editar produto <strong>{initialProduct.name}</strong> para{' '}
-          <strong>{watch('name')}</strong>
-        </SweetAlert>
-      )}
 
       {errorDialog && (
         <SweetAlert
