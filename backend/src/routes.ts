@@ -28,7 +28,9 @@ routes.get('/secure/avaiables', ProductTypesController.index)
 
 routes.get('/secure/products', ProductController.index)
 
-routes.post('/post/image',upload.single("file"),GalleryController.store)
+routes.post('/files/gallery', upload.single("file"),GalleryController.store)
+routes.get('/files/gallery', GalleryController.index)
+routes.delete('/files/gallery/:id', GalleryController.delete)
 
 export default routes;
 

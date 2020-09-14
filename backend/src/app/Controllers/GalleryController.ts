@@ -14,6 +14,16 @@ class GalleryController{
     })
     res.json(gallery)
   }
+  
+  async index(req: IGetUserAuthInfoRequest, res:Response){
+    const gallery = await Gallery.find({owner_id:req.user});
+    return res.send(gallery);
+  }
+  async delete(req:IGetUserAuthInfoRequest, res:Response ){
+    const gallery = await Gallery.findById(req.params.id);
+    await gallery.remove();
+    return res.send();
+  }
 }
 
 export default new GalleryController();

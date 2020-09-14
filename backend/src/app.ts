@@ -7,6 +7,7 @@ import cors from 'cors'
 import corsConfig from './config/cors'
 import bodyParser from 'body-parser';
 import morgan from 'morgan'
+import path from 'path'
 class App {
   server: Express;
   constructor() {
@@ -19,7 +20,7 @@ class App {
 
   middlewares() {
     this.server.use(cors(corsConfig));
-    this.server.use(express.static('public'));
+    this.server.use('/files',express.static(path.resolve(__dirname, '..', 'tmp')));
     this.server.use(morgan('dev'));
     this.server.use(express.json());
     this.server.use(bodyParser.urlencoded({ extended: false }));
