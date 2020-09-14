@@ -3,7 +3,8 @@ import MainApi from '../services/api/MainApi';
 import {
   getLocalStorageUser,
   setLocalStorageUser,
-  setLocalStorageToken
+  setLocalStorageToken,
+  clearLocalStorage
 } from '../storage/authLocalStorage';
 import { AuthContextProps, SectionResponse, UserInterface } from '../typescriptInterface';
 
@@ -16,27 +17,30 @@ export function useAuth() {
 
 const AuthContextProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<UserInterface | null>(getLocalStorageUser());
+  const [rejected, setRejected] = useState(false);
 
   async function login(email: string, password: string) {
     try {
       const response: SectionResponse = await MainApi.loginUser(email, password);
       if (response) {
-        setUser(response.data);
-        setLocalStorageUser(response.data);
+        console.log(response);
+        setUser(response.user);
+        setLocalStorageUser(response.user);
         setLocalStorageToken(response.token);
+      } else {
+        setRejected(true);
       }
     } catch (error) {
-      console.error(console.error);
+      setRejected(true);
     }
   }
 
   function logout() {
     setUser(null);
-    setLocalStorageUser(null);
-    setLocalStorageToken(null);
+    clearLocalStorage();
   }
   return (
-    <AuthContext.Provider value={{ signed: !!user, login, user, logout }}>
+    <AuthContext.Provider value={{ signed: !!user, login, user, logout, rejected }}>
       {children}
     </AuthContext.Provider>
   );

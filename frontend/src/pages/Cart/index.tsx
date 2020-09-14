@@ -31,11 +31,11 @@ const Cart: React.FC = () => {
       <CartContainer>
         <ProductsCartList>
           {cart.map((item) => {
-            const { _id, name, price, owner = 'Do seu zé', type } = item.product;
+            const { _id, name, price, owner_id, type } = item.product;
             return (
               <ProductListItem
                 key={_id}
-                product={{ _id, type, name, price, owner }}
+                product={{ _id, type, name, price, owner_id }}
                 quantity={item.quantity}
               />
             );

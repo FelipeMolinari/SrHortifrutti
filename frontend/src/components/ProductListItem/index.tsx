@@ -5,7 +5,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { CartProps } from '../../typescriptInterface';
 
 const ProductListItem: React.FC<CartProps> = ({ product, quantity }) => {
-  const { _id, name, price, owner, type } = product;
+  const { _id, name, price, owner_id, type } = product;
   const { url_image } = type;
   const [mutatedPrice, setMutatedPrice] = useState(
     (parseFloat(price) * quantity).toFixed(2)
@@ -27,7 +27,7 @@ const ProductListItem: React.FC<CartProps> = ({ product, quantity }) => {
         <img src={url_image} alt={`Product ${name}`} />
         <div className="description-product">
           <strong>{name}</strong>
-          <span>{owner}</span>
+          <span>{owner_id?.name}</span>
         </div>
       </div>
       <div className="center">

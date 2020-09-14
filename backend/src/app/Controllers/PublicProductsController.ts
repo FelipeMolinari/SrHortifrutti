@@ -7,7 +7,8 @@ class PublicProductsController{
   async index(_: Request, res: Response){
     try {
       const products = await Product.find({});
-      console.log(products)
+      
+      
       return res.send(products)
 
     } catch (error) {

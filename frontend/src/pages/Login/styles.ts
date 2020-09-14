@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 70%;
+  .error-message {
+    color: var(--color-delete);
+    font: 200 1.8rem Poppins;
+    margin-left: 1.6rem;
+  }
   .input-above {
     padding: 1.4rem 0rem 2.4rem 0rem;
     display: flex;

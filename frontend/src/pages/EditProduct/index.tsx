@@ -10,9 +10,8 @@ import CustomButton from '../../components/CustomButton';
 import ProductCard from '../../components/ProductCard';
 import { EditProductsProps, ProductProps } from '../../typescriptInterface';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import { confirmStyle, successStyle, dangerStyle } from '../../styles/alertBrn';
+import { confirmStyle } from '../../styles/alertBrn';
 import ErrorsList from '../../components/ErrorsList';
-import { useCart } from '../../contexts/CartContext';
 import { useProduct } from '../../contexts/ProductsContext';
 interface ParamTypes {
   id: string;
@@ -41,6 +40,7 @@ const AddProduct: React.FC = () => {
       name: data.name,
       price: data.price
     };
+    console.log(modifiedProduct);
     updateProduct(id, modifiedProduct);
     setSuccessDialog(true);
     setDialogTitle('Sucesso');
@@ -83,7 +83,7 @@ const AddProduct: React.FC = () => {
                   onChange={(e) => handleOnInputChange(e, 'price')}
                   defaultValue={product.price}
                   {...{
-                    name: 'value',
+                    name: 'price',
                     type: 'text',
                     placeholder: 'Valor'
                   }}
@@ -105,7 +105,7 @@ const AddProduct: React.FC = () => {
           />
           <CustomButton
             colorName="--color-primary"
-            disabled={!(watch('name') && watch('value'))}
+            disabled={!(watch('name') && watch('price'))}
             form="edit-product-form"
             type="submit"
           >

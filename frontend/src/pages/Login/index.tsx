@@ -14,7 +14,7 @@ import InputPassword from '../../components/InputPassword';
 import ErrorsList from '../../components/ErrorsList';
 
 const Login: React.FC = () => {
-  const { login } = useAuth();
+  const { login, rejected } = useAuth();
   const { errors, register, handleSubmit, watch } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
@@ -70,6 +70,7 @@ const Login: React.FC = () => {
           })}
         ></ErrorsList>
       )}
+      {rejected && <span className="error-message">Credenciais inválidas</span>}
       <div className="footer-container">
         <CustomButton
           form="login"

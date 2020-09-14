@@ -35,6 +35,8 @@ class MainApiProtected extends HttpClient {
   deleteProduct = (id: string) => this.instance.delete(`/secure/product/delete/${id}`);
 
   updateProduct = (id: string, modifiedProduct: EditProductsProps) =>
-    this.instance.put<ProductProps>(`/secure/product/update/${id}`, { modifiedProduct });
+    this.instance.put<ProductProps>(`/secure/product/update/${id}`, {
+      ...modifiedProduct
+    });
 }
 export default new MainApiProtected();

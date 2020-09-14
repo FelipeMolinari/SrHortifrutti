@@ -3,18 +3,23 @@ import { Container, Input } from './styles';
 import InputMask from 'react-input-mask';
 import { NormalInputProps } from '../../typescriptInterface';
 
-const InputBlock = forwardRef<
-	HTMLInputElement,
-	NormalInputProps
->(({ name, placeholder, type, password, children, mask = '',...rest }, ref) => {
-	return (
-		<Container>
-			<InputMask mask={mask} alwaysShowMask={true} {...rest}>
-				<Input className="input-camp" name={name} placeholder={placeholder} type={type} ref={ref} />
-			</InputMask>
+const InputBlock = forwardRef<HTMLInputElement, NormalInputProps>(
+  ({ name, placeholder, type, password, children, mask = '', ...rest }, ref) => {
+    return (
+      <Container>
+        <InputMask placeholder={placeholder} mask={mask} alwaysShowMask={false} {...rest}>
+          <Input
+            className="input-camp"
+            name={name}
+            placeholder={placeholder}
+            type={type}
+            ref={ref}
+          />
+        </InputMask>
 
-			{password && children}
-		</Container>
-	);
-});
+        {password && children}
+      </Container>
+    );
+  }
+);
 export default InputBlock;

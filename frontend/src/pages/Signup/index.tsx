@@ -12,6 +12,7 @@ import ErrorsList from '../../components/ErrorsList';
 import InputPassword from '../../components/InputPassword';
 const Signup: React.FC = () => {
   const { errors, register, handleSubmit, watch, setValue } = useForm();
+
   async function handleOnBlue(event: React.FocusEvent<HTMLInputElement>) {
     const data = await validCEP(event.currentTarget.value);
     if (data.error) {

@@ -68,7 +68,7 @@ class ProductController{
         return res.status(400).json({ error: "Validations fails" });
       }
       console.log("BODY", req.body)
-    const updatedProduct = await Product.findByIdAndUpdate(id,req.body.modifiedProduct, {
+    const updatedProduct = await Product.findByIdAndUpdate(id,req.body, {
       new: true,useFindAndModify: false
     } )
     

@@ -17,7 +17,7 @@ const ProductSchema = new Schema({
 )
 
 ProductSchema.pre('find', function() {
-  this.populate('owner_id');
+  this.populate('owner_id','name cellphone email cep street neighborhood number');
   this.populate('type')
 
 });
@@ -27,6 +27,7 @@ interface IProduct {
   price: string;
   owner_id:string;
   type:string;
+  
 }
 interface IProductDocument extends IProduct, Document {};
 

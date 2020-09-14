@@ -5,7 +5,8 @@ import {
   FormHTMLAttributes,
   ButtonHTMLAttributes,
   HTMLAttributes,
-  CSSProperties
+  CSSProperties,
+  TextareaHTMLAttributes
 } from 'react';
 import { FormProviderProps, MultipleFieldErrors, Message, Ref } from 'react-hook-form';
 
@@ -26,6 +27,10 @@ export interface NormalInputProps extends InputHTMLAttributes<HTMLInputElement> 
   password?: boolean;
   mask?: string | (string | RegExp)[];
 }
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: string;
+  type: string;
+}
 export interface FormAccount {
   register?: FormProviderProps['register'];
   name: string;
@@ -44,12 +49,21 @@ export interface ProductType {
   color: string;
   url_image: string;
 }
+export interface UserOwner {
+  cellphone: string;
+  cep: string;
+  email: string;
+  name: ProductType;
+  neighborhood?: string;
+  street: string;
+  number: string;
+}
 export interface ProductProps {
   _id: string;
   name: string;
   price: string;
   type: ProductType;
-  owner?: string;
+  owner_id?: UserOwner;
 }
 export interface EditProductsProps {
   name: string;
@@ -121,14 +135,14 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   placeholder: string;
 }
 
-export interface SectionResponse {
-  token: string;
-  data: UserInterface;
-}
-
 export interface UserInterface {
   name: string;
   email: string;
+}
+
+export interface SectionResponse {
+  token: string;
+  user: UserInterface;
 }
 
 export interface AuthContextProps {
@@ -136,4 +150,5 @@ export interface AuthContextProps {
   user: UserInterface | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  rejected: boolean;
 }

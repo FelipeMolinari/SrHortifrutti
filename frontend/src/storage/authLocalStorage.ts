@@ -1,6 +1,7 @@
 const AUTH_USER = 'auth_user';
 const TOKEN_USER = 'token_user';
 export function setLocalStorageUser(user: object | null) {
+  console.log(user);
   localStorage.setItem(AUTH_USER, JSON.stringify(user));
 }
 
@@ -24,4 +25,7 @@ export function getLocalStorageToken() {
   if (data) {
     return data;
   } else return null;
+}
+export function clearLocalStorage() {
+  localStorage.clear();
 }
