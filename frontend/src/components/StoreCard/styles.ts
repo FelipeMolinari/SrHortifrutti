@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import {
   AiOutlineEnvironment,
   AiOutlineShoppingCart,
-  AiOutlineDollarCircle
+  AiOutlineWhatsApp
 } from 'react-icons/ai';
 
 export const Container = styled.div`
@@ -35,6 +35,9 @@ export const HeaderCard = styled.div`
 export const DatasList = styled.ul`
   list-style: none;
   width: 100%;
+  li {
+    margin: 0.8rem 0rem;
+  }
 `;
 const iconCSS = css`
   color: var(--commum-text);
@@ -51,6 +54,6 @@ export const ProductsQtdIcon = styled(AiOutlineShoppingCart)`
   ${iconCSS}
 `;
 
-export const AverageValueIcon = styled(AiOutlineDollarCircle)`
+export const CellphoneIcon = styled(AiOutlineWhatsApp)`
   ${iconCSS}
 `;

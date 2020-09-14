@@ -1,5 +1,10 @@
 import HttpClient from './http-client';
-import { ProductProps, SectionResponse } from '../../typescriptInterface';
+import {
+  ProductProps,
+  SectionResponse,
+  UserInterface,
+  UserOwner
+} from '../../typescriptInterface';
 
 class MainApi extends HttpClient {
   public constructor() {
@@ -7,6 +12,7 @@ class MainApi extends HttpClient {
   }
 
   getProducts = () => this.instance.get<ProductProps[]>('/products');
+  getProviders = () => this.instance.get<UserOwner[]>('/providers');
   loginUser = (email: string, password: string) =>
     this.instance.post<SectionResponse>('/section', {
       email,

@@ -21,5 +21,15 @@ class UserController {
       } 
   }
 
+	async index(_: Request, res: Response) {
+
+    try {
+      let user = await User.find({});
+      return res.send(user)
+      } catch ( error ){
+        return res.send({msg: error.message})
+      } 
+  }
+
 }
 export default new UserController();

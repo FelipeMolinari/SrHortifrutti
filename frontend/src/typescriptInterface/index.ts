@@ -57,6 +57,8 @@ export interface UserOwner {
   neighborhood?: string;
   street: string;
   number: string;
+  avatar_url?: string;
+  _id?: string;
 }
 export interface ProductProps {
   _id: string;

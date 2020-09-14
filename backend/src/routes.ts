@@ -13,6 +13,7 @@ import GalleryController from './app/Controllers/GalleryController';
 const routes = express.Router();
 
 routes.get('/products', PublicProductsController.index);
+routes.get('/providers', UserController.index);
 
 routes.post('/user', UserController.store)
 routes.post('/section', SectionController.store)
