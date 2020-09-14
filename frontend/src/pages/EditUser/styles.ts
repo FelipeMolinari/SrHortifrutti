@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  width: 100%;
+`;
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
   h1 {
     font-size: 3.6rem;
     color: var(--color-primary-text);
@@ -25,6 +28,8 @@ export const ContainerMain = styled.div`
   margin-bottom: 16rem;
   flex-direction: column;
   display: flex;
+  flex: 1;
+  width: 100%;
   @media (min-width: 800px) {
     margin-bottom: 0rem;
   }
@@ -40,9 +45,31 @@ export const FieldsContainer = styled.div`
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
+  @media (min-width: 800px) {
+    display: grid;
+    flex: 1;
 
+    grid-template:
+      'loja  endereco '
+      'contato  endereco ';
+    grid-template-columns: 1fr 1fr;
+
+    grid-column-gap: 6rem;
+    .ul-loja {
+      grid-area: loja;
+    }
+    .ul-contato {
+      grid-area: contato;
+    }
+    .ul-endereco {
+      grid-area: endereco;
+    }
+  }
   .title {
-    margin: 2.4rem 0rem 1.4rem 1.4rem;
+    margin-left: 1.4rem;
+    font: 200 1.9rem Poppins;
+    letter-spacing: 0.6rem;
   }
   ul {
     list-style: none;
@@ -53,12 +80,20 @@ export const FieldsContainer = styled.div`
       flex: 1;
     }
   }
+  .ul-loja {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  @media (min-width: 800px) {
-    flex-direction: row;
-
-    .ul-right {
-      margin-left: 4rem;
+    div {
+      display: flex;
+      align-items: center;
+      .avatar_editor {
+        flex: 0;
+      }
     }
+  }
+  .ul-contato {
+    margin: 2.4rem 0rem;
   }
 `;

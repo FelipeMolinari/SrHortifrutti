@@ -42,8 +42,7 @@ export const Content = styled.div`
   background-color: var(--commum-background);
   flex-direction: column;
 
-  height: auto;
-  min-height: 110vh;
+  min-height: 120vh;
   @media (min-width: 800px) {
     min-height: 100vh;
   }
