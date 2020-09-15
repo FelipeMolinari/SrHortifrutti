@@ -159,7 +159,15 @@ export interface FileType {
   progress: number;
   uploaded: boolean;
   error: boolean;
-  url: string | null;
   name: string;
   id: string;
+  query: boolean;
+}
+
+export interface GalleryResponseInterface {
+  _id: string;
+  name: string;
+  url: string;
+  size: number;
+  created_at: string;
 }

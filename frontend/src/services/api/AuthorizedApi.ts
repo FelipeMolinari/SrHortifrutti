@@ -5,16 +5,9 @@ import {
   EditProductsProps,
   ProductProps,
   ProductPropsStore,
-  ProductType
+  ProductType,
+  GalleryResponseInterface
 } from '../../typescriptInterface';
-
-interface PostsResponseInterface {
-  _id: string;
-  name: string;
-  url: string;
-  size: number;
-  created_at: string;
-}
 
 class MainApiProtected extends HttpClient {
   public constructor() {
@@ -49,7 +42,7 @@ class MainApiProtected extends HttpClient {
     });
 
   uploadImage = (file: FormData, config: AxiosRequestConfig) =>
-    this.instance.post<PostsResponseInterface>(`/files/gallery`, { file }, config);
+    this.instance.post<GalleryResponseInterface>(`/files/gallery`, file, config);
   deleteImage = (id: string) => this.instance.delete(`/files/gallery/${id}`);
 }
 export default new MainApiProtected();

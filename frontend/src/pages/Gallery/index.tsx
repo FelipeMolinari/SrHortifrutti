@@ -4,21 +4,31 @@ import filesize from 'filesize';
 import Dropzone from 'react-dropzone';
 import FileList from '../../components/FileList';
 import { Container, DropContainer, UploadMessage, Wrapper } from './styles';
-import { FileType } from '../../typescriptInterface/index';
+import { FileType, GalleryResponseInterface } from '../../typescriptInterface/index';
 import AuthorizedApi from '../../services/api/AuthorizedApi';
 
 const Gallery: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileType[]>([]);
-  // const [filesWaitingToUpload, setFilesWaitingToUpload] = useState<FileType[]>([])
-
-  useLayoutEffect(() => {
-    console.log(uploadedFiles);
-    uploadedFiles.forEach((item) => processUpload(item));
-  }, [uploadedFiles]);
+  const [actualIndex, setActualIndex] = useState(0);
+  const [uploadedDone, setUploadedDone] = useState<object>([]);
+  useEffect(() => {
+    return () => {
+      uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview));
+    };
+  }, []);
 
   useEffect(() => {
-    uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview));
-  });
+    console.log('render', actualIndex);
+    if (uploadedFiles[actualIndex]) {
+      if (
+        !uploadedFiles[actualIndex].error &&
+        uploadedFiles[actualIndex].progress === 0
+      ) {
+        processUpload(uploadedFiles[actualIndex]);
+      }
+    }
+  }, [uploadedFiles]);
+
   function handleUploads(files: File[]) {
     const upload: FileType[] = files.map((file) => {
       return {
@@ -29,8 +39,8 @@ const Gallery: React.FC = () => {
         progress: 0,
         uploaded: false,
         error: false,
-        url: null,
-        id: uniqueId()
+        id: uniqueId(),
+        query: false
       };
     });
 
@@ -40,8 +50,6 @@ const Gallery: React.FC = () => {
   function updateFile(id: string, data: object) {
     setUploadedFiles(
       uploadedFiles.map((file) => {
-        console.log(id, file.id);
-
         if (file.id === id) {
           return { ...file, ...data };
         }
@@ -50,27 +58,36 @@ const Gallery: React.FC = () => {
     );
   }
 
-  function processUpload(upload: FileType) {
+  async function processUpload(upload: FileType) {
     const data = new FormData();
-    data.append('file', upload.file, upload.name);
-    AuthorizedApi.uploadImage(data, {
-      onUploadProgress: (e) => {
-        const progress = Math.round((e.loaded * 100) / e.total);
-        updateFile(upload.id, { progress });
-      }
-    })
-      .then((response) => {
-        updateFile(upload.id, {
-          uploaded: true,
-          id: response.data._id,
-          url: response.data.url
-        });
-      })
-      .catch(() => {
-        updateFile(upload.id, {
-          error: true
-        });
+    data.append('file', upload.file!!, upload.name);
+
+    try {
+      const response: GalleryResponseInterface = await AuthorizedApi.uploadImage(data, {
+        onUploadProgress: (e) => {
+          const progress = Math.round((e.loaded * 100) / e.total);
+          updateFile(upload.id, { progress, query: true });
+        }
       });
+      const newIndex = actualIndex + 1;
+
+      setActualIndex(newIndex);
+
+      updateFile(upload.id, {
+        uploaded: true,
+        progress: 100
+      });
+      setUploadedDone(response);
+    } catch (error) {
+      console.log(error, 'error');
+      const newIndex = actualIndex + 1;
+
+      setActualIndex(newIndex);
+
+      updateFile(upload.id, {
+        error: true
+      });
+    }
   }
 
   async function handleDelete(id: string) {

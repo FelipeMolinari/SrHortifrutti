@@ -5,16 +5,17 @@ import {IGetUserAuthInfoRequest} from '../../definitions'
 class GalleryController{
   async store(req: IGetUserAuthInfoRequest, res:Response){
     try{
-      console.log(req)
-    //   const {originalname: name, size, filename: key} = req.file
-    // const gallery = await Gallery.create({
-    //   name, 
-    //   size,
-    //   key,
-    //   url: "",
-    //   owner_id: req.user
-    // })
-    // res.send(gallery)
+      console.log(req.file)
+      const {originalname: name, size, filename: key} = req.file
+    const gallery = await Gallery.create({
+      name, 
+      size,
+      key,
+      url: "",
+      owner_id: req.user
+    })
+    console.log(gallery)
+    res.send(gallery)
     }catch(error){
       console.log(error)
       res.send({msg: "Error creating gallery"})
