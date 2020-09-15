@@ -1,146 +1,37 @@
-import React, { useLayoutEffect, useState, useEffect } from 'react';
-import { uniqueId } from 'lodash';
-import filesize from 'filesize';
-import Dropzone from 'react-dropzone';
-import FileList from '../../components/FileList';
-import { Container, DropContainer, UploadMessage, Wrapper } from './styles';
-import { FileType, GalleryResponseInterface } from '../../typescriptInterface/index';
-import AuthorizedApi from '../../services/api/AuthorizedApi';
-
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import DropZone from '../../components/DropZone';
+import { Container, Content, Header, Main } from './styles';
+import { GalleryResponseInterface } from '../../typescriptInterface/index';
+import MainApi from '../../services/api/MainApi';
+import CustomCarousel from '../../components/CustomCarousel';
 const Gallery: React.FC = () => {
-  const [uploadedFiles, setUploadedFiles] = useState<FileType[]>([]);
-  const [actualIndex, setActualIndex] = useState(0);
-  const [uploadedDone, setUploadedDone] = useState<object>([]);
+  const [uploadedDone, setUploadedDone] = useState<GalleryResponseInterface[]>([]);
+  const { user } = useAuth();
   useEffect(() => {
-    return () => {
-      uploadedFiles.forEach((file) => URL.revokeObjectURL(file.preview));
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log('render', actualIndex);
-    if (uploadedFiles[actualIndex]) {
-      if (
-        !uploadedFiles[actualIndex].error &&
-        uploadedFiles[actualIndex].progress === 0
-      ) {
-        processUpload(uploadedFiles[actualIndex]);
+    async function fetchFiles() {
+      if (user && user._id) {
+        const fetcheds: GalleryResponseInterface[] = await MainApi.getImages(user._id);
+        setUploadedDone(fetcheds);
       }
     }
-  }, [uploadedFiles]);
-
-  function handleUploads(files: File[]) {
-    const upload: FileType[] = files.map((file) => {
-      return {
-        file,
-        name: file.name,
-        readableSize: filesize(file.size),
-        preview: URL.createObjectURL(file),
-        progress: 0,
-        uploaded: false,
-        error: false,
-        id: uniqueId(),
-        query: false
-      };
-    });
-
-    setUploadedFiles(uploadedFiles.concat(upload));
-  }
-
-  function updateFile(id: string, data: object) {
-    setUploadedFiles(
-      uploadedFiles.map((file) => {
-        if (file.id === id) {
-          return { ...file, ...data };
-        }
-        return file;
-      })
-    );
-  }
-
-  async function processUpload(upload: FileType) {
-    const data = new FormData();
-    data.append('file', upload.file!!, upload.name);
-
-    try {
-      const response: GalleryResponseInterface = await AuthorizedApi.uploadImage(data, {
-        onUploadProgress: (e) => {
-          const progress = Math.round((e.loaded * 100) / e.total);
-          updateFile(upload.id, { progress, query: true });
-        }
-      });
-      const newIndex = actualIndex + 1;
-
-      setActualIndex(newIndex);
-
-      updateFile(upload.id, {
-        uploaded: true,
-        progress: 100
-      });
-      setUploadedDone(response);
-    } catch (error) {
-      console.log(error, 'error');
-      const newIndex = actualIndex + 1;
-
-      setActualIndex(newIndex);
-
-      updateFile(upload.id, {
-        error: true
-      });
-    }
-  }
-
-  async function handleDelete(id: string) {
-    try {
-      await AuthorizedApi.deleteImage(id);
-      setUploadedFiles(uploadedFiles.filter((file) => file.id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function renderDragMessage(isDragActive: boolean, isDragReject: boolean) {
-    if (!isDragActive) {
-      return (
-        <UploadMessage>
-          <span className="default">Arraste arquivos aqui ...</span>
-        </UploadMessage>
-      );
-    }
-    if (isDragReject) {
-      return (
-        <UploadMessage>
-          <span className="error">Arquivo não suportado ...</span>
-        </UploadMessage>
-      );
-    }
-    return (
-      <UploadMessage>
-        <span className="success">Solte os arquivos aqui</span>
-      </UploadMessage>
-    );
-  }
+    fetchFiles();
+  }, []);
 
   return (
     <Container>
-      <Wrapper>
-        <Dropzone accept="image/*" onDropAccepted={handleUploads}>
-          {({ getRootProps, isDragActive, isDragReject, getInputProps }) => (
-            <DropContainer
-              className="dropzone"
-              {...getRootProps()}
-              isDragActive={isDragActive}
-              isDragReject={isDragReject}
-            >
-              <input {...getInputProps()} />
-              {renderDragMessage(isDragActive, isDragReject)}
-            </DropContainer>
-          )}
-        </Dropzone>
-        {!!uploadedFiles?.length && (
-          <FileList files={uploadedFiles} onDelete={handleDelete} />
-        )}
-      </Wrapper>
+      <Header>
+        <div>
+          <h1>Sua galeria.</h1>
+          <p>Sua galeria será apresentado na sua página dentro dentro da loja!</p>
+        </div>
+      </Header>
+      <Main>
+        <Content>
+          <CustomCarousel images={uploadedDone} />
+          <DropZone setUploadedDone={setUploadedDone} uploadedDone={uploadedDone} />
+        </Content>
+      </Main>
     </Container>
   );
 };

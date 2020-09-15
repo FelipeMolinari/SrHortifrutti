@@ -24,8 +24,9 @@ class GalleryController{
   }
   
   async index(req: IGetUserAuthInfoRequest, res:Response){
+    const {user_id} = req.params;
     try {
-      const gallery = await Gallery.find({owner_id:req.user});
+      const gallery = await Gallery.find({owner_id:user_id});
     return res.send(gallery);
     } catch (error) {
       

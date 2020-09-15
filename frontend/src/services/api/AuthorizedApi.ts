@@ -43,6 +43,7 @@ class MainApiProtected extends HttpClient {
 
   uploadImage = (file: FormData, config: AxiosRequestConfig) =>
     this.instance.post<GalleryResponseInterface>(`/files/gallery`, file, config);
+
   deleteImage = (id: string) => this.instance.delete(`/files/gallery/${id}`);
 }
 export default new MainApiProtected();

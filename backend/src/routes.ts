@@ -17,6 +17,8 @@ routes.get('/providers', UserController.index);
 
 routes.post('/user', UserController.store)
 routes.post('/section', SectionController.store)
+routes.get('/gallery/:user_id', GalleryController.index)
+
 
 // Secutes routes
 routes.use(isAuth)
@@ -30,7 +32,6 @@ routes.get('/secure/avaiables', ProductTypesController.index)
 routes.get('/secure/products', ProductController.index)
 
 routes.post('/files/gallery', upload.single("file"),GalleryController.store)
-routes.get('/files/gallery', GalleryController.index)
 routes.delete('/files/gallery/:id', GalleryController.delete)
 
 export default routes;

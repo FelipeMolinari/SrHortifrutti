@@ -1,5 +1,10 @@
 import HttpClient from './http-client';
-import { ProductProps, SectionResponse, UserOwner } from '../../typescriptInterface';
+import {
+  GalleryResponseInterface,
+  ProductProps,
+  SectionResponse,
+  UserOwner
+} from '../../typescriptInterface';
 
 class MainApi extends HttpClient {
   public constructor() {
@@ -14,6 +19,8 @@ class MainApi extends HttpClient {
       password
     });
   createUser = (user: UserOwner) => this.instance.post<UserOwner>('/user', user);
+  getImages = (user_id: string) =>
+    this.instance.get<GalleryResponseInterface[]>(`/gallery/${user_id}`);
 }
 
 export default new MainApi();

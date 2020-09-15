@@ -25,7 +25,7 @@ interface IGallerySchemaDocument extends IGallerySchema, Document {};
 
 GallerySchema.pre<IGallerySchemaDocument>('save', function(){
   if(!this.url){
-    this.url = `${process.env.APP_URL}/files/upload/${this.key}`
+    this.url = `${process.env.APP_URL}/files/uploads/${this.key}`
   }
   
 })
