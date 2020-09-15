@@ -1,10 +1,5 @@
 import HttpClient from './http-client';
-import {
-  ProductProps,
-  SectionResponse,
-  UserInterface,
-  UserOwner
-} from '../../typescriptInterface';
+import { ProductProps, SectionResponse, UserOwner } from '../../typescriptInterface';
 
 class MainApi extends HttpClient {
   public constructor() {
@@ -18,6 +13,7 @@ class MainApi extends HttpClient {
       email,
       password
     });
+  createUser = (user: UserOwner) => this.instance.post<UserOwner>('/user', user);
 }
 
 export default new MainApi();

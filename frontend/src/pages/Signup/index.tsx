@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 import CustomButtom from '../../components/CustomButton';
 import Form from '../../components/Form';
@@ -10,29 +11,47 @@ import InputBlock from '../../components/InputBlock';
 import validCEP from '../../services/cepvalidation';
 import ErrorsList from '../../components/ErrorsList';
 import InputPassword from '../../components/InputPassword';
+import MainApi from '../../services/api/MainApi';
+import { UserOwner } from '../../typescriptInterface';
 const Signup: React.FC = () => {
-  const { errors, register, handleSubmit, watch, setValue } = useForm();
-
+  const [rejected, setRejected] = useState(false);
+  const [rejectedMessage, setRejectedMessage] = useState('');
+  const { errors, register, handleSubmit, setValue, setError, getValues } = useForm();
+  const history = useHistory();
   async function handleOnBlue(event: React.FocusEvent<HTMLInputElement>) {
     const data = await validCEP(event.currentTarget.value);
     if (data.error) {
+      setError('cep invalido', { message: 'CEP informado não consta nos registros' });
     } else {
+      console.log(data);
       setValue('city', data.localidade);
       setValue('neighborhood', data.bairro);
       setValue('street', data.logradouro);
     }
   }
 
-  const onSubmit = handleSubmit((data) => {
-    const { email, password } = data;
-  });
+  const onSubmit = handleSubmit(async (data) => {
+    const values = getValues(['city', 'street', 'neighborhood']);
+    const { name, cellphone, email, cep, number, password } = data;
+    const newUser: UserOwner = {
+      ...{ name, cellphone, email, cep, number, password },
+      ...values
+    };
+    try {
+      await MainApi.createUser(newUser);
 
+      history.push('/signupsucc');
+    } catch (error) {
+      setRejected(true);
+      setRejectedMessage('Já existe um usuário com o email informado!');
+    }
+  });
   return (
     <Container>
       <Form
         name="Cadastro"
         description="Preencha os dados abaixo para prosseguir!"
-        id="form-Signup"
+        id="form-signup"
         onSubmit={onSubmit}
       >
         <ul>
@@ -44,7 +63,10 @@ const Signup: React.FC = () => {
                 placeholder: 'Nome do Hortifrutti'
               }}
               ref={register({
-                required: true
+                required: {
+                  value: true,
+                  message: 'Nome não definido'
+                }
               })}
             />
           </li>
@@ -57,7 +79,10 @@ const Signup: React.FC = () => {
                 mask: '(99) 99999-9999'
               }}
               ref={register({
-                required: true,
+                required: {
+                  value: true,
+                  message: 'Celular não definido'
+                },
                 pattern: {
                   value: /(\(?\d{2}\)?\s)?(\d{4,5}-\d{4})/g,
                   message: 'Formato do celular inválido'
@@ -73,7 +98,13 @@ const Signup: React.FC = () => {
                 type: 'email',
                 placeholder: 'E-mail'
               }}
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'Email não definido' // <p>error message</p>
+                }
+              })}
             />
           </li>
           <li>
@@ -85,7 +116,10 @@ const Signup: React.FC = () => {
                 password: true
               }}
               ref={register({
-                required: true,
+                required: {
+                  value: true,
+                  message: 'Senha não definida'
+                },
                 minLength: {
                   value: 6,
                   message: 'Sua senha deve possuir ao menos 6 caracteres!' // <p>error message</p>
@@ -102,7 +136,13 @@ const Signup: React.FC = () => {
                 mask: '99999-999'
               }}
               onBlur={(e) => handleOnBlue(e)}
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'CEP é um campo obrigatório' // <p>error message</p>
+                }
+              })}
             />
           </li>
           <li>
@@ -113,7 +153,13 @@ const Signup: React.FC = () => {
                 placeholder: 'Cidade'
               }}
               disabled
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'Cidade é um campo obrigatório' // <p>error message</p>
+                }
+              })}
             />
           </li>
           <li>
@@ -124,7 +170,13 @@ const Signup: React.FC = () => {
                 placeholder: 'Bairro'
               }}
               disabled
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'Bairro é um campo obrigatório' // <p>error message</p>
+                }
+              })}
             />
           </li>
           <li>
@@ -135,7 +187,13 @@ const Signup: React.FC = () => {
                 placeholder: 'Rua'
               }}
               disabled
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'Rua é um campo obrigatório' // <p>error message</p>
+                }
+              })}
             />
           </li>
           <li>
@@ -145,8 +203,13 @@ const Signup: React.FC = () => {
                 type: 'number',
                 placeholder: 'numero'
               }}
-              defaultValue=""
-              ref={register}
+              ref={register({
+                required: {
+                  value: true,
+
+                  message: 'Falta definir o número' // <p>error message</p>
+                }
+              })}
             />
           </li>
         </ul>
@@ -159,24 +222,12 @@ const Signup: React.FC = () => {
           })}
         ></ErrorsList>
       )}
-
+      {rejected && <h3 color="red">{rejectedMessage}</h3>}
       <CustomButtom
         type="submit"
         form="form-signup"
         colorName="--color-primary"
         style={{ marginTop: 36, marginBottom: 56 }}
-        disabled={
-          !(
-            watch('cep') &&
-            watch('neighborhood') &&
-            watch('street') &&
-            watch('number') &&
-            watch('name') &&
-            watch('cellphone') &&
-            watch('email') &&
-            watch('password')
-          )
-        }
       >
         <span>Concluir cadastro</span>
       </CustomButtom>

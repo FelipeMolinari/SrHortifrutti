@@ -53,11 +53,13 @@ export interface UserOwner {
   cellphone: string;
   cep: string;
   email: string;
-  name: ProductType;
+  name: string;
+  city?: string;
   neighborhood?: string;
   street: string;
   number: string;
   avatar_url?: string;
+  description?: string;
   _id?: string;
 }
 export interface ProductProps {
@@ -137,19 +139,14 @@ export interface SearchProps extends HTMLAttributes<HTMLDivElement> {
   placeholder: string;
 }
 
-export interface UserInterface {
-  name: string;
-  email: string;
-}
-
 export interface SectionResponse {
   token: string;
-  user: UserInterface;
+  user: UserOwner;
 }
 
 export interface AuthContextProps {
   signed: boolean;
-  user: UserInterface | null;
+  user: UserOwner | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   rejected: boolean;

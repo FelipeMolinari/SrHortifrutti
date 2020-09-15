@@ -35,6 +35,11 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
+  description:{
+    type: String,
+    required: false
+  },
+
 }, {  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }})
 
 
@@ -47,6 +52,9 @@ interface IUser {
   street: string;
   neighborhood: string,
   number:number;
+  description?:string;
+  profile_url?:string;
+
 }
 interface IUserDocument extends IUser, Document {};
 

@@ -30,12 +30,21 @@ export const ContainerMain = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  @media (min-width: 800px) {
-    margin-bottom: 0rem;
+
+  .buttons {
+    button {
+      margin-bottom: 1.8rem;
+      margin-left: 1.8rem;
+      &:first-child {
+        margin: 0;
+      }
+    }
+    display: flex;
   }
-  button {
-    width: 50%;
-    align-self: center;
+  @media (min-width: 800px) {
+    .buttons {
+      width: 40%;
+    }
   }
 `;
 

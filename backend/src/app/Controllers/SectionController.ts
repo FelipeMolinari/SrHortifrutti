@@ -17,11 +17,13 @@ class SectionController{
       email: req.body.email,
       password: req.body.password
     })
-    
     if(signinUser){
+
+      const { name, cellphone, email, cep, street, neighborhood,  number, description, _id} = signinUser;
+
       return res.send({
         token: getToken({_id:signinUser.id, email: signinUser.email}),
-        user: {name: signinUser.name, email: signinUser.email}
+        user: {name, cellphone, email, cep, street, neighborhood,  number, description, _id}
       })
     }else{
       return res.status(401).send({msg: "Invalid credentitals."})

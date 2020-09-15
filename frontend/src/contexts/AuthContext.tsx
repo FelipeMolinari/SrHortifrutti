@@ -6,7 +6,7 @@ import {
   setLocalStorageToken,
   clearLocalStorage
 } from '../storage/authLocalStorage';
-import { AuthContextProps, SectionResponse, UserInterface } from '../typescriptInterface';
+import { AuthContextProps, SectionResponse, UserOwner } from '../typescriptInterface';
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
@@ -16,7 +16,7 @@ export function useAuth() {
 }
 
 const AuthContextProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<UserInterface | null>(getLocalStorageUser());
+  const [user, setUser] = useState<UserOwner | null>(getLocalStorageUser());
   const [rejected, setRejected] = useState(false);
 
   async function login(email: string, password: string) {
@@ -34,6 +34,7 @@ const AuthContextProvider: React.FC = ({ children }) => {
       setRejected(true);
     }
   }
+  async function updateUser(newUser: UserOwner) {}
 
   function logout() {
     setUser(null);
