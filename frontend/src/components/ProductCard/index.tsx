@@ -1,6 +1,5 @@
 import React from 'react';
 import { AiOutlinePlus, AiTwotoneDelete } from 'react-icons/ai';
-import { useProduct } from '../../contexts/ProductsContext';
 import { useCart } from '../../contexts/CartContext';
 import { Container } from './styles';
 import { ProductCardProps } from '../../typescriptInterface/index';
@@ -20,9 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   async function handleAddToCart() {
     try {
       addToCart(_id);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   return (

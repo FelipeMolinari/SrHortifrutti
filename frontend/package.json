@@ -20,9 +20,12 @@
     "axios": "^0.20.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "filesize": "^6.1.0",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-avatar-editor": "^11.0.9",
     "react-bootstrap-sweetalert": "^5.2.0",
+    "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.1.0",
     "react-hook-form": "^6.7.1",
@@ -57,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.161",
     "@types/styled-components": "^5.1.3"
   }
 }

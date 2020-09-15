@@ -72,7 +72,6 @@ const Products: React.FC = () => {
           onConfirm={() => {
             const _id = confirmBoth.productId;
             if (_id) removeProduct(_id);
-            console.log(_id);
             setConfirmBoth({ status: false, productId: null });
             setSuccessDialog(true);
             setDialogTitle('Deletado');

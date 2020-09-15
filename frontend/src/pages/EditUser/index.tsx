@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AvatarEditor from 'react-avatar-editor';
-import Dropzone, { DropEvent } from 'react-dropzone';
+import Dropzone from 'react-dropzone';
 
 import ErrorsList from '../../components/ErrorsList';
 import Form from '../../components/Form';
@@ -11,11 +11,11 @@ import validCEP from '../../services/cepvalidation';
 import { Container, Header, ContainerMain, FieldsContainer } from './styles';
 import InputText from '../../components/InputText';
 import { useAuth } from '../../contexts/AuthContext';
+
 const EditUser: React.FC = () => {
-  const { watch, handleSubmit, register, errors, setValue } = useForm();
+  const { handleSubmit, register, errors, setValue } = useForm();
   const { user } = useAuth();
-  console.log(user);
-  const [image, setImage] = useState('');
+  // const [image, setImage] = useState('');
   const [wantEdit, setWantEdit] = useState(false);
   async function handleOnBlue(event: React.FocusEvent<HTMLInputElement>) {
     const data = await validCEP(event.currentTarget.value);

@@ -23,7 +23,6 @@ const Signup: React.FC = () => {
     if (data.error) {
       setError('cep invalido', { message: 'CEP informado não consta nos registros' });
     } else {
-      console.log(data);
       setValue('city', data.localidade);
       setValue('neighborhood', data.bairro);
       setValue('street', data.logradouro);

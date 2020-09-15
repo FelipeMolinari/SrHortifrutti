@@ -68,7 +68,6 @@ const ProductsContextProvider: React.FC = ({ children }) => {
   async function updateProduct(id: string, modifiedProduct: EditProductsProps) {
     try {
       const updatedProduct = await AuthorizedApi.updateProduct(id, modifiedProduct);
-      console.log(updatedProduct);
       const newProdutsSet = products.map((product) => {
         if (product._id === id) {
           product = updatedProduct;

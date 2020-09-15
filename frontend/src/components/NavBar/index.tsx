@@ -6,7 +6,8 @@ import {
   AiOutlineDashboard,
   AiOutlineShoppingCart,
   AiOutlineEdit,
-  AiOutlineSetting
+  AiOutlineSetting,
+  AiOutlineFileImage
 } from 'react-icons/ai';
 
 import { Container } from './styles';
@@ -48,6 +49,15 @@ const NavBar: React.FC = () => {
               <AiOutlineEdit className="link-icon" />
             </div>
             <span className="link-text">Editar</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={`${url}/gallery`} className="link-item" activeClassName="active">
+            <div className="icon-container">
+              <AiOutlineFileImage className="link-icon" />
+            </div>
+
+            <span className="link-text">Galeria</span>
           </NavLink>
         </li>
         <li>

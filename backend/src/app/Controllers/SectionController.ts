@@ -10,7 +10,9 @@ class SectionController{
       password: Yup.string().required()
     })
     if (!(await schema.isValid(req.body))) {
+      console.log(req.body)
       return res.status(400).json({ error: "Validations fails" });
+
     }
 
     const signinUser = await User.findOne({

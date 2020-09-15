@@ -23,7 +23,6 @@ const AuthContextProvider: React.FC = ({ children }) => {
     try {
       const response: SectionResponse = await MainApi.loginUser(email, password);
       if (response) {
-        console.log(response);
         setUser(response.user);
         setLocalStorageUser(response.user);
         setLocalStorageToken(response.token);
@@ -34,7 +33,7 @@ const AuthContextProvider: React.FC = ({ children }) => {
       setRejected(true);
     }
   }
-  async function updateUser(newUser: UserOwner) {}
+  // async function updateUser(newUser: UserOwner) {}
 
   function logout() {
     setUser(null);

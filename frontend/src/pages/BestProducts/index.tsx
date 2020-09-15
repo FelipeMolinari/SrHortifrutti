@@ -21,7 +21,7 @@ const BestProducts: React.FC = () => {
         <GridContainer>
           {avaiablesProducts.map((product) => {
             const { name, price, _id, type } = product;
-            const { url_image, color } = type;
+            // const { url_image, color } = type;
             return <ProductCard product={{ type, name, price, _id }} />;
           })}
         </GridContainer>

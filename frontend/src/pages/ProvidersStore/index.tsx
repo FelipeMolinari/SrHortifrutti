@@ -19,8 +19,6 @@ const ProvidersStore: React.FC = () => {
       } catch (error) {
         setRejected(true);
         setLoading(false);
-
-        console.log(error);
       }
     }
     fetchingProviders();

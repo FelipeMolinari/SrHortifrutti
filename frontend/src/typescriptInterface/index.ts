@@ -151,3 +151,15 @@ export interface AuthContextProps {
   logout: () => void;
   rejected: boolean;
 }
+
+export interface FileType {
+  file: File;
+  readableSize: string;
+  preview: string;
+  progress: number;
+  uploaded: boolean;
+  error: boolean;
+  url: string | null;
+  name: string;
+  id: string;
+}

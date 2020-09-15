@@ -40,7 +40,6 @@ const AddProduct: React.FC = () => {
       name: data.name,
       price: data.price
     };
-    console.log(modifiedProduct);
     updateProduct(id, modifiedProduct);
     setSuccessDialog(true);
     setDialogTitle('Sucesso');

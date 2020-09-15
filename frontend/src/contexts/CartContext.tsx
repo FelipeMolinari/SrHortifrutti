@@ -23,7 +23,6 @@ const CartContextProvider: React.FC = ({ children }) => {
       try {
         const response: ProductProps[] = await MainApi.getProducts();
         setAvaiablesProducts(response);
-        console.log(response);
         setLoading(false);
       } catch (error) {
         setRejected(true);
