@@ -45,7 +45,8 @@ const ProvidersStore: React.FC = () => {
             avatar_url,
             cep,
             email,
-            _id
+            _id,
+            city
           } = provider;
           return (
             <StoreCard
@@ -59,7 +60,8 @@ const ProvidersStore: React.FC = () => {
                 avatar_url,
                 cep,
                 email,
-                _id
+                _id,
+                city
               }}
             />
           );

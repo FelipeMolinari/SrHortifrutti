@@ -106,3 +106,13 @@ export const FieldsContainer = styled.div`
     margin: 2.4rem 0rem;
   }
 `;
+
+export const AvatarContainer = styled.div`
+  &:hover {
+    opacity: 5;
+  }
+  input {
+    width: 100%;
+    height: 100%;
+  }
+`;

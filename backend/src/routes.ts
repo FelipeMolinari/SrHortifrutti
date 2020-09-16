@@ -7,8 +7,9 @@ import SectionController from './app/Controllers/SectionController';
 import UserController from './app/Controllers/UserController';
 import isAuth from './middlewares/isAuth'
 
-import upload from './config/multer'
+import {uploadAvatar,uploadGallery} from './config/multer'
 import GalleryController from './app/Controllers/GalleryController';
+import AvatarController from './app/Controllers/AvatarController';
 
 const routes = express.Router();
 
@@ -22,6 +23,9 @@ routes.get('/gallery/:user_id', GalleryController.index)
 
 // Secutes routes
 routes.use(isAuth)
+
+routes.post('/secure/files/avatar', uploadAvatar.single("file"), AvatarController.store );
+routes.put('/secure/update', UserController.update)
 routes.post('/secure/product/add', ProductController.store)
 
 routes.delete('/secure/product/delete/:id', ProductController.delete)
@@ -30,8 +34,7 @@ routes.put('/secure/product/update/:id', ProductController.update)
 routes.get('/secure/avaiables', ProductTypesController.index)
 
 routes.get('/secure/products', ProductController.index)
-
-routes.post('/files/gallery', upload.single("file"),GalleryController.store)
+routes.post('/files/gallery', uploadGallery.single("file"),GalleryController.store)
 routes.delete('/files/gallery/:id', GalleryController.delete)
 
 export default routes;

@@ -54,8 +54,8 @@ export interface UserOwner {
   cep: string;
   email: string;
   name: string;
-  city?: string;
-  neighborhood?: string;
+  city: string;
+  neighborhood: string;
   street: string;
   number: string;
   avatar_url?: string;
@@ -149,7 +149,10 @@ export interface AuthContextProps {
   user: UserOwner | null;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  updateUser: (user: UserOwner) => void;
   rejected: boolean;
+  rejectedUpdate: boolean;
+  successUpdate: boolean;
 }
 
 export interface FileType {

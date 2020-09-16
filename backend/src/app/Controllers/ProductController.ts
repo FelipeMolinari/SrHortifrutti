@@ -44,7 +44,6 @@ class ProductController{
       if (!(await schema.isValid(id))) {
         return res.status(400).json({ error: "Validations fails" });
       }
-      console.log(req.user)
 
     await Product.deleteOne({_id: id, owner_id: req.user})
 
@@ -58,7 +57,6 @@ class ProductController{
   async update(req: IGetUserAuthInfoRequest, res: Response){
     try {
       const {id} = req.params 
-      console.log(id, "esse é o id")
       const schema = Yup.object().shape({
         name: Yup.string(),
         price: Yup.string(),
@@ -67,13 +65,11 @@ class ProductController{
         console.log("Validations fails")
         return res.status(400).json({ error: "Validations fails" });
       }
-      console.log("BODY", req.body)
     const updatedProduct = await Product.findByIdAndUpdate(id,req.body, {
       new: true,useFindAndModify: false
     } )
     
     const populated = await updatedProduct.populate('type').execPopulate()
-    console.log(populated)
       return res.send(populated)
     } catch ( error ){
       console.log(error)

@@ -6,7 +6,8 @@ import {
   ProductProps,
   ProductPropsStore,
   ProductType,
-  GalleryResponseInterface
+  GalleryResponseInterface,
+  UserOwner
 } from '../../typescriptInterface';
 
 class MainApiProtected extends HttpClient {
@@ -25,6 +26,13 @@ class MainApiProtected extends HttpClient {
 
     return config;
   };
+
+  updateUser = (userUpdated: UserOwner) =>
+    this.instance.put<UserOwner>('/secure/update', userUpdated);
+
+  uploadAvatar = (file: FormData) =>
+    this.instance.post<GalleryResponseInterface>(`/secure/files/avatar`, file);
+
   getProducts = () => this.instance.get<ProductProps[]>('/secure/products');
   storeProduct = (product: ProductPropsStore) =>
     this.instance.post<ProductProps>('/secure/product/add', {

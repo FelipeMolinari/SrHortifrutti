@@ -23,6 +23,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  city: {
+    type: String,
+    required: true
+  },
   street: {
     type: String,
     required: true
@@ -39,6 +43,9 @@ const UserSchema = new Schema({
     type: String,
     required: false
   },
+  avatar_url:{
+    type: String
+  }
 
 }, {  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }})
 
@@ -53,7 +60,8 @@ interface IUser {
   neighborhood: string,
   number:number;
   description?:string;
-  profile_url?:string;
+  avatar_url?:string;
+  city:string;
 
 }
 interface IUserDocument extends IUser, Document {};
@@ -61,11 +69,12 @@ interface IUserDocument extends IUser, Document {};
 interface IUserModel extends Model<IUserDocument> {}
 
 UserSchema.pre<IUserDocument>("save", function(next) {
-  if (this.isModified("password")) {
+  if (this.isModified("avatar_url")) {
     this.password = hashPassword(this.password)
   }
   next()
 });
+
 UserSchema.statics.findByAdress = async function findByAdress(
   this: IUserModel,
   adress: string

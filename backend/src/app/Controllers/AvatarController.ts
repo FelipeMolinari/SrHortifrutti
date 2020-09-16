@@ -1,22 +1,22 @@
-import Gallery from "../models/Gallery";
 import {Response} from 'express'
 import {IGetUserAuthInfoRequest} from '../../definitions'
+import Avatar from "../models/Avatar";
 
-class GalleryController{
+class AvatarController{
   async store(req: IGetUserAuthInfoRequest, res:Response){
     try{
       const {originalname: name, size, filename: key} = req.file
-    const gallery = await Gallery.create({
+    const avatar = await Avatar.create({
       name, 
       size,
       key,
       url: "",
       owner_id: req.user
     })
-    res.send(gallery)
+    res.send(avatar)
     }catch(error){
       console.log(error)
-      res.send({msg: "Error creating gallery"})
+      res.send({msg: "Error creating avatar"})
 
     }
   }
@@ -24,19 +24,20 @@ class GalleryController{
   async index(req: IGetUserAuthInfoRequest, res:Response){
     const {user_id} = req.params;
     try {
-      const gallery = await Gallery.find({owner_id:user_id});
-    return res.send(gallery);
+      const avatar = await Avatar.find({owner_id:user_id});
+    return res.send(avatar);
     } catch (error) {
       
       console.log(error)
-      return res.send({msg: "Error linting gallery"});
+      return res.send({msg: "Error linting avatar"});
     }
   }
+  
   async delete(req:IGetUserAuthInfoRequest, res:Response ){
-    const gallery = await Gallery.findById(req.params.id);
-    await gallery.remove();
+    const avatar = await Avatar.findById(req.params.id);
+    await avatar.remove();
     return res.send();
   }
 }
 
-export default new GalleryController();
+export default new AvatarController();

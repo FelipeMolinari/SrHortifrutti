@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { uniqueId } from 'lodash';
-import { AiOutlineCloudUpload } from 'react-icons/ai';
+import { BsImageFill } from 'react-icons/bs';
 import filesize from 'filesize';
 import Dropzone from 'react-dropzone';
 import FileList from '../../components/FileList';
@@ -135,7 +135,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setUploadedDone, uploadedDone }) =>
             isDragActive={isDragActive}
             isDragReject={isDragReject}
           >
-            <AiOutlineCloudUpload size={36} color="#ddd" />
+            <BsImageFill size={36} color="#ddd" />
             <input {...getInputProps()} />
             {renderDragMessage(isDragActive, isDragReject)}
           </DropContainer>

@@ -1,5 +1,7 @@
 import User from  '../models/User';
 import {Request, Response} from 'express'
+import * as Yup from 'yup'
+import {IGetUserAuthInfoRequest} from '../../definitions'
 class UserController {
 
 	async store(req: Request, res: Response) {
@@ -27,6 +29,38 @@ class UserController {
       } catch ( error ){
         return res.send({msg: error.message})
       } 
+  }
+
+	async update(req: IGetUserAuthInfoRequest, res: Response) {
+    console.log(req.body)
+      const schema = Yup.object().shape({
+        cellphone: Yup.string().required(),
+        cep: Yup.string().required(),
+        email: Yup.string().required(),
+        name: Yup.string().required(),
+        number: Yup.string().required(),
+        street: Yup.string().required(),
+        city: Yup.string().required(),
+        neighborhood: Yup.string().required(),
+      });
+    
+   try {
+      if (!(await schema.isValid(req.body))) {
+        return res.status(400).json({ error: "Validations fails" });
+      }
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.user },
+        req.body,
+        {new:true}
+        );
+      console.log(updatedUser)
+      return res.send(updatedUser)
+   } catch (error) {
+     console.log(error)
+    return res.send({error});
+
+   }
   }
 
 }
