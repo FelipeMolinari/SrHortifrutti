@@ -243,6 +243,18 @@ npm install
 npm install
 ```
 
+### Run
+
+1. cd/frontend
+```sh
+npm start
+```
+2 - cd/backend
+```sh
+npm dev
+```
+
+
 
 <!-- LICENSE -->
 ## License
