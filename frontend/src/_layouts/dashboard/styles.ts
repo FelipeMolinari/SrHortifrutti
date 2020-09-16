@@ -7,19 +7,43 @@ export const Header = styled.header`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 2.6rem 6rem;
+  padding: 4rem 6rem;
   background-color: transparent;
-  svg {
-    fill: var(--color-secundary);
+  .store-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4rem;
+    svg {
+      fill: var(--color-secundary);
+      margin-right: 2.4rem;
+      width: 2rem;
+      height: 2rem;
+    }
+    img {
+      width: 4.6rem;
+      height: 4.6rem;
+      border-radius: 0.6rem;
+    }
+    span {
+      font: 600 1.6rem Poppins;
+      margin: 0rem 0.6rem;
+    }
   }
-  img {
-    width: 4.6rem;
-    height: 4.6rem;
-    border-radius: 50%;
-  }
-  span {
-    font: 400 1.6rem Poppins;
-    margin: 0rem 1.2rem;
+
+  button {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: var(--color-secundary);
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    color: var(--commum-background);
+    svg {
+      margin-left: 1.4rem;
+      fill: var(--commum-background);
+    }
   }
 `;
 

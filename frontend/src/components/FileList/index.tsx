@@ -9,7 +9,6 @@ interface FileListInterface {
   onDelete: (id: string) => void;
 }
 const FileList: React.FC<FileListInterface> = ({ files, onDelete }) => {
-  console.log(files);
   return (
     <Container>
       {files.map((file) => (

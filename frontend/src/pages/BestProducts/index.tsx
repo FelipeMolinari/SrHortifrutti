@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useCart } from '../../contexts/CartContext';
 import { Container, GridContainer } from './styles';
 import Search from '../../components/Search';

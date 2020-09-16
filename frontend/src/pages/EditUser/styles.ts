@@ -25,7 +25,6 @@ export const Header = styled.div`
 `;
 
 export const ContainerMain = styled.div`
-  margin-bottom: 16rem;
   flex-direction: column;
   display: flex;
   flex: 1;

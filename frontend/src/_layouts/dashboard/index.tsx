@@ -1,21 +1,25 @@
 import React from 'react';
-import { IoMdNotifications } from 'react-icons/io';
-import logo from '../../assets/images/logo.png';
+import { IoMdNotifications, IoIosLogOut } from 'react-icons/io';
+import logo from '../../assets/images/default-logo.png';
 import NavBar from '../../components/NavBar';
 import { useAuth } from '../../contexts/AuthContext';
 import { Wrapper, Content, Main, Header } from './styles';
 
 const Default: React.FC = ({ children }) => {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   return (
     <Wrapper>
       <NavBar />
       <Content>
         <Header>
-          <IoMdNotifications />
-          <span>Hortifruti do seu zé</span>
-          <img src={logo} alt="Logo Hortifruti" />
-          <button onClick={() => logout()}>Logout</button>
+          <div className="store-info">
+            <span>{user && user.name}</span>
+            <IoMdNotifications />
+            <img src={user?.avatar_url ? user.avatar_url : logo} alt="Logo Hortifruti" />
+          </div>
+          <button onClick={() => logout()}>
+            Logout <IoIosLogOut />
+          </button>
         </Header>
         <Main>{children}</Main>
       </Content>

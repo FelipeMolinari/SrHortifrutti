@@ -22,7 +22,6 @@ const DropZone: React.FC<DropZoneProps> = ({ setUploadedDone, uploadedDone }) =>
   }, []);
 
   useEffect(() => {
-    console.log('render', actualIndex);
     if (uploadedFiles[actualIndex]) {
       if (
         !uploadedFiles[actualIndex].error &&

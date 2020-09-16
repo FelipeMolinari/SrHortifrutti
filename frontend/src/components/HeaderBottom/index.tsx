@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, BlackDrop } from './styles';
 
-const HeaderBottom: React.FC = () => {
-  return <Container />;
+const HeaderBottom: React.FC = ({ children }) => {
+  return (
+    <Container>
+      <BlackDrop />
+      {children}
+    </Container>
+  );
 };
 
 export default HeaderBottom;

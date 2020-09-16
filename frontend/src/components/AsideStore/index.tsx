@@ -6,12 +6,12 @@ import CustomButtom from '../CustomButton';
 const AsideStore: React.FC = () => {
   return (
     <Container>
-      <NavLink to="/store" activeClassName="actived" exact>
+      <NavLink to="/store/out" activeClassName="actived" exact>
         <CustomButtom colorName={''} style={{ height: '8rem', width: '85%' }}>
           <span>Lojas</span>
         </CustomButtom>
       </NavLink>
-      <NavLink to="/store/destaques" activeClassName="actived">
+      <NavLink to="/store/out/destaques" activeClassName="actived">
         <CustomButtom colorName={''} style={{ height: '8rem', width: '85%' }}>
           <span>Destaques</span>
         </CustomButtom>

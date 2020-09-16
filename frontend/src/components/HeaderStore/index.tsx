@@ -11,7 +11,7 @@ const HeaderStore: React.FC = () => {
         <h1 className="logo-title">SeuHortifruti</h1>
         <span className="logo-description">Seu hortifruti pertinho de você</span>
       </div>
-      <NavLink to="/store/cart" activeClassName="actived">
+      <NavLink to="/store/out/cart" activeClassName="actived">
         <div className="shopping-cart">
           <span>Seu carrinho</span>
           <div className="icon-shopping-cart">

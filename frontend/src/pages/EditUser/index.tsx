@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AvatarEditor from 'react-avatar-editor';
+
 import Dropzone from 'react-dropzone';
 import defaultLogo from '../../assets/images/default-logo.png';
 import ErrorsList from '../../components/ErrorsList';
@@ -21,7 +22,6 @@ import AuthorizedApi from '../../services/api/AuthorizedApi';
 const EditUser: React.FC = () => {
   const { handleSubmit, register, errors, setValue, getValues, reset } = useForm();
   const { user, updateUser, rejectedUpdate, successUpdate } = useAuth();
-  console.log(user?.cep, user?.cellphone);
   const [preview, setPreview] = useState('');
   const [image, setImage] = useState<File>();
   const [wantEdit, setWantEdit] = useState(false);
@@ -54,7 +54,6 @@ const EditUser: React.FC = () => {
     setImage(file);
   }
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data, 'DATA');
     try {
       let avatar_url;
       const { cellphone, cep, email, name, number, description } = data;
@@ -77,11 +76,15 @@ const EditUser: React.FC = () => {
 
         updateUser({
           ...datas,
+          number: parseInt(number),
           avatar_url
         });
+        setImage(undefined);
       } else {
         updateUser({
-          ...datas
+          ...datas,
+          number: parseInt(number),
+          avatar_url: user?.avatar_url
         });
       }
     } catch (error) {
@@ -105,7 +108,7 @@ const EditUser: React.FC = () => {
                 <li className="avatar_editor">
                   <Dropzone
                     accept="image/*"
-                    onDropAccepted={(acceptedFiles) => {
+                    onDropAccepted={(acceptedFiles, una) => {
                       handleOnAccepted(acceptedFiles[0]);
                     }}
                     multiple={false}
@@ -118,9 +121,9 @@ const EditUser: React.FC = () => {
                           height={100}
                           border={0}
                           color={[255, 255, 255]} // RGBA
-                          scale={0.6}
+                          scale={1}
                           rotate={0}
-                          borderRadius={55}
+                          borderRadius={20}
                         />
                         <input {...getInputProps()} />
                       </AvatarContainer>

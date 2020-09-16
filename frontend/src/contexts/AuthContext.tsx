@@ -7,7 +7,9 @@ import {
   setLocalStorageToken,
   clearLocalStorage
 } from '../storage/authLocalStorage';
+import { useToasts } from 'react-toast-notifications';
 import { AuthContextProps, SectionResponse, UserOwner } from '../typescriptInterface';
+import { isEquivalent } from '../util/isEquivalent';
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
@@ -21,6 +23,7 @@ const AuthContextProvider: React.FC = ({ children }) => {
   const [rejected, setRejected] = useState(false);
   const [rejectedUpdate, setRejectedUpdate] = useState(false);
   const [successUpdate, setSuccessUpdate] = useState(false);
+  const { addToast } = useToasts();
   async function login(email: string, password: string) {
     try {
       const response: SectionResponse = await MainApi.loginUser(email, password);
@@ -36,15 +39,34 @@ const AuthContextProvider: React.FC = ({ children }) => {
     }
   }
   async function updateUser(newUser: UserOwner) {
-    try {
-      console.log(newUser);
-      const upatedUser: UserOwner = await AuthorizedApi.updateUser(newUser);
-      console.log(upatedUser);
-      setUser(upatedUser);
-      setLocalStorageUser(upatedUser);
-      setSuccessUpdate(true);
-    } catch (error) {
-      setRejected(true);
+    console.log(user, newUser);
+    if (user) {
+      if (
+        isEquivalent(
+          { objectData: newUser, toDelete: [] },
+          {
+            objectData: user,
+            toDelete: ['__v', '_id', 'updatedAt', 'createdAt', 'password']
+          }
+        )
+      ) {
+        addToast(
+          'Dados não foram alterados, modifique algum campo antes de prosseguir!',
+          { appearance: 'error' }
+        );
+      } else {
+        try {
+          const upatedUser: UserOwner = await AuthorizedApi.updateUser(newUser);
+          setUser(upatedUser);
+          setLocalStorageUser(upatedUser);
+          setSuccessUpdate(true);
+          addToast('Dados alterados com sucesso!', { appearance: 'success' });
+        } catch (error) {
+          addToast('Dados não foram alterados!', { appearance: 'error' });
+
+          setRejected(true);
+        }
+      }
     }
   }
 

@@ -5,6 +5,7 @@ import {
   setLocalStorageProducts
 } from '../storage/productLocalStorage';
 import MainApi from '../services/api/MainApi';
+import { useToasts } from 'react-toast-notifications';
 
 const CartContext = createContext({} as CartProviderProps);
 
@@ -14,6 +15,7 @@ export function useCart() {
 }
 const CartContextProvider: React.FC = ({ children }) => {
   const [avaiablesProducts, setAvaiablesProducts] = useState<ProductProps[]>([]);
+  const { addToast } = useToasts();
   const [cart, setCart] = useState<CartProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [rejected, setRejected] = useState(false);
@@ -36,6 +38,7 @@ const CartContextProvider: React.FC = ({ children }) => {
   useEffect(() => {
     setLocalStorageProducts(cart);
   }, [cart]);
+
   function addToCart(id: string) {
     const check = cart.every((item) => {
       return item.product._id !== id;
@@ -44,10 +47,14 @@ const CartContextProvider: React.FC = ({ children }) => {
       let data = avaiablesProducts.filter((product) => {
         return product._id === id;
       });
+      addToast('Produto salvo no carrinho', { appearance: 'success', autoDismiss: true });
 
       setCart([...cart, { product: data[0], quantity: 1 }]);
     } else {
-      alert('Esse produto já está no carrinho');
+      addToast('Produto já está salvo no carrinho', {
+        appearance: 'info',
+        autoDismiss: true
+      });
     }
   }
   function removeFromCart(id: string) {

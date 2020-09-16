@@ -6,7 +6,7 @@ import {
   ProductsProviderProps,
   ProductType
 } from '../typescriptInterface';
-
+import { useToasts } from 'react-toast-notifications';
 import AuthorizedApi from '../services/api/AuthorizedApi';
 
 const ProductsContext = createContext({} as ProductsProviderProps);
@@ -16,6 +16,7 @@ export function useProduct() {
   return context;
 }
 const ProductsContextProvider: React.FC = ({ children }) => {
+  const { addToast } = useToasts();
   const [products, setProducts] = useState<ProductProps[]>([]);
   const [productsTypes, setProductsTypes] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,8 +44,11 @@ const ProductsContextProvider: React.FC = ({ children }) => {
     try {
       const newProduct: ProductProps = await AuthorizedApi.storeProduct(product);
       setProducts([...products, newProduct]);
+      addToast('Produto criado', { appearance: 'success' });
       return true;
     } catch (error) {
+      addToast('Produto não foi criado', { appearance: 'error' });
+
       console.log(error);
       return false;
     }

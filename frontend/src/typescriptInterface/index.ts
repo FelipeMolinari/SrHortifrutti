@@ -57,7 +57,7 @@ export interface UserOwner {
   city: string;
   neighborhood: string;
   street: string;
-  number: string;
+  number: number;
   avatar_url?: string;
   description?: string;
   _id?: string;

@@ -28,7 +28,11 @@ const Gallery: React.FC = () => {
       </Header>
       <Main>
         <Content>
-          <CustomCarousel images={uploadedDone} />
+          {uploadedDone.length !== 0 ? (
+            <CustomCarousel images={uploadedDone} />
+          ) : (
+            <h1 style={{ marginTop: 20 }}>Ainda não possuí fotos na galeria</h1>
+          )}
           <DropZone setUploadedDone={setUploadedDone} uploadedDone={uploadedDone} />
         </Content>
       </Main>
