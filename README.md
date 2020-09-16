@@ -1,30 +1,10 @@
+<br />
+<p align="center">
 <p align="center">
    <img src="https://github.com/FelipeMolinari/SrHortifrutti/blob/master/frontend/src/assets/images/SeuHotifrutti.png" alt="Logo" width="280"/>
 </p>
 
-<p align="center">	
-   <a href="https://www.linkedin.com/in/felipe-molinari-2548b0193/">
-      <img alt="Felioe Molinari" src="https://img.shields.io/badge/-Felipe Molinari-6EC987?style=flat&logo=Linkedin&logoColor=white" />
-   </a>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FelipeMolinari/SrHortifrutti?color=6EC987">
-
-  <a href="https://github.com/FelipeMolinari/SrHortifrutti/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/FelipeMolinari/SrHortifrutti?color=6EC987">
-  </a> 
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-6EC987">
-  <a href="https://github.com/FelipeMolinari/SrHortifrutti/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/FelipeMolinari/SrHortifrutti?color=6EC987&logo=github">
-  </a>
-</p>
-
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Seu hortifruti nunca esteve tão próximo!</h3>
+  <h3 align="center">Seu hortifruti nunca esteve tão próximo de você!</h3>
 
   <p align="center">
     Sistema de lojas de hortifruti digitais, Crie sua loja e venda seus produtos para milhares de clientes!
@@ -36,16 +16,26 @@
 <!-- TABLE OF CONTENTS -->
 ## Conteúdos
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
+* [Sobre o projeto](#sobre-o-projeto)
+  * [Feito com](#feito-com)
+* [Models](#models)
+  * [User](#user)
+  * [Product](#product)
+  * [ProductType](#producttype)
+  * [Upload](#upload)
+  * [Avatar](#avatar)
+* [Controllers](#controllers)
+  * [User](#user)
+  * [Upload](#product)
+  * [Sections](#producttype)
+  * [Products](#upload)
+  * [ProductPublic](#publicproducts)
+  * [Avatar](#avatar)
+
+* [Rotas](#rotas)
+* [Prerequisitos](#prerequisitos)
+* [Instalação](#instalação)
 * [License](#license)
-* [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
 
@@ -68,9 +58,9 @@ Principais tecnologias utilizadas para construção desse projeto!
 * [MongoDB with mongoose](https://mongoosejs.com)
 
 
-### 5. Models:
+### Models:
 
-#### 5.1 User
+#### User
 
 
 | Campo      | Descrição                                                                                      |
@@ -88,7 +78,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 
 * - É um campo ***obrigatório*** e a validação e feita pela biblioteca Yup. Caso o campo não seja informado, mensagem de erro na validação é enviada como resposta da requisição.
 
-#### 5.2 Product
+####  Product
 
 
 | Campo      | Descrição                                                                                      |
@@ -102,7 +92,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 
 * - É um campo ***obrigatório*** e a validação e feita pela biblioteca Yup. Caso o campo não seja informado, mensagem de erro na validação é enviada como resposta da requisição.
 
-#### 5.3 ProductType 
+#### ProductType 
 
 | Campo      | Descrição                                                                                      |
 | ---------- | -----------------------------------------------------------------------------------------------|
@@ -111,7 +101,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 | color| Todo produto tem uma cor ***única*** .                             |
 | id   | Id do tipo de produto, criado pelo MongoDB, referente ao código ***único*** do usuário.                             |   
 
-#### 5.3 Upload 
+#### Upload 
 
 | Campo      | Descrição                                                                                      |
 | ---------- | -----------------------------------------------------------------------------------------------|
@@ -120,7 +110,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 | key| Chave utilizada para encontrar o arquivo.  ***única*** .                             |
 | user_id   | Id do usuário que realizou o upload da imagem.                             |   
 
-#### 5.3 Avatar 
+#### Avatar 
 
 | Campo      | Descrição                                                                                      |
 | ---------- | -----------------------------------------------------------------------------------------------|
@@ -133,9 +123,9 @@ Principais tecnologias utilizadas para construção desse projeto!
 ---
 
 
-### 6. Controllers
+### Controllers
 
-#### 6.1 User
+#### User
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
 | index      | Método que lista todos os usuários com suas informações.|
@@ -146,7 +136,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 - No método _store_() o cep enviado deve ser um cep válido, sendo assim, recomendo a utilização do seguinte site que gera ceps válidos: [Gerador de CEP](https://www.4devs.com.br/gerador_de_cep)
 
 
-#### 6.2 Upload
+#### UploadUser
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
 | index      | Método que lista todos os uploads de um certo usuário.|
@@ -154,7 +144,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 | delete     | Método responsável por deletar um arquivo do banco de dados. É importante notar que somente usuários credenciados podem deletar um arquivo do BD|
 
 
-#### 6.3 Sections
+#### 6.3 SectionsUploadUser
 
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
@@ -162,14 +152,13 @@ Principais tecnologias utilizadas para construção desse projeto!
 
 
 
-#### 6.4 PublicProducts
-
+### PublicProducts
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
 | index      | Método que lista todos os produtos cadastrados.|
 
 
-#### 6.5 Products
+#### ProductsPublic
 
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
@@ -178,7 +167,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 | delete     | Método responsável por deletar um produto do banco de dados. É importante notar que somente usuários credenciados podem deletar um arquivo do BD|
 
 
-#### 6.5 Avatar
+#### Avatar
 
 | Método     | Descrição                                                                                      |
 | ---------- | ------------------------------------------------------ |
@@ -190,7 +179,7 @@ Principais tecnologias utilizadas para construção desse projeto!
 
 
 
-### 7. Rotas
+### Rotas
 
 Os seguintes métodos foram implementados:
 
