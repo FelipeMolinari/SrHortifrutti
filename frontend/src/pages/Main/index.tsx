@@ -22,7 +22,7 @@ const Main: React.FC = () => {
             </div>
           </CustomButtom>
         </Link>
-        <Link to="store">
+        <Link to="store/out">
           <CustomButtom colorName="--color-secundary" className="button">
             <div className="button-child">
               <AiOutlineShoppingCart />

@@ -10,48 +10,44 @@ import {
   ProductsQtdIcon,
   CellphoneIcon
 } from './styles';
-
-const StoreCard: React.FC<UserOwner> = ({
-  street,
-  number,
-  avatar_url,
-  neighborhood,
-  name,
-  cellphone,
-  cep,
-  email,
-  _id
-}) => {
+import { Link } from 'react-router-dom';
+interface StoreCardProps {
+  user: UserOwner;
+}
+const StoreCard: React.FC<StoreCardProps> = ({ user }) => {
   const { avaiablesProducts } = useCart();
-  const qtdProductsUser = avaiablesProducts.filter((product) => {
-    return product.owner_id?._id === _id;
-  }).length;
 
+  const qtdProductsUser = avaiablesProducts.filter((product) => {
+    return product.owner_id?._id === user._id;
+  }).length;
+  const user_id = user._id;
   return (
     <Container>
-      <HeaderCard className="store-main-data">
-        <img src={avatar_url ? avatar_url : icon} alt="" />
-        <span className="store-name">{name}</span>
-      </HeaderCard>
-      <DatasList>
-        <li>
-          <LocalIcon />
-          <span>
-            <strong>Rua</strong>. {street}. {number}. <strong>Bairro.</strong>{' '}
-            {neighborhood}
-          </span>
-        </li>
-        <li>
-          <ProductsQtdIcon />
-          <span>
-            <strong>{qtdProductsUser}</strong> produtos
-          </span>
-        </li>
-        <li>
-          <CellphoneIcon />
-          <span>{cellphone}</span>
-        </li>
-      </DatasList>
+      <Link to={`/store/in/${user_id}`}>
+        <HeaderCard className="store-main-data">
+          <img src={user.avatar_url ? user.avatar_url : icon} alt="" />
+          <span className="store-name">{user.name}</span>
+        </HeaderCard>
+        <DatasList>
+          <li>
+            <LocalIcon />
+            <span>
+              <strong>Rua</strong>. {user.street}. {user.number}. <strong>Bairro.</strong>{' '}
+              {user.neighborhood}
+            </span>
+          </li>
+          <li>
+            <ProductsQtdIcon />
+            <span>
+              <strong>{qtdProductsUser}</strong> produtos
+            </span>
+          </li>
+          <li>
+            <CellphoneIcon />
+            <span>{user.cellphone}</span>
+          </li>
+        </DatasList>
+      </Link>
     </Container>
   );
 };

@@ -39,7 +39,6 @@ const AuthContextProvider: React.FC = ({ children }) => {
     }
   }
   async function updateUser(newUser: UserOwner) {
-    console.log(user, newUser);
     if (user) {
       if (
         isEquivalent(

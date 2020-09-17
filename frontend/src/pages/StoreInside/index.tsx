@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { AiOutlineDollarCircle, AiOutlineEnvironment, AiFillStar } from 'react-icons/ai';
-import { Line } from 'rc-progress';
-
+import { AiOutlineDollarCircle, AiOutlineEnvironment } from 'react-icons/ai';
+import { useParams } from 'react-router-dom';
 import {
   Container,
   HeaderContent,
@@ -10,181 +9,131 @@ import {
   GridContainer,
   ProductsContainer,
   WelcomeContainer,
-  RatingContainer,
-  ReviwCard,
-  ReviewForm
+  RatingContainer
 } from './styles';
+
+import ReviewCard from '../../components/ReviewCard';
+import EmptyStore from '../../assets/images/empty-store.svg';
 import HeaderBottom from '../../components/HeaderBottom';
 import { useCart } from '../../contexts/CartContext';
 import ProductCard from '../../components/ProductCard';
-import CustomButtom from '../../components/CustomButton';
-
+import {
+  GalleryResponseInterface,
+  ProductProps,
+  UserOwner
+} from '../../typescriptInterface';
+import ReviewForm from '../../components/ReviewForm';
+import MainApi from '../../services/api/MainApi';
+import CustomCarousel from '../../components/CustomCarousel';
+interface LocationState {
+  user: UserOwner;
+  path: string;
+}
+interface ParamTypes {
+  id: string;
+}
 const StoreInside: React.FC = ({}) => {
+  const [user, setUser] = useState<UserOwner>();
+  const [gallery, setGallery] = useState<GalleryResponseInterface[]>([]);
+  const [productsUser, setProductsUser] = useState<ProductProps[]>([]);
   const { avaiablesProducts, loading, rejected } = useCart();
+
+  const { id } = useParams<ParamTypes>();
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedUser = await MainApi.showProvider(id);
+        const fetchedGallery = await MainApi.getImages(id);
+        setUser(fetchedUser);
+        const productsUser = avaiablesProducts.filter((product) => {
+          return product.owner_id?._id === fetchedUser._id;
+        });
+        setGallery(fetchedGallery);
+        setProductsUser(productsUser);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
+  function averageValue() {
+    return productsUser
+      .map((product) => {
+        const value = parseFloat(product.price);
+        console.log(value, product);
+        return value;
+      })
+      .reduce((acc, curr) => {
+        return acc + curr;
+      }, 0)
+      .toFixed(2);
+  }
   return (
     <Container>
-      <HeaderBottom>
-        <HeaderContent>
-          <img
-            src="https://s3-sa-east-1.amazonaws.com/projetos-artes/fullsize%2F2013%2F01%2F10%2F14%2FLogo-LV-58354_4275_032956204_2127284809.jpg"
-            alt="hortifruti"
-          />
-          <div>
-            <span className="store-name">
-              Supermarkets Mambo - <span>Moema</span>
-            </span>
+      {user && (
+        <>
+          <HeaderBottom>
+            <HeaderContent>
+              <img src={user.avatar_url} alt="hortifruti" />
+              <div>
+                <span className="store-name">
+                  {user.name} - <span>{user.neighborhood}</span>
+                </span>
 
-            <div className="line">
-              <AiOutlineDollarCircle />
-              <span>Valor médio dos produtos</span>
-              <div className="dot" />
-              <span>R$ 18,00</span>
-            </div>
-
-            <div className="line">
-              <AiOutlineEnvironment />
-              <span>Rua machado nunes n58</span>
-            </div>
-          </div>
-        </HeaderContent>
-      </HeaderBottom>
-      <Main>
-        <WelcomeContainer>
-          <span className="section-title">Bem vindo!</span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-            in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </WelcomeContainer>
-        <ProductsContainer>
-          <span className="section-title">Ofertas</span>
-          <GridContainer>
-            {avaiablesProducts.map((product) => {
-              const { name, price, _id, type } = product;
-              return <ProductCard product={{ type, name, price, _id }} />;
-            })}
-          </GridContainer>
-        </ProductsContainer>
-        <RatingContainer>
-          <span className="section-title">Avaliações</span>
-          <div className="content-review">
-            <ReviwCard>
-              <h1>Avaliações dos clientes</h1>
-              <div className="average-rating">
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <span>4.7 de 5</span>
-              </div>
-              <span className="average-text">40 clientes avaliaram</span>
-              <ul className="ratings-ul">
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={100}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-
-                  <span className="star-percentage">84%</span>
-                </li>
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={50}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-                  <span className="star-percentage">84%</span>
-                </li>
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={10}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-                  <span className="star-percentage">84%</span>
-                </li>
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={10}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-                  <span className="star-percentage">84%</span>
-                </li>
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={10}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-                  <span className="star-percentage">84%</span>
-                </li>
-                <li className="ratings-li">
-                  <span className="star-number">5 star</span>
-                  <Line
-                    percent={10}
-                    strokeWidth={6}
-                    strokeColor="#ffdf00"
-                    style={{ flex: 1, marginLeft: 8, marginRight: 8 }}
-                    trailColor="#e8e8e8"
-                    trailWidth={6}
-                  />
-                  <span className="star-percentage">84%</span>
-                </li>
-              </ul>
-              <span className="footer">Avaliação feita pelos clientes</span>
-            </ReviwCard>
-            <ReviewForm id="form-review">
-              <span className="do-review">Faça uma avaliação</span>
-
-              <input type="text" className="name" name="name" placeholder="Nome" />
-              <textarea
-                name=""
-                id=""
-                cols={30}
-                rows={6}
-                placeholder="Deixe um texto para o vendedor"
-              ></textarea>
-              <div className="footer">
-                <div className="custumer-rating">
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
+                <div className="line">
+                  <AiOutlineDollarCircle />
+                  <span>Valor médio dos produtos</span>
+                  <div className="dot" />
+                  <span>R$ {averageValue()}</span>
                 </div>
-                <CustomButtom colorName="--color-secundary">Enviar</CustomButtom>
+
+                <div className="line">
+                  <AiOutlineEnvironment />
+                  <span>
+                    {user.street} n{user.number}
+                  </span>
+                </div>
               </div>
-            </ReviewForm>
-          </div>
-        </RatingContainer>
-      </Main>
+            </HeaderContent>
+          </HeaderBottom>
+          <Main>
+            <WelcomeContainer>
+              <span className="section-title">Bem vindo!</span>
+              <div className="div-welcome">
+                <p>{user.description ? user.description : 'Loja sem descrição'}</p>
+                {gallery.length !== 0 && (
+                  <CustomCarousel images={gallery}></CustomCarousel>
+                )}
+              </div>
+            </WelcomeContainer>
+            <ProductsContainer>
+              <span className="section-title">Ofertas</span>
+
+              {productsUser.length !== 0 ? (
+                <GridContainer>
+                  {productsUser.map((product) => {
+                    const { name, price, _id, type } = product;
+                    return <ProductCard product={{ type, name, price, _id }} />;
+                  })}
+                </GridContainer>
+              ) : (
+                <div className="empty-store">
+                  <img className="landing-image" src={EmptyStore} alt="Imagem vendedor" />
+
+                  <h1>Sem ofertas no momento</h1>
+                </div>
+              )}
+            </ProductsContainer>
+            <RatingContainer>
+              <span className="section-title">Avaliações</span>
+              <div className="content-review">
+                <ReviewCard user_id={user._id ? user._id : ''} />
+                <ReviewForm user_rated_id={user._id ? user._id : ''} />
+              </div>
+            </RatingContainer>
+          </Main>
+        </>
+      )}
     </Container>
   );
 };

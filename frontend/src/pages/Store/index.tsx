@@ -13,7 +13,6 @@ import Cart from '../Cart';
 
 const Store: React.FC = () => {
   const { path, url } = useRouteMatch();
-  console.log(path, url);
   return (
     <ProductsContextProvider>
       <Container>
@@ -45,7 +44,7 @@ const Store: React.FC = () => {
             }}
           />
           <Route
-            path={`${url}/in`}
+            path={`${url}/in/:id`}
             render={() => {
               return <StoreInside />;
             }}

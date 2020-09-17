@@ -29,7 +29,7 @@ const Gallery: React.FC = () => {
       <Main>
         <Content>
           {uploadedDone.length !== 0 ? (
-            <CustomCarousel images={uploadedDone} />
+            <CustomCarousel images={uploadedDone} isAdminPage />
           ) : (
             <h1 style={{ marginTop: 20 }}>Ainda não possuí fotos na galeria</h1>
           )}

@@ -78,7 +78,8 @@ const DropZone: React.FC<DropZoneProps> = ({ setUploadedDone, uploadedDone }) =>
 
       updateFile(upload.id, {
         uploaded: true,
-        progress: 100
+        progress: 100,
+        id: response._id
       });
       setUploadedDone([...uploadedDone, response]);
     } catch (error) {
@@ -94,6 +95,7 @@ const DropZone: React.FC<DropZoneProps> = ({ setUploadedDone, uploadedDone }) =>
   }
 
   async function handleDelete(id: string) {
+    console.log(id);
     try {
       await AuthorizedApi.deleteImage(id);
       setUploadedFiles(uploadedFiles.filter((file) => file.id !== id));

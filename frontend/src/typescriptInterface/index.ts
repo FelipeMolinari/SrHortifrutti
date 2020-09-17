@@ -174,3 +174,12 @@ export interface GalleryResponseInterface {
   size: number;
   created_at: string;
 }
+
+export interface FormReviewProps {
+  reviewer_name?: string;
+  description?: string;
+  rate_stars: number;
+  user_rated_id: string;
+  created_at?: string;
+  updated_at?: string;
+}

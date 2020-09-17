@@ -29,6 +29,7 @@
     "rc-progress": "^3.1.0",
     "react": "^16.13.1",
     "react-avatar-editor": "^11.0.9",
+    "react-awesome-stars-rating": "^0.2.5",
     "react-bootstrap-sweetalert": "^5.2.0",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^16.13.1",
@@ -36,9 +37,13 @@
     "react-hook-form": "^6.7.1",
     "react-icons": "^3.11.0",
     "react-input-mask": "^3.0.0-alpha.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-slick": "^0.27.11",
+    "react-star-rating-input": "^8.0.1",
+    "react-star-ratings": "^2.3.0",
+    "react-stars": "^2.2.5",
     "react-text-mask": "^5.4.3",
     "react-toast-notifications": "^2.4.0",
     "styled-components": "^5.1.1",
@@ -68,6 +73,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.161",
+    "@types/react-stars": "^2.2.0",
     "@types/styled-components": "^5.1.3"
   }
 }

@@ -63,5 +63,22 @@ class UserController {
    }
   }
 
+  async show(req: Request, res: Response){
+    try{
+      const {user_id} = req.params;
+      console.log(req.params)
+      const user = await User.findOne({_id:user_id});
+      console.log(user, "entrou aqui")
+      if(user){
+        return res.send(user)
+
+      }
+      return res.status(404).send({msg:"User not found"});
+
+    }catch(error){
+      return res.send({error})
+    }
+  }
+
 }
 export default new UserController();

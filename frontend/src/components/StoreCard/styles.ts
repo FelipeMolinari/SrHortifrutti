@@ -13,6 +13,13 @@ export const Container = styled.div`
   padding: 1.4rem 2.4rem;
   border-radius: 2rem;
   margin-bottom: 2.4rem;
+  a {
+    text-decoration: none;
+    color: unset;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
   &:last-child {
     margin-bottom: 0rem;
   }
@@ -26,6 +33,7 @@ export const HeaderCard = styled.div`
   img {
     width: 8rem;
     height: 8rem;
+    border-radius: 1rem;
   }
   .store-name {
     font: 800 1.8rem Poppins;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
-import { MdCheckCircle, MdError } from 'react-icons/md';
+import { MdCheckCircle, MdError, MdDelete } from 'react-icons/md';
 import { Container, FileInfo, Preview } from './styles';
 import { FileType } from '../../typescriptInterface';
 
@@ -34,6 +34,17 @@ const FileList: React.FC<FileListInterface> = ({ files, onDelete }) => {
             )}
 
             {file.uploaded && <MdCheckCircle size={24} color="#78e5d5" />}
+            {file.uploaded && (
+              <MdDelete
+                style={{ cursor: 'pointer' }}
+                size={24}
+                color="#e57878"
+                onClick={() => {
+                  console.log('delete');
+                  onDelete(file.id);
+                }}
+              />
+            )}
             {file.error && <MdError size={24} color="#e57878" />}
           </div>
         </li>

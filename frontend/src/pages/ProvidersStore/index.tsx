@@ -36,35 +36,7 @@ const ProvidersStore: React.FC = () => {
         {loading && <h1> Carregando dados</h1>}
         {rejected && <h1>Erro ao carregar os lojistas</h1>}
         {providers?.map((provider) => {
-          const {
-            cellphone,
-            number,
-            street,
-            neighborhood,
-            name,
-            avatar_url,
-            cep,
-            email,
-            _id,
-            city
-          } = provider;
-          return (
-            <StoreCard
-              key={provider.email}
-              {...{
-                cellphone,
-                number,
-                street,
-                neighborhood,
-                name,
-                avatar_url,
-                cep,
-                email,
-                _id,
-                city
-              }}
-            />
-          );
+          return <StoreCard key={provider.email} user={provider} />;
         })}
       </GridContainer>
     </Container>

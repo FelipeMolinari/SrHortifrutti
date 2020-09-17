@@ -12,7 +12,9 @@ export const uploadGallery = multer({
     filename: (_, file, cb)=>{
       crypto.randomBytes(16, (err, hash)=>{
         if(err) cb(err, file.originalname);
-        const filename = `${hash.toString('hex')}-${file.originalname}`
+        const replaced = file.originalname.replace(/ /g,'');
+        console.log(replaced)
+        const filename = `${hash.toString('hex')}-${replaced}`
         cb(null, filename)
       })
     }

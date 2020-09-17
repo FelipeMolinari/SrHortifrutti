@@ -10,15 +10,21 @@ import isAuth from './middlewares/isAuth'
 import {uploadAvatar,uploadGallery} from './config/multer'
 import GalleryController from './app/Controllers/GalleryController';
 import AvatarController from './app/Controllers/AvatarController';
+import ReviewController from './app/Controllers/ReviewController';
 
 const routes = express.Router();
 
 routes.get('/products', PublicProductsController.index);
 routes.get('/providers', UserController.index);
 
-routes.post('/user', UserController.store)
+routes.post('/provider', UserController.store)
+routes.get(`/user/:user_id`, UserController.show)
+
 routes.post('/section', SectionController.store)
 routes.get('/gallery/:user_id', GalleryController.index)
+
+routes.get('/review/:user_id', ReviewController.index)
+routes.post('/review', ReviewController.index)
 
 
 // Secutes routes
