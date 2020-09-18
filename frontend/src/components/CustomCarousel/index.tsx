@@ -12,7 +12,6 @@ interface CarouselProps {
 const CustomCarousel: React.FC<CarouselProps> = ({ images, isAdminPage }) => {
   const { addToast } = useToasts();
   async function handleDelete(id: string) {
-    console.log(id);
     try {
       await AuthorizedApi.deleteImage(id);
       addToast('Foto deletada com sucesso', { appearance: 'success' });
@@ -41,7 +40,6 @@ const CustomCarousel: React.FC<CarouselProps> = ({ images, isAdminPage }) => {
         }}
       >
         {images.map((item) => {
-          console.log(item.url);
           return (
             <ImageContainer key={item._id} src={item.url}>
               {isAdminPage && <DeleteButton onClick={() => handleDelete(item._id)} />}

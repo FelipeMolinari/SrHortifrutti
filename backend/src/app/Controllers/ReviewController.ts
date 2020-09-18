@@ -2,18 +2,21 @@ import { Request, Response} from 'express'
 import Review from '../models/Review';
 import * as Yup from 'yup'
 
-class SectionController{
+class ReviewController{
   async store(req: Request, res: Response){
     const schema = Yup.object().shape({
       rate_stars: Yup.number()
     })
-
+    console.log(req.body, "store")
     try {
+
       if (!(await schema.isValid(req.body))) {
         return res.send({msg: "Validations Fails"})
       }
+
       const review = new Review(req.body)
-      const newReview = review.save();
+      const newReview = await review.save();
+      console.log(newReview)
       return res.send(newReview)
     } catch (error) {
       return res.send({error})
@@ -34,4 +37,4 @@ class SectionController{
   
 }
 
-export default new SectionController();
+export default new ReviewController();

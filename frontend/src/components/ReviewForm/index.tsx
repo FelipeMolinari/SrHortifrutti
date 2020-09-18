@@ -16,21 +16,22 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ user_rated_id }) => {
   const { register, handleSubmit, errors, setValue, setError, control } = useForm({
     defaultValues: {
       stars: '',
-      name: '',
+      reviewer_name: '',
       description: ''
     }
   });
 
   const submit = handleSubmit(async (data) => {
     try {
-      const { description, name, stars } = data;
+      const { description, reviewer_name, stars } = data;
       const review: FormReviewProps = await MainApi.createReview({
         user_rated_id,
         rate_stars: parseInt(stars),
         description,
-        reviewer_name: name
+        reviewer_name
       });
       addToast(`Review enviada com sucesso. rate:${stars}`, { appearance: 'success' });
+      console.log(review);
     } catch (error) {
       addToast('Review não foi enviada ao servidor', { appearance: 'error' });
 

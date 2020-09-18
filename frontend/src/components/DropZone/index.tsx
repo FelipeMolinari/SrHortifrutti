@@ -95,7 +95,6 @@ const DropZone: React.FC<DropZoneProps> = ({ setUploadedDone, uploadedDone }) =>
   }
 
   async function handleDelete(id: string) {
-    console.log(id);
     try {
       await AuthorizedApi.deleteImage(id);
       setUploadedFiles(uploadedFiles.filter((file) => file.id !== id));

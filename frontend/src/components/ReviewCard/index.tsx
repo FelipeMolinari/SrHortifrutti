@@ -24,11 +24,13 @@ const ReviewCard: React.FC<ReviewCard> = ({ user_id }) => {
   }, []);
   function averageRating() {
     const average =
-      reviews
+      (reviews
         .map((review) => review.rate_stars)
         .reduce((acc, curr) => {
           return acc + curr;
-        }, 0) / reviews.length;
+        }, 0) /
+        reviews.length) |
+      0;
     return average;
   }
   function percentagePerRatingValue(rate: number) {
@@ -37,7 +39,7 @@ const ReviewCard: React.FC<ReviewCard> = ({ user_id }) => {
 
     const numItems = reviewsRate.filter((review) => review === rate);
 
-    return (numItems.length * 100) / totalItems;
+    return ((numItems.length * 100) / totalItems) | 0;
   }
   return (
     <Container>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: 14rem;
 `;
 export const Header = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export const ContainerMain = styled.div`
   width: 100%;
 
   .buttons {
+    margin-top: 1.4rem;
     button {
       margin-bottom: 1.8rem;
       margin-left: 1.8rem;

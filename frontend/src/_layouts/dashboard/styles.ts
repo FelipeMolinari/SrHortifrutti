@@ -51,10 +51,7 @@ export const Wrapper = styled.div`
   flex: 1;
   display: flex;
   width: 100vw;
-  height: 100vh;
-  @media (min-width: 800px) {
-    flex: 1;
-  }
+
   --transition-speed: 0.2s;
   --normal-aside-width: 7rem;
   --hovered-aside-width: 24rem;
@@ -65,14 +62,18 @@ export const Content = styled.div`
   flex: 1;
   background-color: var(--commum-background);
   flex-direction: column;
-
-  min-height: 120vh;
   @media (min-width: 800px) {
-    min-height: 100vh;
+    flex: 1;
+    height: 100vh;
   }
 `;
 export const Main = styled.div`
   padding: 1.4rem 6rem;
   flex: 1;
-  height: 100%;
+  min-height: 90vh;
+  display: flex;
+  @media (min-width: 800px) {
+    flex: 1;
+    max-height: 100vh;
+  }
 `;

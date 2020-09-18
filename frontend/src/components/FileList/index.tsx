@@ -40,7 +40,6 @@ const FileList: React.FC<FileListInterface> = ({ files, onDelete }) => {
                 size={24}
                 color="#e57878"
                 onClick={() => {
-                  console.log('delete');
                   onDelete(file.id);
                 }}
               />

@@ -24,7 +24,7 @@ routes.post('/section', SectionController.store)
 routes.get('/gallery/:user_id', GalleryController.index)
 
 routes.get('/review/:user_id', ReviewController.index)
-routes.post('/review', ReviewController.index)
+routes.post('/review', ReviewController.store)
 
 
 // Secutes routes
