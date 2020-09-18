@@ -45,6 +45,9 @@ const UserSchema = new Schema({
   },
   avatar_url:{
     type: String
+  },
+  visitors_cont: {
+    type:Number
   }
 
 }, {  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }})
@@ -62,6 +65,7 @@ interface IUser {
   description?:string;
   avatar_url?:string;
   city:string;
+  visitors_cont: number;
 
 }
 interface IUserDocument extends IUser, Document {};
