@@ -23,7 +23,7 @@ const AddProduct: React.FC = () => {
   const [errorDialog, setErrorDialog] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
   const [dialogDescription, setDialogDescription] = useState('');
-
+  
   const options: OptionsSelectProps[] = productsTypes.map((type) => {
     return {
       color: type.color,

@@ -32,6 +32,11 @@ interface IProductType {
 }
 interface IProductTypeDocument extends IProductType, Document {};
 
+ProductTypeSchema.pre('find', function() {
+  console.log("teste2 ");
+  
+  
+});
 
 const ProductType =  model<IProductTypeDocument>('ProductType', ProductTypeSchema)
 

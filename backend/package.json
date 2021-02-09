@@ -6,7 +6,6 @@
   "scripts": {
     "watch": "tsc -w",
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --ignore-watch node_modules --no-notify src/server.ts"
-
   },
   "keywords": [],
   "author": "",

@@ -22,6 +22,7 @@ const ProductsContextProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [rejected, setRejected] = useState(false);
   const [rejectedMessage, setRejectedMessage] = useState('');
+  console.log(productsTypes);
 
   useEffect(() => {
     async function fetchProducts() {

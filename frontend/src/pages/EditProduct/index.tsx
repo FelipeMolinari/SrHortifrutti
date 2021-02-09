@@ -70,7 +70,7 @@ const AddProduct: React.FC = () => {
                   }}
                   ref={register({
                     maxLength: {
-                      value: 20,
+                      value: 40,
                       message: 'Nome do produto excede o tamanho permitido. (10)!'
                     }
                   })}

@@ -29,6 +29,7 @@ class ProductController{
   async index(req: IGetUserAuthInfoRequest, res: Response){
     try {
       const products = await Product.find({owner_id: req.user});
+      
       return res.send(products)
 
     } catch (error) {

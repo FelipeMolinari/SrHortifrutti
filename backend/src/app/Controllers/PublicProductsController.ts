@@ -8,6 +8,7 @@ class PublicProductsController{
     try {
       const products = await Product.find({});
       
+      console.log(products, "Lol");
       
       return res.send(products)
 

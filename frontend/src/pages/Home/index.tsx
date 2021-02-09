@@ -68,21 +68,21 @@ const Home: React.FC = () => {
           <div className="card-details products">
             <span className="text-main">Produtos</span>
             <Square className="square-cont" color={'#f38181'}>
-              <span>10</span>
+              <span>0</span>
             </Square>
             <span className="text-main">criados</span>
           </div>
           <div className="card-details values">
             <span className="text-main">Valor</span>
             <Square className="square-cont" color={'#fce38a'}>
-              <span>R$ 19.99</span>
+              <span>R$ 0</span>
             </Square>
             <span className="text-main">Médio</span>
           </div>
           <div className="card-details visitors">
             <span className="text-main">Total</span>
             <Square className="square-cont" color={'#95e1d3'}>
-              <span>100</span>
+              <span>0</span>
             </Square>
             <span className="text-main">Visitas</span>
           </div>

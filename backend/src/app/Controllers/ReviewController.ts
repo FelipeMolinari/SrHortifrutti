@@ -7,7 +7,6 @@ class ReviewController{
     const schema = Yup.object().shape({
       rate_stars: Yup.number()
     })
-    console.log(req.body, "store")
     try {
 
       if (!(await schema.isValid(req.body))) {
@@ -16,7 +15,8 @@ class ReviewController{
 
       const review = new Review(req.body)
       const newReview = await review.save();
-      console.log(newReview)
+
+      console.log(newReview ,"new")
       return res.send(newReview)
     } catch (error) {
       return res.send({error})
@@ -25,7 +25,7 @@ class ReviewController{
     
   async index(req: Request, res: Response){
     const {user_id} = req.params;
-
+    
     try {
       const reviews = await Review.find({user_rated_id: user_id});
       return res.send(reviews)
